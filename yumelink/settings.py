@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config, Csv
+import mongoengine
+import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-u$7hbak7*5$h8fa2ocusson2ui$0270d_1w=y)8f06eo5r*jef'
+SECRET_KEY = config("SECRET_KEY", default="random-secret-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=Csv(), default='*')
 
 
 # Application definition
@@ -37,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'yumelinkapp.apps.YumelinkappConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -73,12 +78,32 @@ WSGI_APPLICATION = 'yumelink.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
+TEST_DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+MONGO_DB_NAME = config('MONGO_DB_NAME')
+MONGO_HOST = config('MONGO_HOST')
+MONGO_HOST_NAME = f'{MONGO_HOST}.bnycn.mongodb.net'
+MONGO_USERNAME = config('MONGO_USERNAME')
+MONGO_PWD = config('MONGO_PWD')
+MONGO_PROTOCOL = 'mongodb+srv:'
+MONGO_PORT = config('MONGO_PORT')
+MONGO_WEB_QUERY = config('MONGO_WEB_QUERY')
+
+MONGO_CONNECTION = f'{MONGO_PROTOCOL}//{MONGO_USERNAME}:{MONGO_PWD}@{MONGO_HOST_NAME}/{MONGO_DB_NAME}{MONGO_WEB_QUERY}'
+
+
+if 'test' in sys.argv:
+    DATABASES = TEST_DATABASES
+
+else:
+    mongoengine.connect(host=MONGO_CONNECTION,
+                        ssl=True)
+
 
 
 # Password validation
@@ -105,7 +130,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = config('TIME_ZONE', default='UTC')
 
 USE_I18N = True
 
@@ -121,3 +146,4 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
