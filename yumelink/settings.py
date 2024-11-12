@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from decouple import config, Csv
-import mongoengine
 import sys
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -81,28 +80,27 @@ WSGI_APPLICATION = 'yumelink.wsgi.application'
 TEST_DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / config('DATABASE_NAME', default='db.sqlite3'),
     }
 }
-
-MONGO_DB_NAME = config('MONGO_DB_NAME')
-MONGO_HOST = config('MONGO_HOST')
-MONGO_HOST_NAME = f'{MONGO_HOST}.bnycn.mongodb.net'
-MONGO_USERNAME = config('MONGO_USERNAME')
-MONGO_PWD = config('MONGO_PWD')
-MONGO_PROTOCOL = 'mongodb+srv:'
-MONGO_PORT = config('MONGO_PORT')
-MONGO_WEB_QUERY = config('MONGO_WEB_QUERY')
-
-MONGO_CONNECTION = f'{MONGO_PROTOCOL}//{MONGO_USERNAME}:{MONGO_PWD}@{MONGO_HOST_NAME}/{MONGO_DB_NAME}{MONGO_WEB_QUERY}'
-
 
 if 'test' in sys.argv:
     DATABASES = TEST_DATABASES
 
 else:
-    mongoengine.connect(host=MONGO_CONNECTION,
-                        ssl=True)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': config('PGDATABASE'),
+            'USER': config('PGUSER'),
+            'PASSWORD': config('PGPASSWORD'),
+            'HOST': config('PGHOST'),
+            'PORT': config('PGPORT', 5432),
+            'OPTIONS': {
+                'sslmode': 'require',
+            },
+        }
+    }
 
 
 
