@@ -3,6 +3,8 @@ from . import Tag, Post
 
 
 class PostTag(models.Model):
-    """Block"""
+    """
+    Tag(s) in Post(s).
+    """
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)

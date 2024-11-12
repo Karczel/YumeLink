@@ -3,6 +3,8 @@ from django.db import models
 
 
 class User(DjangoUser):
-    """Users on Yumelink social media."""
+    """
+    Users on Yumelink social media.
+    """
     name = models.CharField()
     bio = models.TextField()

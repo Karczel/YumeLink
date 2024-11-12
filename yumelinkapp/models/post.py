@@ -3,7 +3,9 @@ from . import User
 
 
 class Post(models.Model):
-    """Block"""
+    """
+    A Post a User posts.
+    """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
     timestamp = models.DateTimeField()

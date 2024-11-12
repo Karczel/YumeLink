@@ -2,5 +2,7 @@ from django.db import models
 
 
 class Tag(models.Model):
-    """Block"""
+    """
+    A Tag that can be added to any Posts.
+    """
     content = models.CharField()
