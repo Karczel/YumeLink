@@ -1,6 +1,9 @@
 from django.db import models
+from . import User
 
 
 class Post(models.Model):
     """Block"""
-    post_id = models.IntegerField
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    timestamp = models.DateTimeField()
