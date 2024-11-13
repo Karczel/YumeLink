@@ -19,8 +19,7 @@ from django.urls import path, include
 from yumelinkapp import views
 
 urlpatterns = [
-    path("", include("renthub.urls")),
+    path("", include("yumelinkapp.urls")),
     path('admin/', admin.site.urls),
     path('accounts/', include("django.contrib.auth.urls")),
-    path('signup/', views.RenterSignupView.as_view(), name='signup'),
 ]
