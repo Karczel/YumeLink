@@ -1,6 +1,6 @@
 from django.db import models
 from . import User, ChatRoom
-from ..utils import BIG_TEXT
+from yumelinkapp.utils import BIG_TEXT
 
 
 class Message(models.Model):
