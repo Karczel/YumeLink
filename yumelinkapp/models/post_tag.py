@@ -8,3 +8,6 @@ class PostTag(models.Model):
     """
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.tag} in {self.post}'

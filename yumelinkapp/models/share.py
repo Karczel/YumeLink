@@ -12,3 +12,5 @@ class Share(models.Model):
     share_type = models.CharField(max_length=SMALL_TEXT,
                                   choices=ShareType.choices(),
                                   default=ShareType.link)
+    def __str__(self):
+        return f'{self.user} shared {self.post} with {self.share_type}'
