@@ -1,5 +1,6 @@
 from django.db import models
 from . import User, Post
+from yumelinkapp.utils import SMALL_TEXT, ShareType
 
 
 class Share(models.Model):
@@ -8,4 +9,6 @@ class Share(models.Model):
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    share_type = models.CharField()
+    share_type = models.CharField(max_length=SMALL_TEXT,
+                                  choices=ShareType.choices(),
+                                  default=ShareType.link)
