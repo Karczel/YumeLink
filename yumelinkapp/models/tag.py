@@ -8,3 +8,6 @@ class Tag(models.Model):
     A Tag that can be added to any Posts.
     """
     content = models.CharField(max_length=SMALL_TEXT)
+
+    def __str__(self):
+        return self.content

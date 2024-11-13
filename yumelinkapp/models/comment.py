@@ -11,3 +11,6 @@ class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     content = models.TextField(max_length=MID_SMALL_TEXT)
     timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.content
