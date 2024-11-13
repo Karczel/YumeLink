@@ -1,5 +1,6 @@
 from django.db import models
 from . import User, ChatRoom
+from ..utils import BIG_TEXT
 
 
 class Message(models.Model):
@@ -8,5 +9,6 @@ class Message(models.Model):
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     chat = models.ForeignKey(ChatRoom, on_delete=models.CASCADE)
-    content = models.TextField()
-    timestamp = models.DateTimeField()
+    content = models.TextField(max_length=BIG_TEXT)
+    timestamp = models.DateTimeField(auto_now_add=True)
+

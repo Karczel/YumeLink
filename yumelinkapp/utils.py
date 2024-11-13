@@ -1,5 +1,12 @@
 from enum import Enum
 
+SMALL_TEXT = 100
+MID_SMALL_TEXT = 500
+MID_BIG_TEXT = 2000
+BIG_TEXT = 5000
+
+UNTITLED = 'Untitled'
+
 
 class ShareType(Enum):
     link = 'Link'
