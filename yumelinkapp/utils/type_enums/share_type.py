@@ -3,6 +3,7 @@ from enum import Enum
 
 class ShareType(Enum):
     link = 'Link'
+    reblog = 'Reblog'
     line = 'Line'
     facebook = 'Facebook'
     tumblr = 'tumblr'

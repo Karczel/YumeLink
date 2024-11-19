@@ -10,3 +10,6 @@ from .share import Share
 from .block import Block
 from .follow import Follow
 from .userchat import UserChat
+from .notification import Notification
+from .post_image import PostImage
+from .report import Report
