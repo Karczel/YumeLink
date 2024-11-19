@@ -3,6 +3,8 @@
 import yumelinkapp.utils
 from django.db import migrations, models
 
+import yumelinkapp.utils.type_enums.share_type
+
 
 class Migration(migrations.Migration):
 
@@ -49,7 +51,8 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='share',
             name='share_type',
-            field=models.CharField(choices=[('link', 'Link'), ('line', 'Line'), ('facebook', 'Facebook'), ('tumblr', 'tumblr')], default=yumelinkapp.utils.ShareType['link'], max_length=100),
+            field=models.CharField(choices=[('link', 'Link'), ('line', 'Line'), ('facebook', 'Facebook'), ('tumblr', 'tumblr')], default=
+            yumelinkapp.utils.type_enums.ShareType.ShareType['link'], max_length=100),
         ),
         migrations.AlterField(
             model_name='tag',
