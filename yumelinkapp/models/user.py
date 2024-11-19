@@ -2,17 +2,17 @@ from django.contrib.auth.models import User as DjangoUser
 from django.core.validators import RegexValidator
 from django.db import models
 
-from yumelinkapp.utils import SMALL_TEXT, MID_SMALL_TEXT, FilterType, LanguageType
+from yumelinkapp.utils import SMALL_TEXT, MID_SMALL_TEXT, FilterType, LanguageType, user_profile_path, UNTITLED
 
 
 class User(DjangoUser):
     """
     Users on Yumelink social media.
     """
-    name = models.CharField(max_length=SMALL_TEXT, blank=True, null=True)
+    name = models.CharField(default=UNTITLED,max_length=SMALL_TEXT, blank=True, null=True)
     bio = models.TextField(max_length=MID_SMALL_TEXT, blank=True, null=True)
-    profile = models.ImageField(upload_to=f'{id}/', blank=True, null=True)
-    header = models.ImageField(upload_to=f'{id}/', blank=True, null=True)
+    profile = models.ImageField(upload_to=user_profile_path, blank=True, null=True)
+    header = models.ImageField(upload_to=user_profile_path, blank=True, null=True)
     color = models.CharField(
         max_length=7,
         default="#000000",

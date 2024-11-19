@@ -24,3 +24,9 @@ s3_client = get_s3_client()
 BUCKET_NAME = settings.AWS_STORAGE_BUCKET_NAME
 
 # use s3_client to upload/delete image
+def user_profile_path(instance, filename):
+    return f'users/{instance.id}/{filename}'
+
+
+def chatroom_profile_path(instance, filename):
+    return f'chatrooms/{instance.id}/{filename}'
