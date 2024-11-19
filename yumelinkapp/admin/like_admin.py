@@ -5,4 +5,4 @@ class LikeAdmin(admin.ModelAdmin):
     """
     Admin configuration for managing Like objects in the admin panel.
     """
-    list_display = ('id', 'user', 'post')
+    list_display = ('id', 'user', 'post', 'type')
