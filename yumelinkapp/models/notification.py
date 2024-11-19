@@ -1,6 +1,6 @@
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
-from django.forms import models
+from django.db import models
 
 from yumelinkapp.models import User
 

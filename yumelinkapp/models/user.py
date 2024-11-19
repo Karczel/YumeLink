@@ -27,10 +27,13 @@ class User(DjangoUser):
     language = models.CharField(
         max_length=SMALL_TEXT,
         choices=LanguageType.choices(),
-        default=LanguageType.english,
+        default=LanguageType.ENG,
     )
-    filter_content = models.Charfield(
+    filter_content = models.CharField(
         max_length=SMALL_TEXT,
-        choices=[FilterType.none, FilterType.mature],
+        choices=[
+            (FilterType.none.name, FilterType.none.value),
+            (FilterType.mature.name, FilterType.mature.value)
+        ],
         default=FilterType.none,
     )
