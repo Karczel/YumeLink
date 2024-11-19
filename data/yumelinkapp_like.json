@@ -1,0 +1,26 @@
+[
+  {
+    "model": "yumelinkapp.like",
+    "pk": 1,
+    "fields": {
+      "post": 1,
+      "user": 3
+    }
+  },
+  {
+    "model": "yumelinkapp.like",
+    "pk": 2,
+    "fields": {
+      "post": 1,
+      "user": 4
+    }
+  },
+  {
+    "model": "yumelinkapp.like",
+    "pk": 3,
+    "fields": {
+      "post": 2,
+      "user": 2
+    }
+  }
+]

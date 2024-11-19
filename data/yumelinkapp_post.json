@@ -1,0 +1,29 @@
+[
+  {
+    "model": "yumelinkapp.post",
+    "pk": 1,
+    "fields": {
+      "content": "Just joined the platform! Excited!",
+      "timestamp": "2024-11-09T07:00:00+00:00",
+      "user": 2
+    }
+  },
+  {
+    "model": "yumelinkapp.post",
+    "pk": 2,
+    "fields": {
+      "content": "Check out my latest blog post!",
+      "timestamp": "2024-11-09T08:30:00+00:00",
+      "user": 3
+    }
+  },
+  {
+    "model": "yumelinkapp.post",
+    "pk": 3,
+    "fields": {
+      "content": "Loving the new update!",
+      "timestamp": "2024-11-09T09:45:00+00:00",
+      "user": 4
+    }
+  }
+]

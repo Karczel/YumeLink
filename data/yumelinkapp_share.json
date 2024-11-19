@@ -1,0 +1,29 @@
+[
+  {
+    "model": "yumelinkapp.share",
+    "pk": 1,
+    "fields": {
+      "share_type": "Repost",
+      "post": 3,
+      "user": 2
+    }
+  },
+  {
+    "model": "yumelinkapp.share",
+    "pk": 2,
+    "fields": {
+      "share_type": "Repost",
+      "post": 1,
+      "user": 3
+    }
+  },
+  {
+    "model": "yumelinkapp.share",
+    "pk": 3,
+    "fields": {
+      "share_type": "Repost",
+      "post": 2,
+      "user": 4
+    }
+  }
+]
