@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block title %}<h1>Sign up page</h1>{% endblock %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <table style="padding: 2ex;">
+    {{ form.as_table }}     {# this line shows the sign-up form #}
+    <tr>
+    <td colspan="2">
+    <button type="submit">Register</button>
+    </td>
+    </tr>
+    </table>
+</form>
+  <a href="{% url 'login' %}?next={{request.path}}" class="custom-button-link">Log in</a> <br>
+{% endblock %}

@@ -1,0 +1,23 @@
+[
+  {
+    "model": "yumelinkapp.chatroom",
+    "pk": 1,
+    "fields": {
+      "chat_name": "General Discussion"
+    }
+  },
+  {
+    "model": "yumelinkapp.chatroom",
+    "pk": 2,
+    "fields": {
+      "chat_name": "Photography Lounge"
+    }
+  },
+  {
+    "model": "yumelinkapp.chatroom",
+    "pk": 3,
+    "fields": {
+      "chat_name": "Tech Enthusiasts"
+    }
+  }
+]

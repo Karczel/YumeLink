@@ -1,0 +1,26 @@
+[
+  {
+    "model": "yumelinkapp.follow",
+    "pk": 1,
+    "fields": {
+      "follower": 3,
+      "user": 2
+    }
+  },
+  {
+    "model": "yumelinkapp.follow",
+    "pk": 2,
+    "fields": {
+      "follower": 2,
+      "user": 3
+    }
+  },
+  {
+    "model": "yumelinkapp.follow",
+    "pk": 3,
+    "fields": {
+      "follower": 2,
+      "user": 4
+    }
+  }
+]
