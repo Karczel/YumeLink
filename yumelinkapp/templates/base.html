@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+{% load static %}
+
+{% block extra_css %} {% endblock %}
+
+{% block title %} {% endblock %}
+{% if messages %}
+    <h2 class="messages">
+        {% for message in messages %}
+            <p style="color:red;" class="{{ message.tags }}">{{ message }}</p>
+        {% endfor %}
+    </h2>
+{% endif %}
+
+{% block content %}{% endblock %}
+
+
+
+</body>
+</html>
