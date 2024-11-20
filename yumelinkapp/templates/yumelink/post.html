@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}{% endblock %}
+
+{% block title %}<h1>Post</h1>{% endblock %}
+
+{% block content %}
+<p>{{ post.content }}</p>
+{% for image in post_images %}
+<div class="post-image">
+    <img src="{{ image.image.url }}" alt="Post Image" />
+</div>
+{% endfor %}
+<!--have 3 dots and dropdown for edit, delete-->
+
+<!--specific buttons for like, love, share, comment-->
+{% endblock %}
