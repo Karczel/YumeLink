@@ -13,6 +13,8 @@ from .share_admin import ShareAdmin
 from .block_admin import BlockAdmin
 from .follow_admin import FollowAdmin
 from .userchat_admin import UserChatAdmin
+from .post_image_admin import PostImageAdmin
+from .report_admin import ReportAdmin
 
 admin.site.register(ChatRoom, ChatRoomAdmin)
 admin.site.register(Tag, TagAdmin)
@@ -26,3 +28,5 @@ admin.site.register(Share, ShareAdmin)
 admin.site.register(Block, BlockAdmin)
 admin.site.register(Follow, FollowAdmin)
 admin.site.register(UserChat, UserChatAdmin)
+admin.site.register(Report, ReportAdmin)
+admin.site.register(PostImage, PostImageAdmin)

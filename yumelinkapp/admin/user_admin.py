@@ -5,4 +5,4 @@ class UserAdmin(admin.ModelAdmin):
     """
     Admin configuration for managing User objects in the admin panel.
     """
-    list_display = ('id', 'name', 'bio')
+    list_display = ('id', 'username', 'email', 'first_name', 'last_name', 'name', 'bio', 'profile', 'header', 'color', 'language', 'filter_content')

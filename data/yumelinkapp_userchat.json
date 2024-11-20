@@ -1,0 +1,34 @@
+[
+  {
+    "model": "yumelinkapp.userchat",
+    "pk": 1,
+    "fields": {
+      "chat": 1,
+      "user": 2
+    }
+  },
+  {
+    "model": "yumelinkapp.userchat",
+    "pk": 2,
+    "fields": {
+      "chat": 1,
+      "user": 3
+    }
+  },
+  {
+    "model": "yumelinkapp.userchat",
+    "pk": 3,
+    "fields": {
+      "chat": 2,
+      "user": 2
+    }
+  },
+  {
+    "model": "yumelinkapp.userchat",
+    "pk": 4,
+    "fields": {
+      "chat": 3,
+      "user": 4
+    }
+  }
+]

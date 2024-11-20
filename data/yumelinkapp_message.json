@@ -1,0 +1,32 @@
+[
+  {
+    "model": "yumelinkapp.message",
+    "pk": 1,
+    "fields": {
+      "content": "Hello everyone!",
+      "timestamp": "2024-11-09T07:05:00+00:00",
+      "chat": 1,
+      "user": 2
+    }
+  },
+  {
+    "model": "yumelinkapp.message",
+    "pk": 2,
+    "fields": {
+      "content": "Hey Karczel!",
+      "timestamp": "2024-11-09T07:10:00+00:00",
+      "chat": 1,
+      "user": 3
+    }
+  },
+  {
+    "model": "yumelinkapp.message",
+    "pk": 3,
+    "fields": {
+      "content": "Excited to share my photos here!",
+      "timestamp": "2024-11-09T09:20:00+00:00",
+      "chat": 2,
+      "user": 2
+    }
+  }
+]

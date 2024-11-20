@@ -1,0 +1,18 @@
+[
+  {
+    "model": "yumelinkapp.block",
+    "pk": 1,
+    "fields": {
+      "blocked": 1,
+      "blocker": 2
+    }
+  },
+  {
+    "model": "yumelinkapp.block",
+    "pk": 2,
+    "fields": {
+      "blocked": 1,
+      "blocker": 3
+    }
+  }
+]
