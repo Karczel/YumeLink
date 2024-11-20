@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Rooms</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }
+        .chat-header { background-color: Gray; display: flex; align-items: center; padding: 10px 20px; font-size: 24px; font-weight: bold; border-bottom: 1px solid #ccc; }
+        .tabs { display: flex; justify-content: space-around; background-color: #fff; padding: 10px; border-bottom: 2px solid #ccc; }
+        .tab { padding: 10px 20px; cursor: pointer; font-weight: bold; }
+        .tab.active { background-color: #000; color: #fff; }
+        .chat-list { padding: 20px; }
+        .chat-item { background-color: #fff; padding: 15px; margin-bottom: 10px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="chat-header">
+        <div class="menu">☰</div>
+        <div class="title">Chat</div>
+        <div class="icon">💬</div>
+    </div>
+    <!-- Tabs -->
+    <div class="tabs">
+        <div class="tab" id="all-tab" onclick="showTab('all')">All Chats</div>
+        <div class="tab" id="personal-tab" onclick="showTab('personal')">Personal</div>
+        <div class="tab" id="groups-tab" onclick="showTab('groups')">Groups</div>
+    </div>
+
+    <!-- Chat Lists -->
+    <div class="chat-list" id="all-chats">
+        {% for chat in chat_room %}
+        <div class="chat-item">
+            <a href="{% url 'yumelinkapp:chat_room_detail' chat.id %}">{{ chat.chat_name }}</a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="chat-list" id="personal-chats" style="display: none;">
+        {% for chat in personal_chats %}
+        <div class="chat-item">
+            <a href="{% url 'yumelinkapp:chat_room_detail' chat.id %}">{{ chat.chat_name }}</a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="chat-list" id="group-chats" style="display: none;">
+        {% for chat in group_chats %}
+        <div class="chat-item">
+            <a href="{% url 'yumelinkapp:chat_room_detail' chat.id %}">{{ chat.chat_name }}</a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        function showTab(tab) {
+            document.getElementById('all-chats').style.display = tab === 'all' ? 'block' : 'none';
+            document.getElementById('personal-chats').style.display = tab === 'personal' ? 'block' : 'none';
+            document.getElementById('group-chats').style.display = tab === 'groups' ? 'block' : 'none';
+
+            document.getElementById('all-tab').classList.toggle('active', tab === 'all');
+            document.getElementById('personal-tab').classList.toggle('active', tab === 'personal');
+            document.getElementById('groups-tab').classList.toggle('active', tab === 'groups');
+        }
+    </script>
+</body>
+</html>
