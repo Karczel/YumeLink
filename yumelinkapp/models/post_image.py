@@ -10,4 +10,7 @@ class PostImage(models.Model):
                               null=True)
 
     def __str__(self):
-        return self.image.url
+        if self.image:
+            return self.image.url
+        else:
+            return ''

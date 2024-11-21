@@ -18,6 +18,6 @@ class HomeView(TemplateView):
                 'post': post,
                 'post_images': PostImage.objects.filter(post=post)
             }
-            for post in Post.objects.all()
+            for post in Post.objects.all().order_by('-timestamp')
         ]
         return context
