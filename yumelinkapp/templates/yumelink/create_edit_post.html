@@ -18,11 +18,29 @@
 
         <h3>Upload Images:</h3>
         {{ image_formset.management_form }}
+
         <div id="image-formset">
+
+            {% for error in form.non_field_errors %}
+                    <p class="error">{{ error }}</p>
+            {% endfor %}
+
             {% for form in image_formset %}
+                {% if form.error %}
+                    <p class="error">{{ error }}</p>
+                {% endif %}
+                {% if form.instance.pk %}
+                    <div class="existing-image">
+                        <img src="{{ form.instance.image.url }}" alt="Uploaded Image" style="max-width: 150px;" />
+                        <input type="checkbox" name="form-{{ forloop.counter0 }}-delete_image" value="on">
+                        Delete
+                    </div>
+                {% else %}
                 <div class="image-form">
                     {{ form.image.label_tag }} {{ form.image }}
+                    {{ form.DELETE }} Delete
                 </div>
+                {% endif %}
             {% endfor %}
         </div>
 

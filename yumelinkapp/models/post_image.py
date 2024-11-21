@@ -1,7 +1,7 @@
 from django.db import models
 
 from yumelinkapp.models import Post
-from yumelinkapp.utils import post_image_upload_path, upload_image_to_s3, delete_image_from_s3
+from yumelinkapp.utils import post_image_upload_path
 
 
 class PostImage(models.Model):

@@ -10,9 +10,10 @@ class PostView(DetailView):
     model = Post
     template_name = "yumelink/post.html"
 
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['post_images'] = PostImage.objects.filter(post=self.object)
+        #change post to languages with auto-translate
+        # + toggle off check
 
         return context
