@@ -14,56 +14,24 @@
 <p>User: {{ user }}</p>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-<!--        {{ form2.management_form }}-->
         {{ form.as_p }}
 
         <h3>Upload Images:</h3>
         <div class="mb-3">
             <label for="image" class="form-label">Upload Image:</label>
-            <input type="file" id="image" name="image" class="form-control" required>
+            <input type="file" id="image" name="image" class="form-control">
         </div>
 
+        <h3>Tags (up to 5)</h3>
+        {{ tag_formset.management_form }}
+            {% for form in tag_formset %}
+                <div class="form-group">
+                    {{ form.as_p }}
+                </div>
+            {% endfor %}
         <button type="submit">Submit</button>
     </form>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-    const formsetDiv = document.getElementById('image-formset');
-    const managementFormTotal = document.querySelector('#id_form-TOTAL_FORMS');
-    let totalForms = parseInt(managementFormTotal.value, 10);
 
-    // Function to add a new form
-    function addNewForm() {
-        const newForm = document.createElement('div');
-        newForm.className = 'image-form';
-
-        // Create a new file input field and add it to the new form
-        newForm.innerHTML = `
-            <label for="id_form-${totalForms}-image">Image:</label>
-            <input type="file" name="form-${totalForms}-image" id="id_form-${totalForms}-image">
-        `;
-
-        // Append the new form to the formset
-        formsetDiv.appendChild(newForm);
-
-        // Increment the total forms count
-        totalForms++;
-        managementFormTotal.value = totalForms;
-    }
-
-    // Event listener for when a file is selected, which will trigger the addition of a new form
-    formsetDiv.addEventListener('change', function (event) {
-        if (event.target.tagName === 'INPUT' && event.target.type === 'file') {
-            addNewForm();
-        }
-    });
-
-    // Initially, add the first form if there are no existing forms
-    if (totalForms === 0) {
-        addNewForm();
-    }
-});
-</script>
-</script>
 
 {% endblock %}

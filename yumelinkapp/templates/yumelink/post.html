@@ -11,6 +11,10 @@
     <img src="{{ image.image.url }}" alt="Post Image" />
 </div>
 {% endfor %}
+<h3>Tags</h3>
+{% for tag in tags %}
+<p>{{ tag.content }}, </p>
+{% endfor %}
 <!--have 3 dots and dropdown for edit, delete-->
 
 <!--specific buttons for like, love, share, comment-->
