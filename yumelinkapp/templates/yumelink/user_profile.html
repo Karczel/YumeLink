@@ -1,0 +1,69 @@
+<!-- user_profile.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profiles</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            margin: 0;
+        }
+
+        .profile-list {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-list li {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            list-style-type: none;
+        }
+
+        .profile-list li:last-child {
+            border-bottom: none;
+        }
+
+        .profile-list strong {
+            color: #333;
+        }
+
+        .profile-list li:hover {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>User Profiles</h1>
+
+    <ul class="profile-list">
+        <!-- Iterate over the user_profile context variable to display each user's info -->
+        {% for user in user_profile %}
+            <li>
+                <strong>Name:</strong> {{ user.name }}<br>
+                <strong>Email:</strong> {{ user.email }}<br>
+                <strong>Username:</strong> {{ user.username }}<br>
+                <!-- Add more fields as needed -->
+            </li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
+
