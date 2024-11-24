@@ -18,7 +18,7 @@ class PostView(DetailView):
 
         context['tags'] = Tag.objects.filter(posttag__post=post)
 
-        #change post to languages with auto-translate
+        # change post to languages with auto-translate
         # + toggle off check
 
         return context

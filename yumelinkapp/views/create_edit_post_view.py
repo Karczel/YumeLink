@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.forms import modelformset_factory
 from django.http import HttpResponseRedirect, Http404
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
 from django.views.generic.edit import UpdateView
 from yumelinkapp.models import Post, PostImage, User, Tag, PostTag
@@ -37,6 +37,20 @@ class CreateEditPostView(UpdateView):
 
     def get(self, request, *args, **kwargs):
         super(CreateEditPostView, self).get(request, *args, **kwargs)
+        if not request.user.is_authenticated:
+            messages.warning(request, 'You have to log in to edit post.')
+            return redirect('yumelinkapp:home')
+
+        try:
+            user = User.objects.get(id=self.request.user.id)
+        except User.DoesNotExist:
+            messages.warning(request, 'You have to log in as a user to edit post.')
+            return redirect('yumelinkapp:home')
+
+        if self.object.user != user:
+            messages.warning(request, 'You are not the owner of this post.')
+            return redirect('yumelinkapp:home')
+
         form = self.form_class(instance=self.object)
         tag_formset = TagFormSet(
             queryset=Tag.objects.filter(id__in=PostTag.objects.filter(post=self.object).values('tag_id'))
@@ -49,12 +63,12 @@ class CreateEditPostView(UpdateView):
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         post_data = request.POST.copy()
-        post_data['user']= User.objects.get(id=request.user.id)
+        post_data['user'] = User.objects.get(id=request.user.id)
         if self.object:
             form = self.form_class(post_data, instance=self.object)
         else:
             form = self.form_class(post_data)
-        tag_formset = TagFormSet(request.POST)
+        tag_formset = TagFormSet(request.POST, queryset=Tag.objects.filter(posttag__post=self.object))
 
         # messages.info(request, post_data)
 
@@ -62,7 +76,7 @@ class CreateEditPostView(UpdateView):
             post = form.save(commit=False)
             post.user = User.objects.get(id=request.user.id)
             post.save()
-            
+
             PostTag.objects.filter(post=post).delete()
 
             for i, form in enumerate(tag_formset.forms):
@@ -75,7 +89,6 @@ class CreateEditPostView(UpdateView):
                 image = request.FILES['image']
                 post_image = PostImage.objects.create(post=post, image=image)
 
-            # messages.info(self.request, f"Request files:{request.FILES}")
             messages.success(request, 'Post saved successfully')
             try:
                 return HttpResponseRedirect(reverse('yumelinkapp:post', kwargs={"pk": self.object.id}))
