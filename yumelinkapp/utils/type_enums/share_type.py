@@ -14,5 +14,5 @@ class ShareType(Enum):
     @classmethod
     def choices(cls):
         """Returns the choices as a list of tuples."""
-        return [(status.value, status.value) for status in cls]
+        return [(status.name, status.value) for status in cls]
 

@@ -12,9 +12,3 @@ class LikeType(Enum):
     def choices(cls):
         """Returns the choices as a list of tuples."""
         return [(status.name, status.value) for status in cls]
-
-
-like = LikeType.like.value
-love = LikeType.love
-
-print(like)

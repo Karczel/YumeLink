@@ -18,13 +18,24 @@
 {{ tag.content }},
 {% endfor %}</p>
 
+<!--specific buttons for like, love, share, comment-->
+
 <p>Like: {{ likes }}    Love: {{ loves }}   Shares: {{ shares }}</p>
 
 {% for comment in comments %}
 <h4>{{ comment.user }}</h4>
-<p>{{ comment.content }}</p>
+<a href="{% url 'yumelinkapp:comment' post_id=comment.post.id pk=comment.id %}">{{ comment.content }}</a>
+<br>
 {% endfor %}
 
-<!--specific buttons for like, love, share, comment-->
+<br>
+
+<!--comment-->
+<form action="{% url 'yumelinkapp:create_comment' post_id=post.id %}" method="POST">
+    {% csrf_token %}
+    {{ user }} :
+    <textarea name="content" rows="1" cols="50" placeholder="Write your comment here..."></textarea>
+    <button type="submit">Submit Comment</button>
+</form>
 
 {% endblock %}

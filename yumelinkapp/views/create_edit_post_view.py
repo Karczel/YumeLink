@@ -1,6 +1,6 @@
 from django.contrib import messages
-from django.forms import modelformset_factory
-from django.http import HttpResponseRedirect, Http404
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
 from django.views.generic.edit import UpdateView
@@ -8,7 +8,7 @@ from yumelinkapp.models import Post, PostImage, User, Tag, PostTag
 from yumelinkapp.forms import TagForm, PostForm, TagFormSet
 
 
-class CreateEditPostView(UpdateView):
+class CreateEditPostView(LoginRequiredMixin, UpdateView):
     """
         View for creating or editing Post details.
     """
@@ -21,8 +21,6 @@ class CreateEditPostView(UpdateView):
         post_id = self.kwargs.get('pk')
         if post_id:
             return get_object_or_404(Post, pk=post_id)
-        # else:
-            # return Post.objects.create(user=User.objects.get(id=request.user.id))
         return None
 
     def get_context_data(self, **kwargs):
@@ -37,10 +35,6 @@ class CreateEditPostView(UpdateView):
 
     def get(self, request, *args, **kwargs):
         super(CreateEditPostView, self).get(request, *args, **kwargs)
-        if not request.user.is_authenticated:
-            messages.warning(request, 'You have to log in to edit post.')
-            return redirect('yumelinkapp:home')
-
         try:
             user = User.objects.get(id=self.request.user.id)
         except User.DoesNotExist:
@@ -100,7 +94,7 @@ class CreateEditPostView(UpdateView):
                 messages.error(request, f"form: {form.errors}")
 
             if tag_formset.errors:
-                messages.error(request,f"Tag formset errors: {tag_formset.errors}")
+                messages.error(request, f"Tag formset errors: {tag_formset.errors}")
 
             messages.error(request, "failed to post, please try again.")
 
