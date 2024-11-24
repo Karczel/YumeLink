@@ -14,14 +14,17 @@
 <p>User: {{ user }}</p>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
+        <!--post-->
         {{ form.as_p }}
 
+        <!--images-->
         <h3>Upload Images:</h3>
         <div class="mb-3">
             <label for="image" class="form-label">Upload Image:</label>
             <input type="file" id="image" name="image" class="form-control">
         </div>
 
+        <!--tags-->
         <h3>Tags (up to 5)</h3>
         {{ tag_formset.management_form }}
             {% for form in tag_formset %}
