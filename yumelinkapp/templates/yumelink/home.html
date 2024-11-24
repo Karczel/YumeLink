@@ -5,8 +5,16 @@
     <link rel="stylesheet" href="{% static 'yumelinkapp/home.css' %}">
 {% endblock %}
 
-{% block title %}{% endblock %}
+{% block title %}<h1>Home page</h1>{% endblock %}
 
 {% block content %}
-<h1>Home page</h1>
+{% for post in posts_with_images %}
+    <h4>User: {{ post.post.user }}</h4>
+    <a href="{% url 'yumelinkapp:post' post.post.id %}">{{ post.post.content }}</a>
+    </br>
+    {% for image in post.post_images %}
+        <img src="{{ image.image.url }}" alt="Post Image" style="max-width: 150px;"/>
+    </br>
+    {% endfor %}
+{% endfor %}
 {% endblock %}

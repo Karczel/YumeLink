@@ -1,0 +1,14 @@
+.error {
+    color: red;
+    font-size: 0.9em;
+}
+
+.existing-image img {
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.image-form {
+    margin-bottom: 10px;
+}

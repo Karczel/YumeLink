@@ -37,3 +37,8 @@ class User(DjangoUser):
         ],
         default=FilterType.none,
     )
+
+    def __str__(self):
+        if self.name != UNTITLED:
+            return self.name
+        return self.username
