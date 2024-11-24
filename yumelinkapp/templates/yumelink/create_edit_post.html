@@ -18,6 +18,13 @@
         {{ form.as_p }}
 
         <!--images-->
+        {% if post_images %}
+        <h3>Existing Post images</h3>
+            {% for image in post_images %}
+                <img src="{{ image.image.url }}" alt="Post Image" />
+                <input type="checkbox" name="postimage_ids" value="{{ image.id }}"> Delete
+            {% endfor %}
+        {% endif %}
         <h3>Upload Images:</h3>
         <div class="mb-3">
             <label for="image" class="form-label">Upload Image:</label>

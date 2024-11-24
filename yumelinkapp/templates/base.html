@@ -9,6 +9,15 @@
 
 {% block extra_css %} {% endblock %}
 
+{% if user.is_authenticated %}
+   Welcome back, {{ user.username }}
+   <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Log Out</button>
+   </form>{% else %}
+   Please <a href="{% url 'login' %}?next={{request.path}}">Login</a>
+{% endif %}
+
 {% block title %} {% endblock %}
 {% if messages %}
     <h2 class="messages">

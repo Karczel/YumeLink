@@ -27,6 +27,9 @@ class CreateEditPostView(LoginRequiredMixin, UpdateView):
         context = super().get_context_data(**kwargs)
         context['user'] = User.objects.get(id=self.request.user.id)
         context['post'] = self.object
+        post_images = PostImage.objects.filter(post=self.object)
+        if post_images:
+            context['post_images'] = post_images
         if 'form' not in context:
             context['form'] = self.form_class(self.request.GET)
         if 'tag_formset' not in context:
@@ -78,6 +81,10 @@ class CreateEditPostView(LoginRequiredMixin, UpdateView):
                 if tag_name:
                     tag, created = Tag.objects.get_or_create(content=tag_name)
                     PostTag.objects.create(post=post, tag=tag)
+
+            postimage_ids = request.POST.getlist("postimage_ids")
+            if postimage_ids:
+                PostImage.objects.filter(id__in=postimage_ids).delete()
 
             if 'image' in request.FILES:
                 image = request.FILES['image']
