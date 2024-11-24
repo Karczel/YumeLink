@@ -1,0 +1,51 @@
+[
+{
+    "model": "yumelinkapp.tag",
+    "pk": 1,
+    "fields": {
+        "content": "Newbie"
+    }
+},
+{
+    "model": "yumelinkapp.tag",
+    "pk": 2,
+    "fields": {
+        "content": "Photography"
+    }
+},
+{
+    "model": "yumelinkapp.tag",
+    "pk": 3,
+    "fields": {
+        "content": "Tech Update"
+    }
+},
+{
+    "model": "yumelinkapp.tag",
+    "pk": 4,
+    "fields": {
+        "content": "filter"
+    }
+},
+{
+    "model": "yumelinkapp.tag",
+    "pk": 5,
+    "fields": {
+        "content": "another tag"
+    }
+},
+{
+    "model": "yumelinkapp.tag",
+    "pk": 8,
+    "fields": {
+        "content": "abc"
+    }
+},
+{
+    "model": "yumelinkapp.tag",
+    "pk": 9,
+    "fields": {
+        "content": "another"
+    }
+}
+]

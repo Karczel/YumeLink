@@ -2,7 +2,11 @@
 
 {% block extra_css %}{% endblock %}
 
-{% block title %}<h1>Post</h1>{% endblock %}
+{% block title %}
+<h1>Post</h1>
+<a href="{% url 'yumelinkapp:edit_post' post.id %}">Edit Post</a>
+<a href="{% url 'yumelinkapp:delete_post' post.id %}">Delete Post</a>
+{% endblock %}
 
 {% block content %}
 <p>{{ post.content }}</p>
@@ -22,15 +26,19 @@
 
 <p>Like: {{ likes }}    Love: {{ loves }}   Shares: {{ shares }}</p>
 
-{% for comment in comments %}
-<h4>{{ comment.user }}</h4>
-<a href="{% url 'yumelinkapp:comment' post_id=comment.post.id pk=comment.id %}">{{ comment.content }}</a>
+{% for object in comments %}
+<h4>{{ object.comment.user }}</h4>
+<a href="{% url 'yumelinkapp:comment' post_id=object.comment.post.id pk=object.comment.id %}">{{ object.comment.content }}</a>
 <br>
+{% if object.owns %}
+<a href="{% url 'yumelinkapp:delete_comment' post_id=object.comment.post.id pk=object.comment.id %}">Delete</a>
+{% endif %}
 {% endfor %}
 
 <br>
 
 <!--comment-->
+
 <form action="{% url 'yumelinkapp:create_comment' post_id=post.id %}" method="POST">
     {% csrf_token %}
     {{ user }} :

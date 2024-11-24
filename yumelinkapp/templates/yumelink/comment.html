@@ -3,7 +3,10 @@
 {% block extra_css %}
 {% endblock %}
 
-{% block title %}<h1>{{ comment.user }}</h1>{% endblock %}
+{% block title %}
+<h1>{{ comment.user }}</h1>
+<a href="{% url 'yumelinkapp:delete_comment' comment.id %}">Delete</a>
+{% endblock %}
 
 {% block content %}
 {{ comment.content }}

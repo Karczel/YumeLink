@@ -1,10 +1,11 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView
 
 from yumelinkapp.models import Post, PostImage, Tag, PostTag, Like, Comment, Share, User
 from yumelinkapp.utils import LikeType
 
 
-class PostView(DetailView):
+class PostView(LoginRequiredMixin,DetailView):
     """
     View for displaying Post details.
     """
@@ -23,8 +24,13 @@ class PostView(DetailView):
         context['likes'] = Like.objects.filter(post=post, type=LikeType.like.name).count()
         context['loves'] = Like.objects.filter(post=post, type=LikeType.love.name).count()
         context['shares'] = Share.objects.filter(post=post).count()
-        context['comments'] = Comment.objects.filter(post=post)
-
+        context['comments'] = [
+            {
+                'comment': comment,
+                'owns': User.objects.get(id=self.request.user.id) == comment.user
+            }
+            for comment in Comment.objects.filter(post=post).order_by('-timestamp')
+        ]
 
         # change post to languages with auto-translate
         # + toggle off check
