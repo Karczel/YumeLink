@@ -1,6 +1,6 @@
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
-from . import User, Post, Follow, Notification
+from . import User, Post, Notification
 from ..utils import MID_SMALL_TEXT
 
 

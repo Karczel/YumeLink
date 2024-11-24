@@ -16,3 +16,4 @@ class FilterType(Enum):
     def choices(cls):
         """Returns the choices as a list of tuples."""
         return [(status.name, status.value) for status in cls]
+

@@ -18,5 +18,13 @@
 {{ tag.content }},
 {% endfor %}</p>
 
+<p>Like: {{ likes }}    Love: {{ loves }}   Shares: {{ shares }}</p>
+
+{% for comment in comments %}
+<h4>{{ comment.user }}</h4>
+<p>{{ comment.content }}</p>
+{% endfor %}
+
 <!--specific buttons for like, love, share, comment-->
+
 {% endblock %}
