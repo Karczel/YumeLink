@@ -1,0 +1,32 @@
+[
+{
+    "model": "yumelinkapp.comment",
+    "pk": 1,
+    "fields": {
+        "user": 3,
+        "post": 1,
+        "content": "Welcome to the platform!",
+        "timestamp": "2024-11-09T07:10:00Z"
+    }
+},
+{
+    "model": "yumelinkapp.comment",
+    "pk": 2,
+    "fields": {
+        "user": 2,
+        "post": 2,
+        "content": "Nice post, Tan!",
+        "timestamp": "2024-11-09T08:40:00Z"
+    }
+},
+{
+    "model": "yumelinkapp.comment",
+    "pk": 3,
+    "fields": {
+        "user": 4,
+        "post": 3,
+        "content": "Love this update!",
+        "timestamp": "2024-11-09T09:50:00Z"
+    }
+}
+]

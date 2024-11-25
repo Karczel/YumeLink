@@ -12,7 +12,7 @@ class Follow(models.Model):
     notify = models.BooleanField(default=False)
 
     def __str__(self):
-        return f'{self.user} follows {self.follower}'
+        return f'{self.follower} follows {self.user}'
 
     def save(self, *args, **kwargs):
         is_new = self.pk is None

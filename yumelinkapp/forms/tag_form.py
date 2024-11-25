@@ -5,11 +5,13 @@ from yumelinkapp.models import Tag
 
 
 class TagForm(forms.ModelForm):
-    delete_image = forms.BooleanField(required=False, widget=forms.HiddenInput())
-
     class Meta:
         model = Tag
         fields = ['content']
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['content'].required = False
 
-TagFormSet = modelformset_factory(Tag, form=TagForm, extra=1, can_delete=True, max_num=5)
+
+TagFormSet = modelformset_factory(Tag, form=TagForm, extra=5, can_delete=True, max_num=5)

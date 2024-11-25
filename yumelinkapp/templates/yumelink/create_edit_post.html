@@ -14,21 +14,32 @@
 <p>User: {{ user }}</p>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
+        <!--post-->
         {{ form.as_p }}
 
+        <!--images-->
+        {% if post_images %}
+        <h3>Existing Post images</h3>
+            {% for image in post_images %}
+                <img src="{{ image.image.url }}" alt="Post Image" />
+                <input type="checkbox" name="postimage_ids" value="{{ image.id }}"> Delete
+            {% endfor %}
+        {% endif %}
         <h3>Upload Images:</h3>
         <div class="mb-3">
             <label for="image" class="form-label">Upload Image:</label>
             <input type="file" id="image" name="image" class="form-control">
         </div>
 
+        <!--tags-->
         <h3>Tags (up to 5)</h3>
         {{ tag_formset.management_form }}
+        <div class="form-group">
             {% for form in tag_formset %}
-                <div class="form-group">
-                    {{ form.as_p }}
-                </div>
+                {{ form.id }}
+                {{ form.content }}
             {% endfor %}
+        </div>
         <button type="submit">Submit</button>
     </form>
 

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block title %}<h1>Relationships</h1>{% endblock %}
+
+{% block content %}
+<a href="?type=following">Following</a>
+<a href="?type=followers">Followers</a>
+<a href="?type=friends">Friends</a>
+<a href="?type=blocked">Blocked</a>
+
+<ul>
+  {% for obj in relationships %}
+    <li>
+      {% if obj_type == 'followers' %}
+        {{ obj.follower }}
+      {% elif obj_type == 'friends' %}
+        {{ obj.follower }}
+      {% elif obj_type == 'blocked' %}
+        {{ obj.blocked }}
+      {% else %}
+        {{ obj.user }}
+      {% endif %}
+    </li>
+  {% empty %}
+    <li>No relationships found.</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
