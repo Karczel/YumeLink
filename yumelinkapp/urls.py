@@ -13,6 +13,8 @@ urlpatterns = [
     path("post/<int:post_id>/comment/<int:pk>", views.CommentView.as_view(), name="comment"),
     path("post/<int:post_id>/comment/new", views.create_comment, name="create_comment"),
     path("post/<int:post_id>/comment/<int:pk>/delete", views.delete_comment, name="delete_comment"),
+    path("post/<int:post_id>/like", views.like, name="like_post"),
+    path("post/<int:post_id>/love", views.like, name="love_post"),
     path("profile/relationship", views.UserRelationShipView.as_view(), name="user_relationship"),
 
 ]
