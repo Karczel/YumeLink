@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include("django.contrib.auth.urls")),
     path('signup/', views.SignupView.as_view(), name='signup'),
+
 ]
 
 if settings.DEBUG:

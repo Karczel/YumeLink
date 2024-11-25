@@ -9,3 +9,4 @@ class ProfileView(ListView):
 
     def get_queryset(self):
         return User.objects.all().order_by('name')
+
