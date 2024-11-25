@@ -6,3 +6,4 @@ from .comment_view import CommentView
 from .create_comment_view import create_comment
 from .delete_comment_view import delete_comment
 from .delete_post_view import delete_post
+from .user_relationship_view import UserRelationShipView
