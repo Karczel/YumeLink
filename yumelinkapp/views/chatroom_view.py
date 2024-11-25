@@ -42,6 +42,10 @@ class ChatRoomDetailView(DetailView):
         messages = Message.objects.filter(chat=chat_room).order_by('timestamp')
         context['messages'] = messages
 
+        # Get all users in the chat room from the UserChat model
+        users_in_chat = UserChat.objects.filter(chat=chat_room).select_related('user')
+        context['users_in_chat'] = users_in_chat
+
         # Pass the currently logged-in user to the template
         context['current_user'] = self.request.user
 

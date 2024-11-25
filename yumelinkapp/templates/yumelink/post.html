@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+<!-- You can add extra CSS specific to the post page if needed -->
+{% endblock %}
+
+{% block title %}
+    <h1>{{ post.title }}</h1>  <!-- Show the post title -->
+{% endblock %}
+
+{% block content %}
+    <p>{{ post.content }}</p>  <!-- Display the post content -->
+
+    <!-- Display post images -->
+    {% for image in post_images %}
+    <div class="post-image">
+        <img src="{{ image.image.url }}" alt="Post Image" />
+    </div>
+    {% endfor %}
+
+    <h3>Tags</h3>
+    {% for tag in tags %}
+    <p>{{ tag.content }}</p>  <!-- Display the tags associated with the post -->
+    {% endfor %}
+
+    <!-- Share Button -->
+    <div class="post-actions">
+        <a href="{% url 'yumelinkapp:share_post' post.id %}" class="btn btn-primary">Share</a>
+    </div>
+
+    <!-- Dropdown for edit/delete options -->
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Options
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Edit</a>
+            <a class="dropdown-item" href="#">Delete</a>
+        </div>
+    </div>
+
+     Like, Love, and Comment buttons (you can add functionality here as needed)
+    <div class="post-reactions">
+        <button class="btn btn-light">Like</button>
+        <button class="btn btn-light">Love</button>
+        <button class="btn btn-light">Comment</button>
+    </div>
+
+{% endblock %}

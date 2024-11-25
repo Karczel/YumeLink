@@ -9,7 +9,7 @@ class Post(models.Model):
     A Post a User posts.
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.TextField(max_length=BIG_TEXT)
+    content = models.TextField(max_length=BIG_TEXT, default='')
     timestamp = models.DateTimeField(auto_now_add=True)
     filter_content = models.CharField(
         max_length=SMALL_TEXT,

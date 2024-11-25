@@ -1,18 +1,93 @@
 {% extends 'base.html' %}
 
 {% block extra_css %}
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #222; /* Dark background */
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background-color: #666;
+            padding: 30px 15px;
+            gap: 10px;
+        }
+        .header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+        .header .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .login-box {
+            background-color: #ddd;
+            color: black;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        .login-box input[type="text"],
+        .login-box input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        .login-box input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #666;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .login-box input[type="submit"]:hover {
+            background-color: #555;
+        }
+        .login-box a {
+            display: block;
+            margin: 10px 0;
+            text-decoration: none;
+            color: #666;
+            text-align: center;
+        }
+        .login-box a:hover {
+            color: #555;
+        }
+    </style>
 {% endblock %}
 
-{% block title %}<h1>Login page</h1>{% endblock %}
+{% block title %}<title>Login</title>{% endblock %}
 
 {% block content %}
-<form method="POST">
-  {% csrf_token %}
-  <table style="padding: 2ex;">
-  {{ form.as_table }}
-  </table>
-  <button type="submit">Login</button>
-  <input type="hidden" name="next" value="{{next}}" />
-</form>
-  <a href="{% url 'signup' %}" class="custom-button-link">Sign up?</a> <br>
+    <div class="header">
+        <span class="menu-icon" onclick="history.back();">&#8592;</span> <!-- Back arrow -->
+        <h1>Login</h1>
+    </div>
+    <div class="login-box">
+        <form method="POST">
+            {% csrf_token %}
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password">
+
+            <input type="submit" value="Login">
+        </form>
+        <a href="#">Forget password?</a>
+        <a href="#">Forget username?</a>
+        <!-- Updated Sign Up link to use Django's URL routing -->
+        <a href="{% url 'signup' %}">Sign Up</a> <!-- This will link to the signup page -->
+    </div>
 {% endblock %}

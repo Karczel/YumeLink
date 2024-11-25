@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #000;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .header .menu {
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        /* Sidebar Menu */
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -250px; /* Hidden by default */
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            color: white;
+            overflow: auto;
+            transition: 0.3s;
+            padding-top: 20px;
+        }
+
+        .side-menu a {
+            display: flex;
+            align-items: center;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .side-menu a:hover {
+            background-color: #575757;
+        }
+
+        .side-menu.open {
+            left: 0; /* Show menu */
+        }
+
+        .side-menu .icon {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        /* Profile Container */
+        .profile-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-container strong {
+            color: #333;
+        }
+
+        .profile-container p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .edit-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .edit-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header with Menu -->
+    <div class="header">
+        <div class="menu" onclick="toggleMenu()">☰</div>
+        <h1>User Profile</h1>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <div class="side-menu" id="side-menu">
+        <a href="/">
+            <span class="icon">🏠</span> Home
+        </a>
+        <a href="/chat_room">
+            <span class="icon">💬</span> Chat Room
+        </a>
+        <a href="#">⚙ Settings</a>
+        <a href="#">🚪 Logout</a>
+    </div>
+
+    <!-- Profile Container -->
+    <div class="profile-container">
+        <!-- Display the logged-in user's profile -->
+        <p><strong>Name:</strong> {{ user_profile.name }}</p>
+        <p><strong>Email:</strong> {{ user_profile.email }}</p>
+        <p><strong>Username:</strong> {{ user_profile.username }}</p>
+        <p><strong>Bio:</strong> {{ user_profile.bio }}</p>
+    </div>
+
+    <script>
+        // Function to toggle the side menu
+        function toggleMenu() {
+            var menu = document.getElementById('side-menu');
+            menu.classList.toggle('open');
+        }
+    </script>
+
+</body>
+</html>

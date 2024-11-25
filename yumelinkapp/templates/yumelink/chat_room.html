@@ -6,22 +6,106 @@
     <title>Chat Rooms</title>
     <style>
         body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }
-        .chat-header { background-color: Gray; display: flex; align-items: center; padding: 10px 20px; font-size: 24px; font-weight: bold; border-bottom: 1px solid #ccc; }
-        .tabs { display: flex; justify-content: space-around; background-color: #fff; padding: 10px; border-bottom: 2px solid #ccc; }
-        .tab { padding: 10px 20px; cursor: pointer; font-weight: bold; }
-        .tab.active { background-color: #000; color: #fff; }
-        .chat-list { padding: 20px; }
-        .chat-item { background-color: #fff; padding: 15px; margin-bottom: 10px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
+        .chat-header {
+            background-color: #000000;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            font-size: 24px;
+            font-weight: bold;
+            border-bottom: 1px solid #ccc;
+            color: #ffffff;
+            justify-content: space-between;
+        }
+        .menu {
+            cursor: pointer;
+            font-size: 30px;
+            padding: 5px;
+        }
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            background-color: #fff;
+            padding: 10px;
+            border-bottom: 2px solid #ccc;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .tab.active {
+            background-color: #000;
+            color: #fff;
+        }
+        .chat-list {
+            padding: 20px;
+        }
+        .chat-item {
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -250px; /* Hide off-screen */
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            color: #fff;
+            transition: 0.3s;
+            padding-top: 20px;
+        }
+        .side-menu a {
+            padding: 8px 16px;
+            text-decoration: none;
+            color: white;
+            display: block;
+            font-size: 18px;
+        }
+        .side-menu a:hover {
+            background-color: #575757;
+        }
+        .side-menu.open {
+            left: 0; /* Slide in the menu */
+        }
+        .back-button {
+            padding: 8px 16px;
+            font-size: 18px;
+            background-color: #444;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            text-align: left;
+        }
+        .back-button:hover {
+            background-color: #575757;
+        }
     </style>
 </head>
 <body>
 
     <!-- Header -->
     <div class="chat-header">
-        <div class="menu">☰</div>
+        <div class="menu" onclick="toggleMenu()">☰</div>
         <div class="title">Chat</div>
         <div class="icon">💬</div>
     </div>
+
+    <!-- Side Menu -->
+    <div class="side-menu" id="side-menu">
+        <button class="back-button" onclick="goBack()">← Back</button> <!-- Back Button -->
+        <a href="#" onclick="window.location.href='/'"><span>🏠</span> Home</a> <!-- Home Icon and Link -->
+        <a href="{% url 'yumelinkapp:user_profile' %}"><span>👤</span> Profile</a>
+        <a href="#">Settings</a>
+        <a href="#">Logout</a>
+    </div>
+
     <!-- Tabs -->
     <div class="tabs">
         <div class="tab" id="all-tab" onclick="showTab('all')">All Chats</div>
@@ -55,6 +139,13 @@
     </div>
 
     <script>
+        // Function to toggle side menu visibility
+        function toggleMenu() {
+            var menu = document.getElementById('side-menu');
+            menu.classList.toggle('open');
+        }
+
+        // Function to handle tab switching
         function showTab(tab) {
             document.getElementById('all-chats').style.display = tab === 'all' ? 'block' : 'none';
             document.getElementById('personal-chats').style.display = tab === 'personal' ? 'block' : 'none';
@@ -63,6 +154,11 @@
             document.getElementById('all-tab').classList.toggle('active', tab === 'all');
             document.getElementById('personal-tab').classList.toggle('active', tab === 'personal');
             document.getElementById('groups-tab').classList.toggle('active', tab === 'groups');
+        }
+
+        // Function to go back to the previous page
+        function goBack() {
+            window.history.back(); // Uses browser's history to go back
         }
     </script>
 </body>
