@@ -1,0 +1,18 @@
+[
+{
+    "model": "yumelinkapp.postimage",
+    "pk": 10,
+    "fields": {
+        "post": 6,
+        "image": "2/post/6/th_1.jpeg"
+    }
+},
+{
+    "model": "yumelinkapp.postimage",
+    "pk": 13,
+    "fields": {
+        "post": 26,
+        "image": "2/post/26/646339c1f1c7ec90c726318c_07.png"
+    }
+}
+]
