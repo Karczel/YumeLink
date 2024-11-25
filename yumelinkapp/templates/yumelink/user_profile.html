@@ -1,0 +1,169 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>User Profiles</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--            background-color: #f4f4f9;-->
+<!--        }-->
+<!--        .container {-->
+<!--            width: 80%;-->
+<!--            margin: 0 auto;-->
+<!--            padding-top: 20px;-->
+<!--        }-->
+<!--        .profile-card {-->
+<!--            background-color: #fff;-->
+<!--            border-radius: 8px;-->
+<!--            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);-->
+<!--            margin-bottom: 20px;-->
+<!--            padding: 20px;-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--        }-->
+<!--        .profile-card img {-->
+<!--            border-radius: 50%;-->
+<!--            width: 80px;-->
+<!--            height: 80px;-->
+<!--            margin-right: 20px;-->
+<!--        }-->
+<!--        .profile-card h2 {-->
+<!--            margin: 0;-->
+<!--            font-size: 24px;-->
+<!--        }-->
+<!--        .profile-card p {-->
+<!--            margin: 5px 0;-->
+<!--            color: #555;-->
+<!--        }-->
+<!--        .profile-card .username {-->
+<!--            font-weight: bold;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <div class="container">-->
+<!--        <h1>User Profiles</h1>-->
+
+<!--        {% for user in user_profile %}-->
+<!--            <div class="profile-card">-->
+<!--                &lt;!&ndash; Assuming user profile picture is available &ndash;&gt;-->
+<!--                <img src="{{ user.profile_picture.url }}" alt="{{ user.name }}'s Profile Picture">-->
+
+<!--                <div>-->
+<!--                    <h2>{{ user.name }}</h2>-->
+<!--                    <p class="username">Username: {{ user.username }}</p>-->
+<!--                    <p>Email: {{ user.email }}</p>-->
+<!--                    <p>Bio: {{ user.bio }}</p> &lt;!&ndash; Assuming bio is a field on the User model &ndash;&gt;-->
+<!--                    <p>Joined: {{ user.date_joined }}</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        {% endfor %}-->
+<!--    </div>-->
+<!--</body>-->
+<!--</html>-->
+
+<!-- yumelinkapp/templates/yumelink/user_profile.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profiles</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding-top: 20px;
+        }
+        .profile-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .profile-card img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            margin-right: 20px;
+        }
+        .profile-card h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .profile-card p {
+            margin: 5px 0;
+            color: #555;
+        }
+        .profile-card .username {
+            font-weight: bold;
+        }
+        .search-form input {
+            padding: 8px;
+            font-size: 14px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            width: 300px;
+        }
+        .search-form button {
+            padding: 8px 15px;
+            font-size: 14px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .search-form button:hover {
+            background-color: #0056b3;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>User Profiles</h1>
+
+        <!-- Search Form -->
+        <div class="search-form">
+            <form method="get">
+                <input type="text" name="search" placeholder="Search by name..." value="{{ request.GET.search }}">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
+        <!-- Displaying User Profiles -->
+        {% if user_profile %}
+            {% for user in user_profile %}
+                <div class="profile-card">
+                    <img src="{{ user.profile_picture.url }}" alt="{{ user.name }}'s Profile Picture">
+                    <div>
+                        <h2>{{ user.name }}</h2>
+                        <p class="username">Username: {{ user.username }}</p>
+                        <p>Email: {{ user.email }}</p>
+                        <p>Bio: {{ user.bio }}</p> <!-- Assuming bio is a field on the User model -->
+                        <p>Joined: {{ user.date_joined }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No users found for your search query.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+
