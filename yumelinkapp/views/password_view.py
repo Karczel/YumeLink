@@ -10,3 +10,5 @@ class ChangePasswordView(View):
             'title': 'Change Password',
         }
         return render(request, self.template_name, context)
+
+    # def post(self, request):

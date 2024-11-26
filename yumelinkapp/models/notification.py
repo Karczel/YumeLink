@@ -17,4 +17,4 @@ class Notification(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.notification_of
+        return str(self.notification_of)

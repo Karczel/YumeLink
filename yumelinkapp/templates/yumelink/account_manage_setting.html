@@ -58,8 +58,16 @@
         <h1>My Account</h1>
     </div>
     <div class="content">
-        <div class="menu-item" onclick="location.href='/settings/account_manage/login/';">Login <span>&#10145;</span></div>
-        <div class="menu-item">Logout <span>&#11013;</span></div>
+        <div class="menu-item" onclick="location.href='{% url 'login' %}?next={{ request.path }}';">Login <span>&#10145;</span></div>
+        <div class="menu-item" onclick="document.getElementById('logout-form').submit();">
+            Logout <span>&#11013;</span>
+        </div>
+
+        <!-- Hidden logout form -->
+        <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: none;">
+            {% csrf_token %}
+        </form>
+
         <div class="menu-item" onclick="location.href='/settings/account_manage/change_password/';">Change password</div>
 <!--        <div class="menu-item">Delete</div>-->
     </div>
