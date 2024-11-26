@@ -178,8 +178,9 @@
     <div class="side-menu" id="sideMenu">
         <span class="close-btn" onclick="toggleMenu()">&#10005;</span> <!-- Close icon -->
         <a href="/" onclick="window.location.href='/'"><span>🏠</span> Home</a>
+        <a href="{% url 'yumelinkapp:user_profile' %}">👤 Profile</a>
         <a href="/chat_room"><span>💬</span> Chat Room</a> <!-- Chat Room Link -->
-        <a href="#"><span>⚙️</span> Settings</a>
+        <a href="{% url 'yumelinkapp:settings' %}">⚙️ Settings</a>
         <a href="#">Services</a>
         <a href="#">Support</a>
         <a href="#">About</a>
