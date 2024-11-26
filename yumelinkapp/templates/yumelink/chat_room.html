@@ -5,22 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Rooms</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
         .chat-header {
-            background-color: #000000;
+            background-color: #000;
             display: flex;
             align-items: center;
             padding: 10px 20px;
             font-size: 24px;
             font-weight: bold;
-            border-bottom: 1px solid #ccc;
-            color: #ffffff;
+            color: #fff;
             justify-content: space-between;
         }
         .menu {
             cursor: pointer;
             font-size: 30px;
-            padding: 5px;
         }
         .tabs {
             display: flex;
@@ -51,16 +54,20 @@
         .side-menu {
             position: fixed;
             top: 0;
-            left: -250px; /* Hide off-screen */
+            left: -250px;
             width: 250px;
             height: 100%;
             background-color: #333;
             color: #fff;
             transition: 0.3s;
-            padding-top: 20px;
+            padding: 20px 0;
+            z-index: 1000;
+        }
+        .side-menu.open {
+            left: 0;
         }
         .side-menu a {
-            padding: 8px 16px;
+            padding: 10px 20px;
             text-decoration: none;
             color: white;
             display: block;
@@ -69,46 +76,39 @@
         .side-menu a:hover {
             background-color: #575757;
         }
-        .side-menu.open {
-            left: 0; /* Slide in the menu */
-        }
-        .back-button {
-            padding: 8px 16px;
-            font-size: 18px;
-            background-color: #444;
-            color: white;
-            border: none;
+        .close-btn {
+            font-size: 24px;
+            text-align: right;
             cursor: pointer;
-            display: block;
-            width: 100%;
-            text-align: left;
-        }
-        .back-button:hover {
-            background-color: #575757;
+            padding: 10px 20px;
         }
     </style>
 </head>
 <body>
-
     <!-- Header -->
     <div class="chat-header">
         <div class="menu" onclick="toggleMenu()">☰</div>
-        <div class="title">Chat</div>
+        <div class="title">Chat Rooms</div>
         <div class="icon">💬</div>
     </div>
 
     <!-- Side Menu -->
-    <div class="side-menu" id="side-menu">
-        <button class="back-button" onclick="goBack()">← Back</button> <!-- Back Button -->
-        <a href="#" onclick="window.location.href='/'"><span>🏠</span> Home</a> <!-- Home Icon and Link -->
-        <a href="{% url 'yumelinkapp:user_profile' %}"><span>👤</span> Profile</a>
-        <a href="#">Settings</a>
-        <a href="#">Logout</a>
+    <div class="side-menu" id="sideMenu">
+        <div class="close-btn" onclick="toggleMenu()">&#10005;</div>
+        <a href="/">🏠 Home</a>
+        <a href="{% url 'yumelinkapp:user_profile' %}">👤 Profile</a>
+        <a href="#">⚙️ Settings</a>
+        <a href="#">Services</a>
+        <a href="#">Support</a>
+        <a href="#">About</a>
+        <hr>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
     </div>
 
     <!-- Tabs -->
     <div class="tabs">
-        <div class="tab" id="all-tab" onclick="showTab('all')">All Chats</div>
+        <div class="tab active" id="all-tab" onclick="showTab('all')">All Chats</div>
         <div class="tab" id="personal-tab" onclick="showTab('personal')">Personal</div>
         <div class="tab" id="groups-tab" onclick="showTab('groups')">Groups</div>
     </div>
@@ -139,13 +139,11 @@
     </div>
 
     <script>
-        // Function to toggle side menu visibility
         function toggleMenu() {
-            var menu = document.getElementById('side-menu');
-            menu.classList.toggle('open');
+            const sideMenu = document.getElementById('sideMenu');
+            sideMenu.classList.toggle('open');
         }
 
-        // Function to handle tab switching
         function showTab(tab) {
             document.getElementById('all-chats').style.display = tab === 'all' ? 'block' : 'none';
             document.getElementById('personal-chats').style.display = tab === 'personal' ? 'block' : 'none';
@@ -154,11 +152,6 @@
             document.getElementById('all-tab').classList.toggle('active', tab === 'all');
             document.getElementById('personal-tab').classList.toggle('active', tab === 'personal');
             document.getElementById('groups-tab').classList.toggle('active', tab === 'groups');
-        }
-
-        // Function to go back to the previous page
-        function goBack() {
-            window.history.back(); // Uses browser's history to go back
         }
     </script>
 </body>

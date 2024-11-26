@@ -32,7 +32,7 @@
             font-size: 24px;
         }
 
-        /* Sidebar Menu */
+        /* Sidebar Menu Styles */
         .side-menu {
             position: fixed;
             top: 0;
@@ -44,15 +44,15 @@
             overflow: auto;
             transition: 0.3s;
             padding-top: 20px;
+            padding-left: 20px;
         }
 
         .side-menu a {
-            display: flex;
-            align-items: center;
             color: white;
-            padding: 10px 20px;
+            padding: 10px 0;
             text-decoration: none;
             font-size: 18px;
+            display: block;
         }
 
         .side-menu a:hover {
@@ -63,9 +63,18 @@
             left: 0; /* Show menu */
         }
 
-        .side-menu .icon {
-            margin-right: 10px;
-            font-size: 20px;
+        .close-btn {
+            color: white;
+            font-size: 30px;
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            cursor: pointer;
+        }
+
+        .side-menu hr {
+            border-color: #575757;
+            margin-top: 10px;
         }
 
         /* Profile Container */
@@ -76,6 +85,7 @@
             background-color: #fff;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
 
         .profile-container strong {
@@ -100,6 +110,60 @@
         .edit-button:hover {
             background-color: #218838;
         }
+
+        /* Follow and Block Buttons - Positioned at the top right */
+        .action-buttons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-button {
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .follow-button {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .follow-button:hover {
+            background-color: #0056b3;
+        }
+
+        .following-button {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .following-button:hover {
+            background-color: #218838;
+        }
+
+        .block-button {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .block-button:hover {
+            background-color: #c82333;
+        }
+
+        .blocked-button {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .blocked-button:hover {
+            background-color: #5a6268;
+        }
     </style>
 </head>
 <body>
@@ -111,15 +175,17 @@
     </div>
 
     <!-- Sidebar Menu -->
-    <div class="side-menu" id="side-menu">
-        <a href="/">
-            <span class="icon">🏠</span> Home
-        </a>
-        <a href="/chat_room">
-            <span class="icon">💬</span> Chat Room
-        </a>
-        <a href="#">⚙ Settings</a>
-        <a href="#">🚪 Logout</a>
+    <div class="side-menu" id="sideMenu">
+        <span class="close-btn" onclick="toggleMenu()">&#10005;</span> <!-- Close icon -->
+        <a href="/" onclick="window.location.href='/'"><span>🏠</span> Home</a>
+        <a href="/chat_room"><span>💬</span> Chat Room</a> <!-- Chat Room Link -->
+        <a href="#"><span>⚙️</span> Settings</a>
+        <a href="#">Services</a>
+        <a href="#">Support</a>
+        <a href="#">About</a>
+        <hr>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
     </div>
 
     <!-- Profile Container -->
@@ -129,13 +195,51 @@
         <p><strong>Email:</strong> {{ user_profile.email }}</p>
         <p><strong>Username:</strong> {{ user_profile.username }}</p>
         <p><strong>Bio:</strong> {{ user_profile.bio }}</p>
+
+        <!-- Follow and Block Buttons positioned at top right -->
+        <div class="action-buttons">
+            <button id="follow-button" class="action-button follow-button" onclick="toggleFollow()">Follow</button>
+            <button id="block-button" class="action-button block-button" onclick="toggleBlock()">Block</button>
+        </div>
     </div>
 
     <script>
         // Function to toggle the side menu
         function toggleMenu() {
-            var menu = document.getElementById('side-menu');
-            menu.classList.toggle('open');
+            const sideMenu = document.getElementById('sideMenu');
+            if (sideMenu.style.left === "0px") {
+                sideMenu.style.left = "-250px";
+            } else {
+                sideMenu.style.left = "0px";
+            }
+        }
+
+        // Function to toggle the Follow/Following state
+        function toggleFollow() {
+            var followButton = document.getElementById('follow-button');
+            if (followButton.classList.contains('follow-button')) {
+                followButton.textContent = 'Following';
+                followButton.classList.remove('follow-button');
+                followButton.classList.add('following-button');
+            } else {
+                followButton.textContent = 'Follow';
+                followButton.classList.remove('following-button');
+                followButton.classList.add('follow-button');
+            }
+        }
+
+        // Function to toggle the Block/Blocked state
+        function toggleBlock() {
+            var blockButton = document.getElementById('block-button');
+            if (blockButton.classList.contains('block-button')) {
+                blockButton.textContent = 'Blocked';
+                blockButton.classList.remove('block-button');
+                blockButton.classList.add('blocked-button');
+            } else {
+                blockButton.textContent = 'Block';
+                blockButton.classList.remove('blocked-button');
+                blockButton.classList.add('block-button');
+            }
         }
     </script>
 

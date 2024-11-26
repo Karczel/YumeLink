@@ -5,30 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ chat_room.chat_name }}</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
-        .chat-header { font-size: 24px; font-weight: bold; margin-bottom: 20px; }
-        .messages { display: flex; flex-direction: column; }
-        .message { background-color: white; padding: 15px; border-radius: 10px; margin-bottom: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); max-width: 60%; }
-        .message-sender { font-weight: bold; margin-bottom: 5px; }
-        .message-content { font-size: 16px; }
-        .timestamp { font-size: 12px; color: #888; }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
 
-        /* Right-aligned message style (for current user) */
+        /* Chat header */
+        .chat-header {
+            background-color: #000;
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Messages container */
+        .messages {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            margin-bottom: 70px; /* For spacing above the message input */
+        }
+
+        .message {
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            max-width: 60%;
+        }
+
         .message.right {
             align-self: flex-end;
             background-color: #DCF8C6;
         }
 
-        /* Left-aligned message style (for others) */
         .message.left {
             align-self: flex-start;
             background-color: #FFFFFF;
         }
 
+        .message-sender {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .message-content {
+            font-size: 16px;
+        }
+
+        .timestamp {
+            font-size: 12px;
+            color: #888;
+            margin-top: 5px;
+        }
+
         /* Message input and send button styles */
         .message-input {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
             display: flex;
-            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #fff;
+            box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
         }
 
         .message-input textarea {
@@ -36,22 +85,24 @@
             padding: 10px;
             border-radius: 10px;
             border: 1px solid #ccc;
-            margin-right: 10px;
             resize: none;
             min-height: 50px;
+            font-size: 14px;
         }
 
         .message-input button {
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: #000;
             color: white;
             border: none;
             border-radius: 10px;
+            margin-left: 10px;
             cursor: pointer;
+            font-size: 14px;
         }
 
         .message-input button:hover {
-            background-color: #0056b3;
+            background-color: #333;
         }
     </style>
 </head>
@@ -75,6 +126,3 @@
     </form>
 </body>
 </html>
-
-
-
