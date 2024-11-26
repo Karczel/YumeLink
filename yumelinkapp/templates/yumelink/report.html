@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report an Issue</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #222;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        .option {
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #333;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .option:hover {
+            background-color: #444;
+        }
+        .option input {
+            margin-right: 10px;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button-container button {
+            padding: 10px 20px;
+            background-color: #555;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+        .button-container button:hover {
+            background-color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>What type of issue are you reporting?</h1>
+        <h2>Why are we asking this?</h2>
+        <div class="option">
+            <label>
+                <input type="radio" name="issue" value="Hate Speech">
+                Hate Speech: Includes content that promotes hatred or discrimination based on race, gender, or other factors, as well as dehumanizing or degrading speech, logos, or symbols.
+            </label>
+        </div>
+        <div class="option">
+            <label>
+                <input type="radio" name="issue" value="Inappropriate Content">
+                Inappropriate Content and Harassment: Includes explicit or NSFW content, harassment, or activities that incite harm, target individuals, or promote harassment.
+            </label>
+        </div>
+        <div class="option">
+            <label>
+                <input type="radio" name="issue" value="Violent Language">
+                Violent Language: Includes threats of violence, calls for harm, or any content inciting or encouraging aggression or harm.
+            </label>
+        </div>
+        <div class="option">
+            <label>
+                <input type="radio" name="issue" value="Child Exploitation">
+                Child Exploitation: Includes any form of child abuse, such as grooming, sharing exploitative content, or any activities targeting children.
+            </label>
+        </div>
+        <div class="option">
+            <label>
+                <input type="radio" name="issue" value="Scam or Fraud">
+                Scam or Fraud: Includes any form of deceptive practices, phishing, or fraudulent activities aimed at stealing personal or financial information.
+            </label>
+        </div>
+        <div class="option">
+            <label>
+                <input type="radio" name="issue" value="Other Violations">
+                Other Violations: Any other activities that violate our policies or terms of use, including impersonation, fake accounts, or unauthorized content sharing.
+            </label>
+        </div>
+        <div class="button-container">
+            <button onclick="submitReport()">Continue</button>
+        </div>
+    </div>
+    <script>
+        function submitReport() {
+            const selectedIssue = document.querySelector('input[name="issue"]:checked');
+            if (selectedIssue) {
+                alert(`You selected: ${selectedIssue.value}`);
+            } else {
+                alert("Please select an issue type before continuing.");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Settings</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            background-color: #222; /* Dark background */-->
+<!--            color: white;-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--        }-->
+<!--        .header {-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            justify-content: flex-start;-->
+<!--            background-color: #666;-->
+<!--            padding: 10px 15px;-->
+<!--            gap: 10px;-->
+<!--        }-->
+<!--        .header h1 {-->
+<!--            font-size: 24px;-->
+<!--            margin: 0;-->
+<!--            top: 10PX;-->
+<!--            left: 10px;-->
+<!--        }-->
+<!--        .header .menu-icon, .header .settings-icon {-->
+<!--            font-size: 20px;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+<!--        .header h1 .settings-icon {-->
+<!--            order: -1;-->
+<!--        }-->
+<!--        .menu-icon {-->
+<!--            font-size: 24px;-->
+<!--        }-->
+<!--        .content {-->
+<!--            margin: 20px 0;-->
+<!--        }-->
+<!--        .menu-item {-->
+<!--            background-color: #ccc;-->
+<!--            color: black;-->
+<!--            padding: 30px 20px;-->
+<!--            margin: 10px 0;-->
+<!--            cursor: pointer;-->
+<!--            text-align: center;-->
+<!--            transition: background-color 0.3s;-->
+<!--        }-->
+<!--        .menu-item:hover {-->
+<!--            background-color: #bbb;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <div class="header">-->
+<!--        <span class="menu-icon">&#9776;</span> &lt;!&ndash; Hamburger icon &ndash;&gt;-->
+<!--        <h1>Setting <span class="settings-icon">&#9881;</span></h1> &lt;!&ndash; Gear icon &ndash;&gt;-->
+<!--    </div>-->
+<!--    <div class="content">-->
+<!--        <div class="menu-item">Account Manage</div>-->
+<!--        <div class="menu-item">Language</div>-->
+<!--        <div class="menu-item">Filter content</div>-->
+<!--        <div class="menu-item">Notification</div>-->
+<!--        <div class="menu-item">More</div>-->
+<!--    </div>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #222; /* Dark background */
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background-color: #666;
+            padding: 10px 15px;
+            gap: 10px;
+        }
+        .header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+        .header .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .content {
+            margin: 20px 0;
+        }
+        .menu-item {
+            background-color: #ccc;
+            color: black;
+            padding: 30px 20px;
+            margin: 10px 0;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+        .menu-item:hover {
+            background-color: #bbb;
+        }
+        /* Sidebar menu styling */
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #666;
+            color: white;
+            display: none; /* Hidden by default */
+            padding: 15px;
+        }
+        .side-menu .close-btn {
+            font-size: 24px;
+            cursor: pointer;
+            display: block;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .side-menu a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+        }
+        .side-menu a:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <span class="menu-icon" onclick="toggleMenu()">&#9776;</span> <!-- Hamburger icon -->
+        <h1>Settings</h1>
+    </div>
+    <div class="content">
+        <div class="menu-item" onclick="location.href='/settings/account_manage/';">Account manage </div>
+        <div class="menu-item" onclick="location.href='/settings/tag/';">filter content </div>
+        <div class="menu-item" onclick="location.href='/settings/notifications/';">Notification </div>
+        <div class="menu-item" onclick="location.href='/settings/contact/';">Contact </div>
+    </div>
+
+    <!-- Sidebar menu -->
+    <div class="side-menu" id="sideMenu">
+        <span class="close-btn" onclick="toggleMenu()">&#10005;</span> <!-- Close icon -->
+        <a href="#">Home</a>
+        <a href="#">Services</a>
+        <a href="#">Support</a>
+        <a href="#">About</a>
+        <hr>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const sideMenu = document.getElementById('sideMenu');
+            if (sideMenu.style.display === "block") {
+                sideMenu.style.display = "none";
+            } else {
+                sideMenu.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+

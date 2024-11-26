@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 
+
 app_name = 'yumelinkapp'
 
 urlpatterns = [
@@ -22,5 +23,15 @@ urlpatterns = [
 
     # User Profile and Relationships
     path('profile/', views.ProfileView.as_view(), name='user_profile'),
+    path("", views.HomeView.as_view(), name="home"),
+
+    path('settings/', views.SettingView.as_view(), name='settings'),
+    path('settings/account_manage/', views.AccountManageView.as_view(), name='account_manage'),
+    path('settings/notifications/', views.NotificationView.as_view(), name='notifications'),
+    path('reports/', views.ReportView.as_view(), name='reports'),
+    path('settings/account_manage/login/', views.LoginView.as_view(), name='login'),
+    path('settings/contact/', views.ContactView.as_view(), name='contact'),
+    path('settings/tag/', views.TagView.as_view(), name='tag'),
+    path('settings/account_manage/change_password/', views.ChangePasswordView.as_view(), name='change_password'),
     path("profile/relationship", views.UserRelationShipView.as_view(), name="user_relationship"),
 ]

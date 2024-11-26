@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help Center</title>
+  <style>
+    /* General Styling */
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      color: #333;
+      height: 100%;
+    }
+
+    /* Fullscreen Container */
+    .container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      background: white;
+    }
+
+    /* Header Styling */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #333;
+      color: white;
+      padding: 10px 20px;
+    }
+
+    .menu-icon, .help-icon {
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    /* Tabs Styling */
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      background-color: #fff;
+      border-bottom: 3px solid transparent;
+    }
+
+    .tab.active {
+      border-bottom: 3px solid black;
+    }
+
+    .tab:hover {
+      background-color: #f2f2f2;
+    }
+
+    /* Content Styling */
+    .content {
+      flex: 1; /* Fills the remaining space */
+      padding: 20px;
+      overflow-y: auto; /* Adds scrolling if content overflows */
+    }
+
+    .faq-item {
+      display: flex;
+      align-items: center;
+      padding: 15px 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background: #f9f9f9;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .faq-item:hover {
+      background-color: #f0f0f0;
+    }
+
+    .icon {
+      font-size: 20px;
+      margin-right: 15px;
+    }
+
+    /* Hidden elements */
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header Section -->
+    <div class="header">
+      <span class="menu-icon" onclick="history.back();">&#8592;</span>
+      <h1>Help Center</h1>
+      <span class="help-icon">?</span>
+    </div>
+
+    <!-- Tabs Section -->
+    <div class="tabs">
+      <button class="tab" id="faq-tab" onclick="showSection('faq')">FAQ</button>
+      <button class="tab" id="contact-tab" onclick="showSection('contact')">Contact Us</button>
+    </div>
+
+    <!-- Content Section -->
+    <div class="content">
+      <!-- FAQ Section -->
+      <div id="faq-section">
+        <div class="faq-item">
+          <span class="icon">📞</span>
+          <span>Customer Services</span>
+        </div>
+        <div class="faq-item">
+          <span class="icon">💬</span>
+          <span>WhatsApp</span>
+        </div>
+        <div class="faq-item">
+          <span class="icon">🌐</span>
+          <span>Website</span>
+        </div>
+        <div class="faq-item">
+          <span class="icon">📘</span>
+          <span>Facebook</span>
+        </div>
+        <div class="faq-item">
+          <span class="icon">🐦</span>
+          <span>Twitter</span>
+        </div>
+        <div class="faq-item">
+          <span class="icon">📸</span>
+          <span>Instagram</span>
+        </div>
+      </div>
+
+      <!-- Contact Us Section -->
+      <div id="contact-section" class="hidden">
+        <p>Contact us at:</p>
+        <ul>
+          <li>Email: support@example.com</li>
+          <li>Phone: +123456789</li>
+          <li>Office Address: 123 Help Street, City, Country</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Show or hide sections
+    function showSection(section) {
+      // Hide both sections
+      document.getElementById('faq-section').classList.add('hidden');
+      document.getElementById('contact-section').classList.add('hidden');
+
+      // Remove active class from all tabs
+      document.getElementById('faq-tab').classList.remove('active');
+      document.getElementById('contact-tab').classList.remove('active');
+
+      // Show the selected section
+      if (section === 'faq') {
+        document.getElementById('faq-section').classList.remove('hidden');
+        document.getElementById('faq-tab').classList.add('active');
+      } else if (section === 'contact') {
+        document.getElementById('contact-section').classList.remove('hidden');
+        document.getElementById('contact-tab').classList.add('active');
+      }
+    }
+
+    // Example function to remove FAQ or Contact Us tab
+    function removeTab(tabId, sectionId) {
+      document.getElementById(tabId).classList.add('hidden'); // Hide the tab
+      document.getElementById(sectionId).classList.add('hidden'); // Hide the section
+    }
+
+    // Example: Call this to remove FAQ tab and section
+    // removeTab('faq-tab', 'faq-section');
+
+    // Example: Call this to remove Contact Us tab and section
+    // removeTab('contact-tab', 'contact-section');
+  </script>
+</body>
+</html>
+
+
