@@ -1,23 +1,26 @@
 [
-  {
+{
     "model": "yumelinkapp.chatroom",
     "pk": 1,
     "fields": {
-      "chat_name": "General Discussion"
+        "chat_name": "General Discussion",
+        "profile": ""
     }
-  },
-  {
+},
+{
     "model": "yumelinkapp.chatroom",
     "pk": 2,
     "fields": {
-      "chat_name": "Photography Lounge"
+        "chat_name": "Photography Lounge",
+        "profile": ""
     }
-  },
-  {
+},
+{
     "model": "yumelinkapp.chatroom",
     "pk": 3,
     "fields": {
-      "chat_name": "Tech Enthusiasts"
+        "chat_name": "Tech Enthusiasts",
+        "profile": ""
     }
-  }
+}
 ]

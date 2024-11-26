@@ -1,0 +1,66 @@
+[
+{
+    "model": "yumelinkapp.posttag",
+    "pk": 1,
+    "fields": {
+        "tag": 1,
+        "post": 1
+    }
+},
+{
+    "model": "yumelinkapp.posttag",
+    "pk": 2,
+    "fields": {
+        "tag": 2,
+        "post": 3
+    }
+},
+{
+    "model": "yumelinkapp.posttag",
+    "pk": 3,
+    "fields": {
+        "tag": 3,
+        "post": 2
+    }
+},
+{
+    "model": "yumelinkapp.posttag",
+    "pk": 4,
+    "fields": {
+        "tag": 4,
+        "post": 17
+    }
+},
+{
+    "model": "yumelinkapp.posttag",
+    "pk": 5,
+    "fields": {
+        "tag": 4,
+        "post": 20
+    }
+},
+{
+    "model": "yumelinkapp.posttag",
+    "pk": 7,
+    "fields": {
+        "tag": 4,
+        "post": 23
+    }
+},
+{
+    "model": "yumelinkapp.posttag",
+    "pk": 32,
+    "fields": {
+        "tag": 4,
+        "post": 26
+    }
+},
+{
+    "model": "yumelinkapp.posttag",
+    "pk": 33,
+    "fields": {
+        "tag": 9,
+        "post": 26
+    }
+}
+]

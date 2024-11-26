@@ -5,26 +5,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Rooms</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; }
-        .chat-header { background-color: Gray; display: flex; align-items: center; padding: 10px 20px; font-size: 24px; font-weight: bold; border-bottom: 1px solid #ccc; }
-        .tabs { display: flex; justify-content: space-around; background-color: #fff; padding: 10px; border-bottom: 2px solid #ccc; }
-        .tab { padding: 10px 20px; cursor: pointer; font-weight: bold; }
-        .tab.active { background-color: #000; color: #fff; }
-        .chat-list { padding: 20px; }
-        .chat-item { background-color: #fff; padding: 15px; margin-bottom: 10px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .chat-header {
+            background-color: #000;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            justify-content: space-between;
+        }
+        .menu {
+            cursor: pointer;
+            font-size: 30px;
+        }
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            background-color: #fff;
+            padding: 10px;
+            border-bottom: 2px solid #ccc;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .tab.active {
+            background-color: #000;
+            color: #fff;
+        }
+        .chat-list {
+            padding: 20px;
+        }
+        .chat-item {
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .side-menu {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            color: #fff;
+            transition: 0.3s;
+            padding: 20px 0;
+            z-index: 1000;
+        }
+        .side-menu.open {
+            left: 0;
+        }
+        .side-menu a {
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+            display: block;
+            font-size: 18px;
+        }
+        .side-menu a:hover {
+            background-color: #575757;
+        }
+        .close-btn {
+            font-size: 24px;
+            text-align: right;
+            cursor: pointer;
+            padding: 10px 20px;
+        }
     </style>
 </head>
 <body>
-
     <!-- Header -->
     <div class="chat-header">
-        <div class="menu">☰</div>
-        <div class="title">Chat</div>
+        <div class="menu" onclick="toggleMenu()">☰</div>
+        <div class="title">Chat Rooms</div>
         <div class="icon">💬</div>
     </div>
+
+    <!-- Side Menu -->
+    <div class="side-menu" id="sideMenu">
+        <div class="close-btn" onclick="toggleMenu()">&#10005;</div>
+        <a href="/">🏠 Home</a>
+        <a href="{% url 'yumelinkapp:user_profile' %}">👤 Profile</a>
+        <a href="#">⚙️ Settings</a>
+        <a href="#">Services</a>
+        <a href="#">Support</a>
+        <a href="#">About</a>
+        <hr>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+    </div>
+
     <!-- Tabs -->
     <div class="tabs">
-        <div class="tab" id="all-tab" onclick="showTab('all')">All Chats</div>
+        <div class="tab active" id="all-tab" onclick="showTab('all')">All Chats</div>
         <div class="tab" id="personal-tab" onclick="showTab('personal')">Personal</div>
         <div class="tab" id="groups-tab" onclick="showTab('groups')">Groups</div>
     </div>
@@ -55,6 +139,11 @@
     </div>
 
     <script>
+        function toggleMenu() {
+            const sideMenu = document.getElementById('sideMenu');
+            sideMenu.classList.toggle('open');
+        }
+
         function showTab(tab) {
             document.getElementById('all-chats').style.display = tab === 'all' ? 'block' : 'none';
             document.getElementById('personal-chats').style.display = tab === 'personal' ? 'block' : 'none';

@@ -5,8 +5,48 @@
     <link rel="stylesheet" href="{% static 'yumelinkapp/home.css' %}">
 {% endblock %}
 
-{% block title %}{% endblock %}
+{% block title %}<h1>Home Page</h1>{% endblock %}
 
 {% block content %}
-<h1>Home page</h1>
+<div class="chat-header">
+    <div class="menu" onclick="toggleMenu()">☰</div>
+    <div class="title">Home</div>
+</div>
+
+<!-- Side Menu -->
+<div class="side-menu" id="side-menu">
+    <a href="/">
+        <span class="icon">🏠</span> Home
+    </a>
+    <a href="/chat_room">
+        <span class="icon">💬</span> Chat Room
+    </a>
+    <a href="#">
+        <span class="icon">⚙</span> Settings
+    </a>
+    <a href="#">
+        <span class="icon">🚪</span> Logout
+    </a>
+</div>
+
+<!-- Main Content -->
+<div>
+    {% for post in posts_with_images %}
+        <h4>User: {{ post.post.user }}</h4>
+        <a href="{% url 'yumelinkapp:post' post.post.id %}">{{ post.post.content }}</a>
+        </br>
+        {% for image in post.post_images %}
+            <img src="{{ image.image.url }}" alt="Post Image" style="max-width: 150px;" />
+        </br>
+        {% endfor %}
+    {% endfor %}
+</div>
+
+<script>
+    // Toggle side menu visibility
+    function toggleMenu() {
+        var menu = document.getElementById('side-menu');
+        menu.classList.toggle('open');
+    }
+</script>
 {% endblock %}
