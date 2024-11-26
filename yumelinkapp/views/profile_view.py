@@ -1,11 +1,12 @@
-from django.views.generic import ListView
-from yumelinkapp.models import User
+from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class ProfileView(ListView):
-    model = User
-    template_name = 'yumelink/user_profile.html'
-    context_object_name = 'user_profile'
+class ProfileView(LoginRequiredMixin, TemplateView):
+    template_name = 'user/user.html'
 
-    def get_queryset(self):
-        return User.objects.all().order_by('name')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Pass the currently logged-in user's information to the template
+        context['user_profile'] = self.request.user
+        return context
