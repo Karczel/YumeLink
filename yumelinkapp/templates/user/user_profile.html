@@ -5,14 +5,20 @@
         /* Profile Container */
         .profile-container {
             max-width: 800px;
-            margin: 20px auto;
+            width: 100%;
+            margin: 150px auto 20px auto;
             padding: 20px;
             background-color: #fff;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             position: relative;
+            box-sizing: border-box;
         }
 
+.profile-container img {
+    max-width: 100px;
+    border-radius: 50%;
+}
         .profile-container strong {
             color: #333;
         }
@@ -89,6 +95,10 @@
         .blocked-button:hover {
             background-color: #5a6268;
         }
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'yumelinkapp/posts.css' %}">
 {% endblock %}
 
 {% block title %}
@@ -137,9 +147,8 @@
         </br>
         {% endfor %}
     </div>
-
     {% endfor %}
-</div>
+    </div>
 
     <script>
         // Function to toggle the Follow/Following state
