@@ -1,4 +1,6 @@
 from django.urls import path
+
+import yumelinkapp.views.chat.chatroom_detail_view
 from . import views
 
 
@@ -10,7 +12,8 @@ urlpatterns = [
 
     # Chat Room URLs
     path('chat_room/', views.ChatRoomView.as_view(), name='chat_room'),  # Chat rooms list
-    path('chat_room/<int:pk>/', views.ChatRoomDetailView.as_view(), name='chat_room_detail'),
+    path('chat_room/<int:pk>/', yumelinkapp.views.chat.chatroom_detail_view.ChatRoomDetailView.as_view(), name='chat_room_detail'),
+    path('chat_room/new', views.ChatRoomView.as_view(), name='chat_room'),  # Chat rooms list
 
     # Post URLs
     path("post/<int:pk>", views.PostView.as_view(), name="post"),
