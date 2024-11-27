@@ -203,3 +203,5 @@ MEDIA_URL = f'{AWS_S3_URL_PROTOCOL}//{AWS_S3_CUSTOM_DOMAIN}/'
 CORS_ALLOWED_ORIGINS = [
     "https://yumelink.onrender.com",
 ]
+
+CSRF_TRUSTED_ORIGINS = ["https://yumelink.onrender.com"]
