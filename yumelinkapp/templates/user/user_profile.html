@@ -1,32 +1,6 @@
 {% extends 'base.html' %}
 
 {% block extra_css %}
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Header Styles */
-        .header {
-            background-color: #000;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-        }
-
-        .header .menu {
-            cursor: pointer;
-            font-size: 24px;
-        }
-
-        .header h1 {
-            margin: 0;
-            font-size: 24px;
-        }
 
         /* Profile Container */
         .profile-container {
@@ -118,21 +92,25 @@
 {% endblock %}
 
 {% block title %}
-    <!-- Header with Menu -->
-    <div class="header">
-        <div class="menu" onclick="toggleMenu()">☰</div>
         <div class="title">User Profile</div>
-    </div>
 {% endblock %}
 
 {% block content %}
     <!-- Profile Container -->
     <div class="profile-container">
         <!-- Display the logged-in user's profile -->
+        {% if notification.sender.profile and notification.sender.profile.url %}
+            <img src="{{ notification.sender.profile.url }}" alt="Sender 1" style="max-width: 100px;">
+        {% else %}
+            <img src="{{ MEDIA_URL }}default-profile.png" alt="Default Profile" style="max-width: 100px;">
+        {% endif %}
         <p><strong>Name:</strong> {{ user_profile.name }}</p>
         <p><strong>Email:</strong> {{ user_profile.email }}</p>
         <p><strong>Username:</strong> {{ user_profile.username }}</p>
         <p><strong>Bio:</strong> {{ user_profile.bio }}</p>
+        <a href="{% url 'yumelinkapp:user_relationship' user_profile.username %}">
+            Follow details
+        </a>
 
         <!-- Follow and Block Buttons positioned at top right -->
         <div class="action-buttons">
@@ -140,6 +118,28 @@
             <button id="block-button" class="action-button block-button" onclick="toggleBlock()">Block</button>
         </div>
     </div>
+<hr>
+    <div>
+        <a href="?type=post">Post</a>
+        <a href="?type=like">Like</a>
+        <a href="?type=love">Love</a>
+        <a href="?type=repost">Repost</a>
+    </div>
+    <div class="posts">
+    {% for post in posts_with_images %}
+    <div class="post">
+
+        <h4>User: {{ post.post.user }}</h4>
+        <a href="{% url 'yumelinkapp:post' post.post.id %}">{{ post.post.content }}</a>
+        </br>
+        {% for image in post.post_images %}
+            <img src="{{ image.image.url }}" alt="Post Image" style="max-width: 150px;" />
+        </br>
+        {% endfor %}
+    </div>
+
+    {% endfor %}
+</div>
 
     <script>
         // Function to toggle the Follow/Following state

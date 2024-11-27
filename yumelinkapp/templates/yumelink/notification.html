@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
 {% block extra_css %}
+    .notifications {
+            padding: 20px;
+        }
     .notification-item {
       display: flex;
       align-items: center;
@@ -46,9 +49,7 @@
 {% endblock %}
 
 {% block title %}
-<span class="menu-icon" onclick="history.back();">&#8592;</span>
     <div class="title">Notification</div>
-    <span class="icon">🔔</span>
 {% endblock %}
 
 {% block content %}

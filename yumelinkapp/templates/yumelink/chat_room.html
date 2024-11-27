@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 
 {% block extra_css %}
+        .menu {
+            cursor: pointer;
+            font-size: 30px;
+        }
         .tabs {
             display: flex;
             justify-content: space-around;
@@ -67,4 +71,15 @@
         {% endfor %}
     </div>
 
+<script>
+        function showTab(tab) {
+            document.getElementById('all-chats').style.display = tab === 'all' ? 'block' : 'none';
+            document.getElementById('personal-chats').style.display = tab === 'personal' ? 'block' : 'none';
+            document.getElementById('group-chats').style.display = tab === 'groups' ? 'block' : 'none';
+
+            document.getElementById('all-tab').classList.toggle('active', tab === 'all');
+            document.getElementById('personal-tab').classList.toggle('active', tab === 'personal');
+            document.getElementById('groups-tab').classList.toggle('active', tab === 'groups');
+        }
+    </script>
 {% endblock %}

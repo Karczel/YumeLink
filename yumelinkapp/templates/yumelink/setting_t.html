@@ -1,29 +1,6 @@
 {% extends 'base.html' %}
 
 {% block extra_css %}
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #222; /* Dark background */
-            color: white;
-            margin: 0;
-            padding: 0;
-        }
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            background-color: #666;
-            padding: 10px 15px;
-            gap: 10px;
-        }
-        .header h1 {
-            font-size: 24px;
-            margin: 0;
-        }
-        .header .menu-icon {
-            font-size: 24px;
-            cursor: pointer;
-        }
         .content {
             margin: 20px 0;
         }
@@ -38,35 +15,6 @@
         }
         .menu-item:hover {
             background-color: #bbb;
-        }
-        /* Sidebar menu styling */
-        .side-menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 250px;
-            height: 100%;
-            background-color: #666;
-            color: white;
-            display: none; /* Hidden by default */
-            padding: 15px;
-        }
-        .side-menu .close-btn {
-            font-size: 24px;
-            cursor: pointer;
-            display: block;
-            text-align: right;
-            margin-bottom: 20px;
-        }
-        .side-menu a {
-            display: block;
-            color: white;
-            text-decoration: none;
-            padding: 10px 0;
-            border-bottom: 1px solid #ccc;
-        }
-        .side-menu a:hover {
-            background-color: #555;
         }
 {% endblock %}
 

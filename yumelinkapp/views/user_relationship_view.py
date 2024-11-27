@@ -13,12 +13,27 @@ class UserRelationShipView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         obj_type = self.request.GET.get('type', '')
         context['obj_type'] = obj_type
+        context['user'] = User.objects.get(id=self.request.user.id)
+        context['viewed_user'] = self.get_viewed_user()
         return context
 
+    def get_viewed_user(self):
+        """Fetch the user being viewed by username."""
+        username = self.kwargs.get('username')
+        try:
+            return User.objects.get(username=username)
+        except User.DoesNotExist:
+            messages.error(self.request, "User does not exist.")
+            return None
+
     def get_queryset(self):
-        user = User.objects.get(id=self.request.user.id)
+        user = self.get_viewed_user()
+        if not user:
+            return Follow.objects.none()
+
         obj_type = self.request.GET.get('type')
         mutual_friends = Follow.objects.filter(follower=user).values_list('user', flat=True)
+
         if obj_type == 'following':
             mutual_follow = Follow.objects.filter(user=user).values_list('follower', flat=True)
             return Follow.objects.filter(follower=user).exclude(user__in=mutual_follow)

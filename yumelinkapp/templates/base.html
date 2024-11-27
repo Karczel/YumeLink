@@ -9,7 +9,38 @@
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
+
         }
+
+        .auth-header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 16px;
+            height: auto;
+        }
+
+        .auth-header a {
+            color: white;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        .auth-header form {
+            display: inline;
+            margin-left: 20px;
+        }
+
+        .auth-header form button {
+            padding: 5px 10px;
+            background-color: #666;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
         .header {
             background-color: #000;
             display: flex;
@@ -20,21 +51,15 @@
             color: #fff;
             justify-content: space-between;
         }
+
         .header .icon {
             font-size: 20px;
         }
 
-        .notifications {
-            padding: 20px;
-        }
-        .menu {
-            cursor: pointer;
-            font-size: 30px;
-        }
         .side-menu {
             position: fixed;
             top: 0;
-            left: -250px;
+            right: -250px;
             width: 250px;
             height: 100%;
             background-color: #333;
@@ -44,7 +69,7 @@
             z-index: 1000;
         }
         .side-menu.open {
-            left: 0;
+            right: 0;
         }
         .side-menu a {
             padding: 10px 20px;
@@ -58,7 +83,7 @@
         }
         .close-btn {
             font-size: 24px;
-            text-align: right;
+            text-align: left;
             cursor: pointer;
             padding: 10px 20px;
         }
@@ -71,18 +96,25 @@
 <body>
 
 <!--log in, log out-->
+{% block user-auth-section %}
+<div class="auth-header">
 {% if user.is_authenticated %}
-   Welcome back, {{ user.username }}
+       Welcome back, {{ user.username }}
    <form action="{% url 'logout' %}" method="post">
         {% csrf_token %}
         <button type="submit">Log Out</button>
    </form>{% else %}
    Please <a href="{% url 'login' %}?next={{request.path}}">Login</a>
+
 {% endif %}
+</div>
+{% endblock %}
 
 <div class="header">
-        <div class="menu" onclick="toggleMenu()">☰</div>
-            {% block title %} {% endblock %}
+
+    <div class="menu-icon" onclick="history.back();">&#8592;</div>
+    {% block title %} {% endblock %}
+    <div class="menu" onclick="toggleMenu()">☰</div>
 </div>
 
 {% if messages %}
@@ -96,7 +128,11 @@
 <div class="side-menu" id="sideMenu">
         <div class="close-btn" onclick="toggleMenu()">&#10005;</div>
         <a href="{% url 'yumelinkapp:home' %}">🏠 Home</a>
-        <a href="{% url 'yumelinkapp:user_profile' %}">👤 Profile</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'yumelinkapp:user_profile' username=user.username %}">👤 Profile</a>
+        {% else %}
+            <a href="{% url 'login' %}?next={{ request.path }}">👤 Login</a>
+        {% endif %}
         <a href="{% url 'yumelinkapp:settings' %}">⚙️ Settings</a>
 <!--        <a href="#">Services</a>-->
         <a href="{% url 'yumelinkapp:contact' %}">Support</a>
@@ -112,16 +148,6 @@
         function toggleMenu() {
             const sideMenu = document.getElementById('sideMenu');
             sideMenu.classList.toggle('open');
-        }
-
-        function showTab(tab) {
-            document.getElementById('all-chats').style.display = tab === 'all' ? 'block' : 'none';
-            document.getElementById('personal-chats').style.display = tab === 'personal' ? 'block' : 'none';
-            document.getElementById('group-chats').style.display = tab === 'groups' ? 'block' : 'none';
-
-            document.getElementById('all-tab').classList.toggle('active', tab === 'all');
-            document.getElementById('personal-tab').classList.toggle('active', tab === 'personal');
-            document.getElementById('groups-tab').classList.toggle('active', tab === 'groups');
         }
     </script>
 

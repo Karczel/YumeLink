@@ -24,9 +24,10 @@ urlpatterns = [
     path("post/<int:post_id>/love", views.like, name="love_post"),
 
     # User Profile and Relationships
-    path('profile/', views.ProfileView.as_view(), name='user_profile'),
-    path("profile/relationship", views.UserRelationShipView.as_view(), name="user_relationship"),
+    path('profile/<str:username>/', views.ProfileView.as_view(), name='user_profile'),
+    path("profile/<str:username>/relationship", views.UserRelationShipView.as_view(), name="user_relationship"),
 
+    # Settings
     path('settings/', views.SettingView.as_view(), name='settings'),
     path('settings/account_manage/', views.AccountManageView.as_view(), name='account_manage'),
     path('settings/notifications/', views.NotificationView.as_view(), name='notifications'),
