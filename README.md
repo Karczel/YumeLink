@@ -5,6 +5,7 @@ Business model reference : social media
 DEMO
 | username | pwd |
 |-|-|
+| abc | iamabc1234 |
 | karczel | iamkarczel1234 |
 | mammothx | iammammoth1234 |
 | tanfan | iamtanfan1234 |
