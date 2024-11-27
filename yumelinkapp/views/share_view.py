@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.views import View
@@ -5,7 +6,7 @@ from yumelinkapp.models import Post, Share
 from ..forms import ShareForm
 
 
-class ShareView(View):
+class ShareView(LoginRequiredMixin,View):
     """
     Handles sharing a post. The share action could be via a link, reblog, or any other share type.
     """

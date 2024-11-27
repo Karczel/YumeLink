@@ -13,6 +13,7 @@
 {% endblock %}
 
 {% block content %}
+        <h4>{{ post.user }}</h4>
 <p>{{ post.content }}</p>
 <!--have 3 dots and dropdown for edit, delete-->
 
@@ -29,7 +30,7 @@
 <!--specific buttons for like, love, share, comment-->
 
 <p>
-    <a href="{% url 'yumelinkapp:like_post' post.id %}">Like</a>: {{ likes }}    <a href="{% url 'yumelinkapp:love_post' post.id %}">Love</a>: {{ loves }}   Shares: {{ shares }}
+    <a href="{% url 'yumelinkapp:like_post' post.id %}">Like</a>: {{ likes }}    <a href="{% url 'yumelinkapp:love_post' post.id %}">Love</a>: {{ loves }}   <a href="{% url 'yumelinkapp:share_post' post.id %}">Shares</a>: {{ shares }}
 </p>
 
 {% for object in comments %}
