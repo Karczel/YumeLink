@@ -136,9 +136,9 @@
             <!-- Block Button -->
             <button
                 id="block-button"
-                class="action-button {% if block %}blocked-button{% else %}block-button{% endif %}"
-                onclick="location.href='{% if block %}{% url 'yumelinkapp:unblock' user_profile.username %}{% else %}{% url 'yumelinkapp:block' user_profile.username %}{% endif %}'">
-                {% if block %}Blocked{% else %}Block{% endif %}
+                class="action-button {% if is_block %}blocked-button{% else %}block-button{% endif %}"
+                onclick="location.href='{% if is_block %}{% url 'yumelinkapp:unblock' user_profile.username %}{% else %}{% url 'yumelinkapp:block' user_profile.username %}{% endif %}'">
+                {% if is_block %}Blocked{% else %}Block{% endif %}
             </button>
         </div>
         {% endif %}

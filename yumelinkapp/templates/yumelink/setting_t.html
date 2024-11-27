@@ -25,8 +25,9 @@
 {% block content %}
 <div class="content">
         <div class="menu-item" onclick="location.href='{% url 'yumelinkapp:account_manage' %}';">Account manage </div>
-        <div class="menu-item" onclick="location.href=#;">filter content </div>
+<!--        <div class="menu-item" onclick="location.href=#;">filter content </div>-->
         <div class="menu-item" onclick="location.href='{% url 'yumelinkapp:notifications' %}';">Notification </div>
         <div class="menu-item" onclick="location.href='{% url 'yumelinkapp:contact' %}';">Contact </div>
+    <div class="menu-item" onclick="location.href='{% url 'yumelinkapp:community_guidelines' %}';">Community Guidelines</div>
     </div>
 {% endblock %}

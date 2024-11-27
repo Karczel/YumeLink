@@ -1,15 +1,6 @@
 {% extends 'base.html' %}
 
 {% block extra_css %}
-    /* General Styling */
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f8f8f8;
-      color: #333;
-      height: 100%;
-    }
 
     /* Fullscreen Container */
     .container {
@@ -17,21 +8,6 @@
       flex-direction: column;
       height: 100%;
       background: white;
-    }
-
-    /* Header Styling */
-    .header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background-color: #333;
-      color: white;
-      padding: 10px 20px;
-    }
-
-    .menu-icon, .help-icon {
-      font-size: 18px;
-      cursor: pointer;
     }
 
     /* Tabs Styling */
@@ -93,26 +69,21 @@
     }
 {% endblock %}
 
-  <div class="container">
+<!--  <div class="container">-->
       {% block title %}
-    <!-- Header Section -->
-    <div class="header">
-      <span class="menu-icon" onclick="history.back();">&#8592;</span>
       <div class="title">Help Center</div>
       <span class="help-icon">?</span>
-    </div>
-          <!-- Tabs Section -->
+<!--Tabs Section-->
       <div class="tabs">
       <button class="tab" id="faq-tab" onclick="showSection('faq')">FAQ</button>
       <button class="tab" id="contact-tab" onclick="showSection('contact')">Contact Us</button>
     </div>
       {% endblock %}
-  </div>
+<!--  </div>-->
 
 {% block content %}
     <!-- Content Section -->
     <div class="content">
-      <!-- FAQ Section -->
       <div id="faq-section">
         <div class="faq-item">
           <span class="icon">📞</span>

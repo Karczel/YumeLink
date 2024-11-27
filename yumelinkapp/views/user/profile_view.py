@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -55,6 +56,7 @@ class ProfileView(LoginRequiredMixin, DetailView):
 
         if user != viewed_user:
             context['follow'] = Follow.objects.filter(follower=user, user=viewed_user).exists()
-            context['block'] = Block.objects.filter(blocker=user, blocked=viewed_user).exists()
+            context['is_block'] = Block.objects.filter(blocker=user, blocked=viewed_user).exists()
 
+        # messages.info(self.request, context)
         return context
