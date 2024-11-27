@@ -1,7 +1,9 @@
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect
 from django.views.generic import DetailView
 
-from yumelinkapp.models import Post, PostImage, Tag, PostTag, Like, Comment, Share, User
+from yumelinkapp.models import Post, PostImage, Tag, PostTag, Like, Comment, Share, User, Block
 from yumelinkapp.utils import LikeType
 
 
@@ -36,3 +38,18 @@ class PostView(LoginRequiredMixin, DetailView):
         # + toggle off check
 
         return context
+
+    def get(self, request, *args, **kwargs):
+        post = self.get_object()
+        post_owner = post.user
+        current_user = User.objects.get(id=request.user.id)
+
+        # Check if the current user is blocked by the post owner
+        is_blocked = Block.objects.filter(blocker=post_owner, blocked=current_user).exists()
+
+        if is_blocked:
+            messages.warning(request, "You are blocked by this user")
+            # Redirect to a "blocked" page or another relevant page
+            return redirect('yumelinkapp:home')
+
+        return super().get(request, *args, **kwargs)
