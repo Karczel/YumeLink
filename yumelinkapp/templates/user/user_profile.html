@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-    <style>
+{% extends 'base.html' %}
+
+{% block extra_css %}
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -30,51 +26,6 @@
         .header h1 {
             margin: 0;
             font-size: 24px;
-        }
-
-        /* Sidebar Menu Styles */
-        .side-menu {
-            position: fixed;
-            top: 0;
-            left: -250px; /* Hidden by default */
-            width: 250px;
-            height: 100%;
-            background-color: #333;
-            color: white;
-            overflow: auto;
-            transition: 0.3s;
-            padding-top: 20px;
-            padding-left: 20px;
-        }
-
-        .side-menu a {
-            color: white;
-            padding: 10px 0;
-            text-decoration: none;
-            font-size: 18px;
-            display: block;
-        }
-
-        .side-menu a:hover {
-            background-color: #575757;
-        }
-
-        .side-menu.open {
-            left: 0; /* Show menu */
-        }
-
-        .close-btn {
-            color: white;
-            font-size: 30px;
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            cursor: pointer;
-        }
-
-        .side-menu hr {
-            border-color: #575757;
-            margin-top: 10px;
         }
 
         /* Profile Container */
@@ -164,30 +115,17 @@
         .blocked-button:hover {
             background-color: #5a6268;
         }
-    </style>
-</head>
-<body>
+{% endblock %}
 
+{% block title %}
     <!-- Header with Menu -->
     <div class="header">
         <div class="menu" onclick="toggleMenu()">☰</div>
-        <h1>User Profile</h1>
+        <div class="title">User Profile</div>
     </div>
+{% endblock %}
 
-    <!-- Sidebar Menu -->
-    <div class="side-menu" id="sideMenu">
-        <span class="close-btn" onclick="toggleMenu()">&#10005;</span> <!-- Close icon -->
-        <a href="/" onclick="window.location.href='/'"><span>🏠</span> Home</a>
-        <a href="/chat_room"><span>💬</span> Chat Room</a> <!-- Chat Room Link -->
-        <a href="#"><span>⚙️</span> Settings</a>
-        <a href="#">Services</a>
-        <a href="#">Support</a>
-        <a href="#">About</a>
-        <hr>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-    </div>
-
+{% block content %}
     <!-- Profile Container -->
     <div class="profile-container">
         <!-- Display the logged-in user's profile -->
@@ -204,16 +142,6 @@
     </div>
 
     <script>
-        // Function to toggle the side menu
-        function toggleMenu() {
-            const sideMenu = document.getElementById('sideMenu');
-            if (sideMenu.style.left === "0px") {
-                sideMenu.style.left = "-250px";
-            } else {
-                sideMenu.style.left = "0px";
-            }
-        }
-
         // Function to toggle the Follow/Following state
         function toggleFollow() {
             var followButton = document.getElementById('follow-button');
@@ -243,5 +171,4 @@
         }
     </script>
 
-</body>
-</html>
+{% endblock %}

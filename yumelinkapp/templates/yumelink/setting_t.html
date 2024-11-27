@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Settings</title>
-    <style>
+{% extends 'base.html' %}
+
+{% block extra_css %}
         body {
             font-family: Arial, sans-serif;
             background-color: #222; /* Dark background */
@@ -72,44 +68,19 @@
         .side-menu a:hover {
             background-color: #555;
         }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <span class="menu-icon" onclick="toggleMenu()">&#9776;</span> <!-- Hamburger icon -->
-        <h1>Settings</h1>
-    </div>
-    <div class="content">
-        <div class="menu-item" onclick="location.href='/settings/account_manage/';">Account manage </div>
-        <div class="menu-item" onclick="location.href='/settings/tag/';">filter content </div>
-        <div class="menu-item" onclick="location.href='/settings/notifications/';">Notification </div>
-        <div class="menu-item" onclick="location.href='/settings/contact/';">Contact </div>
-    </div>
+{% endblock %}
 
-    <!-- Sidebar menu -->
-    <div class="side-menu" id="sideMenu">
-        <span class="close-btn" onclick="toggleMenu()">&#10005;</span> <!-- Close icon -->
-        <a href="#">Home</a>
-        <a href="#">Services</a>
-        <a href="#">Support</a>
-        <a href="#">About</a>
-        <hr>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
+{% block title %}
+        <div class="title">Settings</div>
+{% endblock %}
+
+{% block content %}
+<div class="content">
+        <div class="menu-item" onclick="location.href='{% url 'yumelinkapp:account_manage' %}';">Account manage </div>
+        <div class="menu-item" onclick="location.href=#;">filter content </div>
+        <div class="menu-item" onclick="location.href='{% url 'yumelinkapp:notifications' %}';">Notification </div>
+        <div class="menu-item" onclick="location.href='{% url 'yumelinkapp:contact' %}';">Contact </div>
     </div>
-
-    <script>
-        function toggleMenu() {
-            const sideMenu = document.getElementById('sideMenu');
-            if (sideMenu.style.display === "block") {
-                sideMenu.style.display = "none";
-            } else {
-                sideMenu.style.display = "block";
-            }
-        }
-    </script>
-</body>
-</html>
-
+{% endblock %}
 
 

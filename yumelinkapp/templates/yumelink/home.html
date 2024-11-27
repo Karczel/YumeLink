@@ -2,34 +2,15 @@
 
 {% block extra_css %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'yumelinkapp/home.css' %}">
+    <link rel="stylesheet" href="{% static 'yumelinkapp/sidebar.css' %}">
 {% endblock %}
 
-{% block title %}<h1>Home Page</h1>{% endblock %}
+{% block title %}
+    <div class="title">Home</div>
+    <div class="icon">📝</div>
+    {% endblock %}
 
 {% block content %}
-<div class="chat-header">
-    <div class="menu" onclick="toggleMenu()">☰</div>
-    <div class="title">Home</div>
-</div>
-
-<!-- Side Menu -->
-<div class="side-menu" id="side-menu">
-    <a href="/">
-        <span class="icon">🏠</span> Home
-    </a>
-    <a href="/chat_room">
-        <span class="icon">💬</span> Chat Room
-    </a>
-    <a href="#">
-        <span class="icon">⚙</span> Settings
-    </a>
-    <a href="#">
-        <span class="icon">🚪</span> Logout
-    </a>
-</div>
-
-<!-- Main Content -->
 <div>
     {% for post in posts_with_images %}
         <h4>User: {{ post.post.user }}</h4>

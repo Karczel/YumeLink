@@ -24,11 +24,8 @@ class Comment(models.Model):
 
     def create_notification(self):
         """Create notification to post owner."""
-
-        def create_notification(self):
-            """Create notification for followers."""
-            Notification.objects.create(
-                object_id=self.id,
-                content_type=ContentType.objects.get_for_model(Post),
-                receiver=self.post.user
-            )
+        Notification.objects.create(
+            object_id=self.id,
+            content_type=ContentType.objects.get_for_model(Comment),
+            receiver=self.post.user
+        )

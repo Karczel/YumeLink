@@ -19,5 +19,4 @@ from .notification_view import NotificationView
 from .report_view import ReportView
 from .account_manage_view import AccountManageView
 from .contact_view import ContactView
-from .tag_view import TagView
 from .password_view import ChangePasswordView

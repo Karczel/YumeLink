@@ -32,6 +32,5 @@ urlpatterns = [
     path('settings/notifications/', views.NotificationView.as_view(), name='notifications'),
     path('reports/', views.ReportView.as_view(), name='reports'),
     path('settings/contact/', views.ContactView.as_view(), name='contact'),
-    path('settings/tag/', views.TagView.as_view(), name='tag'),
     path('settings/account_manage/change_password/', views.ChangePasswordView.as_view(), name='change_password'),
 ]

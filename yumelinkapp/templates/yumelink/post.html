@@ -3,7 +3,9 @@
 {% block extra_css %}{% endblock %}
 
 {% block title %}
-<h1>Post</h1>
+<div class="title">Post</div>
+    <div class="icon">📝</div>
+<!-- make it drop down -->
 {% if user == post.user %}
 <a href="{% url 'yumelinkapp:edit_post' post.id %}">Edit Post</a>
 <a href="{% url 'yumelinkapp:delete_post' post.id %}">Delete Post</a>

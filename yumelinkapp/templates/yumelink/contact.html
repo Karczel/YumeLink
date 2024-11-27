@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Help Center</title>
-  <style>
+{% extends 'base.html' %}
+
+{% block extra_css %}
     /* General Styling */
     body, html {
       margin: 0;
@@ -95,23 +91,25 @@
     .hidden {
       display: none;
     }
-  </style>
-</head>
-<body>
+{% endblock %}
+
   <div class="container">
+      {% block title %}
     <!-- Header Section -->
     <div class="header">
       <span class="menu-icon" onclick="history.back();">&#8592;</span>
-      <h1>Help Center</h1>
+      <div class="title">Help Center</div>
       <span class="help-icon">?</span>
     </div>
-
-    <!-- Tabs Section -->
-    <div class="tabs">
+          <!-- Tabs Section -->
+      <div class="tabs">
       <button class="tab" id="faq-tab" onclick="showSection('faq')">FAQ</button>
       <button class="tab" id="contact-tab" onclick="showSection('contact')">Contact Us</button>
     </div>
+      {% endblock %}
+  </div>
 
+{% block content %}
     <!-- Content Section -->
     <div class="content">
       <!-- FAQ Section -->
@@ -187,7 +185,6 @@
     // Example: Call this to remove Contact Us tab and section
     // removeTab('contact-tab', 'contact-section');
   </script>
-</body>
-</html>
+{% endblock %}
 
 

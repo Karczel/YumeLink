@@ -25,7 +25,7 @@ class Share(models.Model):
 
     def create_notification(self):
         """Create notification to post owner (when re-blogged)."""
-        if self.share_type == ShareType.reblog:
+        if self.share_type == ShareType.reblog.name:
             Notification.objects.create(
                 object_id=self.id,
                 content_type=ContentType.objects.get_for_model(Share),
