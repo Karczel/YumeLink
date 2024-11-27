@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -60,3 +60,17 @@ class ProfileView(LoginRequiredMixin, DetailView):
 
         # messages.info(self.request, context)
         return context
+
+    def get(self, request, *args, **kwargs):
+        user = self.get_object()
+        current_user = User.objects.get(id=request.user.id)
+
+        # Check if the current user is blocked by the post owner
+        is_blocked = Block.objects.filter(blocker=user, blocked=current_user).exists()
+
+        if is_blocked:
+            messages.warning(request, "You are blocked by this user")
+            # Redirect to a "blocked" page or another relevant page
+            return redirect('yumelinkapp:home')
+
+        return super().get(request, *args, **kwargs)

@@ -4,3 +4,4 @@ from .contact_view import ContactView
 from .notification_view import NotificationView
 from .community_guidelines import CommunityGuidelinesView
 from .delete_user_view import delete_user
+from .password_view import ChangePasswordView

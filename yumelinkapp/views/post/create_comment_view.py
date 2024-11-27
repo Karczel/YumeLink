@@ -2,12 +2,24 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 
-from yumelinkapp.models import User, Comment, Post
+from yumelinkapp.models import User, Comment, Post, Block
 
 
 @login_required
 def create_comment(request, post_id):
     """Create a comment to a post."""
+    post = Post.objects.get(id=post_id)
+    post_owner = post.user
+    current_user = User.objects.get(id=request.user.id)
+
+    # Check if the current user is blocked by the post owner
+    is_blocked = Block.objects.filter(blocker=post_owner, blocked=current_user).exists()
+
+    if is_blocked:
+        messages.warning(request, "You are blocked by this user")
+        # Redirect to a "blocked" page or another relevant page
+        return redirect('yumelinkapp:home')
+
     if request.method == 'POST':
         content = request.POST.get('content')
         if not content:
