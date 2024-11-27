@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.views import View
 from yumelinkapp.models import Post, Share, User
-from ..forms import ShareForm
+from yumelinkapp.forms import ShareForm
 
 
 class ShareView(LoginRequiredMixin,View):
