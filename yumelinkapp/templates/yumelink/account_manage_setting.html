@@ -1,33 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Account Manage</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #222; /* Dark background */
-            color: white;
-            margin: 0;
-            padding: 0;
-        }
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            background-color: #666;
-            padding: 30px 15px;
-            gap: 10px;
-        }
-        .header h1 {
-            font-size: 24px;
-            margin: 0;
-        }
-        .header .menu-icon {
-            font-size: 24px;
-            cursor: pointer;
-        }
+<{% extends 'base.html' %}
+
+{% block extra_css %}
         .content {
             margin: 20px;
         }
@@ -50,18 +23,24 @@
         .menu-item span {
             margin-left: 10px;
         }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <span class="menu-icon" onclick="history.back();">&#8592;</span> <!-- Back arrow -->
-        <h1>My Account</h1>
-    </div>
+{% endblock %}
+
+{% block title %}
+        <div class="title">My Account</div>
+{% endblock %}
+{% block content %}
     <div class="content">
-        <div class="menu-item" onclick="location.href='/settings/account_manage/login/';">Login <span>&#10145;</span></div>
-        <div class="menu-item">Logout <span>&#11013;</span></div>
+        <div class="menu-item" onclick="location.href='{% url 'login' %}?next={{ request.path }}';">Login <span>&#10145;</span></div>
+        <div class="menu-item" onclick="document.getElementById('logout-form').submit();">
+            Logout <span>&#11013;</span>
+        </div>
+
+        <!-- Hidden logout form -->
+        <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: none;">
+            {% csrf_token %}
+        </form>
+
         <div class="menu-item" onclick="location.href='/settings/account_manage/change_password/';">Change password</div>
 <!--        <div class="menu-item">Delete</div>-->
     </div>
-</body>
-</html>
+{% endblock %}

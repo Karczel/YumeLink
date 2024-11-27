@@ -3,14 +3,15 @@
 {% block extra_css %}
 {% endblock %}
 
-{% block title %}<h1>Relationships</h1>{% endblock %}
+{% block title %}
+        <div class="title">Relationships</div>
+{% endblock %}
 
 {% block content %}
 <a href="?type=following">Following</a>
 <a href="?type=followers">Followers</a>
 <a href="?type=friends">Friends</a>
 <a href="?type=blocked">Blocked</a>
-
 <ul>
   {% for obj in relationships %}
     <li>

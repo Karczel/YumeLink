@@ -1,51 +1,32 @@
 {% extends 'base.html' %}
 
-{% block extra_css %}
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'yumelinkapp/home.css' %}">
+    {% block extra_css %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'yumelinkapp/posts.css' %}">
 {% endblock %}
 
-{% block title %}<h1>Home Page</h1>{% endblock %}
+{% block title %}
+    <div class="title">Home</div>
+<!--create post-->
+<!--    <div class="icon">📝</div>-->
+{% endblock %}
 
 {% block content %}
-
-<!-- Side Menu -->
-<div class="side-menu" id="side-menu">
-    <a href="/">
-        <span class="icon">🏠</span> Home
-    </a>
-    <a href="/profile">
-        <span class="icon">👤</span> Profile
-    </a>
-    <a href="/chat_room">
-        <span class="icon">💬</span> Chat Room
-    </a>
-    <a href="/settings">
-        <span class="icon">⚙</span> Settings
-    </a>
-    <a href="#">
-        <span class="icon">🚪</span> Logout
-    </a>
-</div>
-
-<!-- Main Content -->
-<div>
+<div class="posts">
     {% for post in posts_with_images %}
-        <h4>User: {{ post.post.user }}</h4>
+    <div class="post">
+
+        <h4>User: <a href="{% url 'yumelinkapp:user_profile' post.post.user.username %}">{{ post.post.user }}</a></h4>
         <a href="{% url 'yumelinkapp:post' post.post.id %}">{{ post.post.content }}</a>
         </br>
         {% for image in post.post_images %}
             <img src="{{ image.image.url }}" alt="Post Image" style="max-width: 150px;" />
         </br>
         {% endfor %}
+    </div>
+
     {% endfor %}
 </div>
 
-<script>
-    // Toggle side menu visibility
-    function toggleMenu() {
-        var menu = document.getElementById('side-menu');
-        menu.classList.toggle('open');
-    }
-</script>
 {% endblock %}

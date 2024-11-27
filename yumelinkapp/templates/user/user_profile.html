@@ -1,93 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
+{% extends 'base.html' %}
 
-        /* Header Styles */
-        .header {
-            background-color: #000;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-        }
-
-        .header .menu {
-            cursor: pointer;
-            font-size: 24px;
-        }
-
-        .header h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-
-        /* Sidebar Menu Styles */
-        .side-menu {
-            position: fixed;
-            top: 0;
-            left: -250px; /* Hidden by default */
-            width: 250px;
-            height: 100%;
-            background-color: #333;
-            color: white;
-            overflow: auto;
-            transition: 0.3s;
-            padding-top: 20px;
-            padding-left: 20px;
-        }
-
-        .side-menu a {
-            color: white;
-            padding: 10px 0;
-            text-decoration: none;
-            font-size: 18px;
-            display: block;
-        }
-
-        .side-menu a:hover {
-            background-color: #575757;
-        }
-
-        .side-menu.open {
-            left: 0; /* Show menu */
-        }
-
-        .close-btn {
-            color: white;
-            font-size: 30px;
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            cursor: pointer;
-        }
-
-        .side-menu hr {
-            border-color: #575757;
-            margin-top: 10px;
-        }
+{% block extra_css %}
 
         /* Profile Container */
         .profile-container {
             max-width: 800px;
-            margin: 20px auto;
+            width: 100%;
+            margin: 150px auto 20px auto;
             padding: 20px;
             background-color: #fff;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             position: relative;
+            box-sizing: border-box;
         }
 
+.profile-container img {
+    max-width: 100px;
+    border-radius: 50%;
+}
         .profile-container strong {
             color: #333;
         }
@@ -164,85 +95,74 @@
         .blocked-button:hover {
             background-color: #5a6268;
         }
-    </style>
-</head>
-<body>
 
-    <!-- Header with Menu -->
-    <div class="header">
-        <div class="menu" onclick="toggleMenu()">☰</div>
-        <h1>User Profile</h1>
-    </div>
+{% load static %}
 
-    <!-- Sidebar Menu -->
-    <div class="side-menu" id="sideMenu">
-        <span class="close-btn" onclick="toggleMenu()">&#10005;</span> <!-- Close icon -->
-        <a href="/" onclick="window.location.href='/'"><span>🏠</span> Home</a>
-        <a href="{% url 'yumelinkapp:user_profile' %}">👤 Profile</a>
-        <a href="/chat_room"><span>💬</span> Chat Room</a> <!-- Chat Room Link -->
-        <a href="{% url 'yumelinkapp:settings' %}">⚙️ Settings</a>
-        <a href="#">Services</a>
-        <a href="#">Support</a>
-        <a href="#">About</a>
-        <hr>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-    </div>
+<link rel="stylesheet" href="{% static 'yumelinkapp/posts.css' %}">
+{% endblock %}
 
+{% block title %}
+        <div class="title">User Profile</div>
+{% endblock %}
+
+{% block content %}
     <!-- Profile Container -->
     <div class="profile-container">
         <!-- Display the logged-in user's profile -->
-        <p><strong>Name:</strong> {{ user_profile.name }}</p>
+        {% if notification.sender.profile and notification.sender.profile.url %}
+            <img src="{{ notification.sender.profile.url }}" alt="Sender 1" style="max-width: 100px;">
+        {% else %}
+            <img src="{{ MEDIA_URL }}default-profile.png" alt="Default Profile" style="max-width: 100px;">
+        {% endif %}
+        <a href="{% url 'yumelinkapp:user_profile' user_profile.username %}"><strong>Name:</strong> {{ user_profile.name }}</a>
         <p><strong>Email:</strong> {{ user_profile.email }}</p>
         <p><strong>Username:</strong> {{ user_profile.username }}</p>
         <p><strong>Bio:</strong> {{ user_profile.bio }}</p>
+        <a href="{% url 'yumelinkapp:user_relationship' user_profile.username %}">
+            Follow details
+        </a>
 
+        {% if not can_relationship %}
         <!-- Follow and Block Buttons positioned at top right -->
         <div class="action-buttons">
-            <button id="follow-button" class="action-button follow-button" onclick="toggleFollow()">Follow</button>
-            <button id="block-button" class="action-button block-button" onclick="toggleBlock()">Block</button>
+            <!-- Follow Button -->
+            <button
+                id="follow-button"
+                class="action-button {% if follow %}following-button{% else %}follow-button{% endif %}"
+                onclick="location.href='{% if follow %}{% url 'yumelinkapp:unfollow' user_profile.username %}{% else %}{% url 'yumelinkapp:follow' user_profile.username %}{% endif %}'">
+                {% if follow %}Following{% else %}Follow{% endif %}
+            </button>
+
+            <!-- Block Button -->
+            <button
+                id="block-button"
+                class="action-button {% if block %}blocked-button{% else %}block-button{% endif %}"
+                onclick="location.href='{% if block %}{% url 'yumelinkapp:unblock' user_profile.username %}{% else %}{% url 'yumelinkapp:block' user_profile.username %}{% endif %}'">
+                {% if block %}Blocked{% else %}Block{% endif %}
+            </button>
         </div>
+        {% endif %}
+    </div>
+<hr>
+    <div>
+        <a href="?type=post">Post</a>
+        <a href="?type=like">Like</a>
+        <a href="?type=love">Love</a>
+        <a href="?type=repost">Repost</a>
+    </div>
+    <div class="posts">
+    {% for post in posts_with_images %}
+    <div class="post">
+
+        <h4>User: <a href="{% url 'yumelinkapp:user_profile' post.post.user.username %}">{{ post.post.user }}</a></h4>
+        <a href="{% url 'yumelinkapp:post' post.post.id %}">{{ post.post.content }}</a>
+        <br>
+        {% for image in post.post_images %}
+            <img src="{{ image.image.url }}" alt="Post Image" style="max-width: 150px;" />
+        <br>
+        {% endfor %}
+    </div>
+    {% endfor %}
     </div>
 
-    <script>
-        // Function to toggle the side menu
-        function toggleMenu() {
-            const sideMenu = document.getElementById('sideMenu');
-            if (sideMenu.style.left === "0px") {
-                sideMenu.style.left = "-250px";
-            } else {
-                sideMenu.style.left = "0px";
-            }
-        }
-
-        // Function to toggle the Follow/Following state
-        function toggleFollow() {
-            var followButton = document.getElementById('follow-button');
-            if (followButton.classList.contains('follow-button')) {
-                followButton.textContent = 'Following';
-                followButton.classList.remove('follow-button');
-                followButton.classList.add('following-button');
-            } else {
-                followButton.textContent = 'Follow';
-                followButton.classList.remove('following-button');
-                followButton.classList.add('follow-button');
-            }
-        }
-
-        // Function to toggle the Block/Blocked state
-        function toggleBlock() {
-            var blockButton = document.getElementById('block-button');
-            if (blockButton.classList.contains('block-button')) {
-                blockButton.textContent = 'Blocked';
-                blockButton.classList.remove('block-button');
-                blockButton.classList.add('blocked-button');
-            } else {
-                blockButton.textContent = 'Block';
-                blockButton.classList.remove('blocked-button');
-                blockButton.classList.add('block-button');
-            }
-        }
-    </script>
-
-</body>
-</html>
+{% endblock %}

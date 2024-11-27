@@ -1,0 +1,50 @@
+{% block extra_css %}
+        /* Profile Container */
+        .profile-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-container strong {
+            color: #333;
+        }
+
+        .profile-container p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .edit-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .edit-button:hover {
+            background-color: #218838;
+        }
+    {% endblock %}
+
+
+{% block content %}
+
+{% block title %}
+    <div class="title">User Profile</div>
+{% endblock %}
+    <!-- Profile Container -->
+    <div class="profile-container">
+        <!-- Display the logged-in user's profile -->
+        <p><strong>Name:</strong> {{ user_profile.name }}</p>
+        <p><strong>Email:</strong> {{ user_profile.email }}</p>
+        <p><strong>Username:</strong> {{ user_profile.username }}</p>
+        <p><strong>Bio:</strong> {{ user_profile.bio }}</p>
+    </div>
+{% endblock %}

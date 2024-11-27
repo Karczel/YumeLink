@@ -2,23 +2,121 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+
+        }
+
+        .auth-header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 16px;
+            height: auto;
+        }
+
+        .auth-header a {
+            color: white;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        .auth-header form {
+            display: inline;
+            margin-left: 20px;
+        }
+
+        .auth-header form button {
+            padding: 5px 10px;
+            background-color: #666;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .header {
+            background-color: #000;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            justify-content: space-between;
+        }
+
+        .header .icon {
+            font-size: 20px;
+        }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            color: #fff;
+            transition: 0.3s;
+            padding: 20px 0;
+            z-index: 1000;
+        }
+        .side-menu.open {
+            right: 0;
+        }
+        .side-menu a {
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+            display: block;
+            font-size: 18px;
+        }
+        .side-menu a:hover {
+            background-color: #575757;
+        }
+        .close-btn {
+            font-size: 24px;
+            text-align: left;
+            cursor: pointer;
+            padding: 10px 20px;
+        }
+        {% load static %}
+
+            `{% block extra_css %}` {% endblock %}
+    </style>
+
 </head>
 <body>
 
-{% load static %}
-
-{% block extra_css %} {% endblock %}
-
+<!--log in, log out-->
+{% block user-auth-section %}
+<div class="auth-header">
 {% if user.is_authenticated %}
-   Welcome back, {{ user.username }}
+       Welcome back, {{ user.username }}
    <form action="{% url 'logout' %}" method="post">
         {% csrf_token %}
         <button type="submit">Log Out</button>
    </form>{% else %}
    Please <a href="{% url 'login' %}?next={{request.path}}">Login</a>
-{% endif %}
 
-{% block title %} {% endblock %}
+{% endif %}
+</div>
+{% endblock %}
+
+<div class="header">
+
+    <div class="menu-icon" onclick="history.back();">&#8592;</div>
+    {% block title %} {% endblock %}
+    <div class="menu" onclick="toggleMenu()">☰</div>
+</div>
+
 {% if messages %}
     <h2 class="messages">
         {% for message in messages %}
@@ -27,9 +125,32 @@
     </h2>
 {% endif %}
 
+<div class="side-menu" id="sideMenu">
+        <div class="close-btn" onclick="toggleMenu()">&#10005;</div>
+        <a href="{% url 'yumelinkapp:home' %}">🏠 Home</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'yumelinkapp:user_profile' username=user.username %}">👤 Profile</a>
+        {% else %}
+            <a href="{% url 'login' %}?next={{ request.path }}">👤 Login</a>
+        {% endif %}
+    <a href="{% url 'yumelinkapp:chat_room' %}"><span>💬</span> Chat Room</a>
+        <a href="{% url 'yumelinkapp:settings' %}">⚙️ Settings</a>
+<!--        <a href="#">Services</a>-->
+        <a href="{% url 'yumelinkapp:contact' %}">Support</a>
+<!--        <a href="#">About</a>-->
+        <hr>
+<!--        <a href="#">Privacy Policy</a>-->
+<!--        <a href="#">Terms of Service</a>-->
+</div>
+
 {% block content %}{% endblock %}
 
-
+<script>
+        function toggleMenu() {
+            const sideMenu = document.getElementById('sideMenu');
+            sideMenu.classList.toggle('open');
+        }
+    </script>
 
 </body>
 </html>

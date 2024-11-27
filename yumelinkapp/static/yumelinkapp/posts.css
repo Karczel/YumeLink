@@ -1,0 +1,28 @@
+
+    .posts {
+        display: flex;
+    flex-direction: column; /* Stack posts vertically */
+    align-items: flex-start; /* Align posts to the left */
+    justify-content: center; /* Center the content vertically */
+    width: 80%; /* Optional: Restrict the width of the posts container */
+    max-width: 800px; /* Optional: Set a max-width */
+    padding: 20px; /* Optional: Add padding to the posts container */
+    box-sizing: border-box;
+    }
+
+    .post {
+        display: flex;
+        flex-direction: column; /* Makes sure the content is stacked vertically within each post */
+        align-items: flex-start; /* Left-aligns content within each individual post */
+        max-width: 600px; /* Optionally limit the width of each post */
+        margin-bottom: 20px; /* Adds space between posts */
+        padding: 15px;
+        background-color: #f9f9f9; /* Optional background for the posts */
+        border-radius: 8px; /* Optional rounded corners */
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    }
+
+    .post img {
+        max-width: 100%; /* Ensures images are responsive */
+        margin-top: 10px; /* Adds space between the content and images */
+    }
