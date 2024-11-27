@@ -33,7 +33,7 @@ class ProfileView(LoginRequiredMixin, DetailView):
             loved_post_ids = Like.objects.filter(user=user, type=LikeType.love.name).values_list('post_id', flat=True)
             posts = Post.objects.filter(id__in=loved_post_ids)
         elif obj_type == 'repost':
-            shared_post_ids = Share.objects.filter(user=user, type=ShareType.reblog.name).values_list('post_id', flat=True)
+            shared_post_ids = Share.objects.filter(user=user, share_type=ShareType.reblog.name).values_list('post_id', flat=True)
             posts = Post.objects.filter(id__in=shared_post_ids)
         else:
             posts = Post.objects.filter(user=user)
