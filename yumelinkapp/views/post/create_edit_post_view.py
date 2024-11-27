@@ -44,9 +44,10 @@ class CreateEditPostView(LoginRequiredMixin, UpdateView):
             messages.warning(request, 'You have to log in as a user to edit post.')
             return redirect('yumelinkapp:home')
 
-        if self.object.user != user:
-            messages.warning(request, 'You are not the owner of this post.')
-            return redirect('yumelinkapp:home')
+        if self.object:
+            if self.object.user != user:
+                messages.warning(request, 'You are not the owner of this post.')
+                return redirect('yumelinkapp:home')
 
         form = self.form_class(instance=self.object)
         tag_formset = TagFormSet(

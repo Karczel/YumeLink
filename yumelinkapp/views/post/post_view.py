@@ -5,7 +5,7 @@ from yumelinkapp.models import Post, PostImage, Tag, PostTag, Like, Comment, Sha
 from yumelinkapp.utils import LikeType
 
 
-class PostView(LoginRequiredMixin,DetailView):
+class PostView(LoginRequiredMixin, DetailView):
     """
     View for displaying Post details.
     """
