@@ -1,4 +1,5 @@
 from django.urls import path
+
 from . import views
 
 
@@ -11,6 +12,7 @@ urlpatterns = [
     # Chat Room URLs
     path('chat_room/', views.ChatRoomView.as_view(), name='chat_room'),  # Chat rooms list
     path('chat_room/<int:pk>/', views.ChatRoomDetailView.as_view(), name='chat_room_detail'),
+    path('chat_room/new', views.ChatRoomView.as_view(), name='chat_room'),  # Chat rooms list
 
     # Post URLs
     path("post/<int:pk>", views.PostView.as_view(), name="post"),
@@ -35,8 +37,11 @@ urlpatterns = [
     # Settings
     path('settings/', views.SettingView.as_view(), name='settings'),
     path('settings/account_manage/', views.AccountManageView.as_view(), name='account_manage'),
+    path('profile/account_manage/delete', views.delete_user, name='delete_user'),
     path('settings/notifications/', views.NotificationView.as_view(), name='notifications'),
     path('reports/', views.ReportView.as_view(), name='reports'),
     path('settings/contact/', views.ContactView.as_view(), name='contact'),
     path('settings/account_manage/change_password/', views.ChangePasswordView.as_view(), name='change_password'),
-]
+    path('settings/community_guidelines', views.CommunityGuidelinesView.as_view(), name='community_guidelines'),
+    ]
+

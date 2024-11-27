@@ -24,5 +24,5 @@ class HomeView(TemplateView):
         return context
 
     def post(self, request, *args, **kwargs):
-        # add create post as request post
+        # add create post as request post/use url create_post
         return HttpResponse(self.get(request))

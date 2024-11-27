@@ -15,5 +15,5 @@ def love(request, post_id):
     except User.DoesNotExist:
         messages.warning(request, "You have to log in as a user to like.")
         return redirect("yumelinkapp:post", pk=post_id)
-    Like.objects.create(user=user, post=post, type=LikeType.like.name)
+    Like.objects.create(user=user, post=post, type=LikeType.love.name)
     return redirect("yumelinkapp:post", pk=post_id)

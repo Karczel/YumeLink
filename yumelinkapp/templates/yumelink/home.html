@@ -13,6 +13,7 @@
 {% endblock %}
 
 {% block content %}
+<a href="{% url 'yumelinkapp:create_post' %}">Create post</a>
 <div class="posts">
     {% for post in posts_with_images %}
     <div class="post">

@@ -2,7 +2,7 @@ from django.views.generic import View
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
-from ..forms import SignupForm
+from yumelinkapp.forms import SignupForm
 
 
 class SignupView(View):
