@@ -1,12 +1,13 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import ListView, DetailView
-from yumelinkapp.models import ChatRoom, UserChat, Message
+from yumelinkapp.models import ChatRoom, UserChat, Message, User
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 
 
-class ChatRoomView(ListView):
+class ChatRoomView(LoginRequiredMixin,ListView):
     model = ChatRoom
     template_name = 'yumelink/chat_room.html'
     context_object_name = 'chat_room'
@@ -29,7 +30,7 @@ class ChatRoomView(ListView):
         return context
 
 
-class ChatRoomDetailView(DetailView):
+class ChatRoomDetailView(LoginRequiredMixin,DetailView):
     model = ChatRoom
     template_name = 'yumelink/chat_room_detail.html'
     context_object_name = 'chat_room'
@@ -40,7 +41,7 @@ class ChatRoomDetailView(DetailView):
 
         # Fetch all messages for the chat room
         messages = Message.objects.filter(chat=chat_room).order_by('timestamp')
-        context['messages'] = messages
+        context['chat_messages'] = messages
 
         # Get all users in the chat room from the UserChat model
         users_in_chat = UserChat.objects.filter(chat=chat_room).select_related('user')
@@ -51,24 +52,17 @@ class ChatRoomDetailView(DetailView):
 
         return context
 
-
-def post(self, request, *args, **kwargs):
-    self.object = self.get_object()  # Get the current ChatRoom
-    content = request.POST.get('message')
-    if content:
-        # Ensure that the user is a fully resolved instance
-        if hasattr(request.user, '_wrapped'):  # Check if user is a LazyObject
-            user = request.user._wrapped  # Resolve the LazyObject to the actual User instance
-        else:
-            user = request.user  # Directly use the user if it's already resolved
-
-        # Create and save the message to the database
-        Message.objects.create(
-            chat_room=self.object,
-            user=user,  # Assign the resolved user
-            content=content
-        )
-    return redirect('yumelinkapp:chat_room_detail', pk=self.object.pk)
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()  # Get the current ChatRoom
+        content = request.POST.get('message')
+        user=User.objects.get(id=request.user.id)
+        if content:
+            Message.objects.create(
+                chat=self.object,
+                user=user,  # Assign the resolved user
+                content=content
+            )
+        return redirect('yumelinkapp:chat_room_detail', pk=self.object.pk)
 
 
 @login_required

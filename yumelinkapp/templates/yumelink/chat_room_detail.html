@@ -88,7 +88,7 @@
 
 {% block content %}
     <div class="messages">
-        {% for message in messages %}
+        {% for message in chat_messages %}
             <div class="message {% if message.user == current_user %}right{% else %}left{% endif %}">
                 <div class="message-sender">{{ message.user.username }}</div>
                 <div class="message-content">{{ message.content }}</div>
