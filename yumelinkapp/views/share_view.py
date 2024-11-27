@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.views import View
-from yumelinkapp.models import Post, Share
+from yumelinkapp.models import Post, Share, User
 from ..forms import ShareForm
 
 
@@ -29,7 +29,7 @@ class ShareView(LoginRequiredMixin,View):
     def post(self, request, post_id):
         # Get the post that the user wants to share
         post = get_object_or_404(Post, id=post_id)
-
+        user = User.objects.get(id=request.user.id)
         # Handle form submission and create the share object
         form = ShareForm(request.POST)
 
@@ -38,7 +38,7 @@ class ShareView(LoginRequiredMixin,View):
 
             # Create a new share entry
             share = Share.objects.create(
-                user=request.user,
+                user=user,
                 post=post,
                 share_type=share_type
             )
@@ -51,7 +51,7 @@ class ShareView(LoginRequiredMixin,View):
             messages.success(request, f'Post shared successfully as a {share_type}!')
 
             # Redirect to the post detail page (ensure 'post_detail' is the correct URL name)
-            return redirect('post_detail', post_id=post.id)
+            return redirect('yumelinkapp:post', pk=post.id)
 
         else:
             # Handle invalid form submission (e.g., show an error message)
