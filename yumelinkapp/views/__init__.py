@@ -20,3 +20,8 @@ from .report_view import ReportView
 from .account_manage_view import AccountManageView
 from .contact_view import ContactView
 from .password_view import ChangePasswordView
+from .follow_view import follow
+from .block_view import block
+from .unfollow_view import unfollow
+from .unblock_view import unblock
+from .share_view import ShareView

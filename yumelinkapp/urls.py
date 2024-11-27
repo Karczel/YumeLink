@@ -21,11 +21,16 @@ urlpatterns = [
     path("post/<int:post_id>/comment/new", views.create_comment, name="create_comment"),
     path("post/<int:post_id>/comment/<int:pk>/delete", views.delete_comment, name="delete_comment"),
     path("post/<int:post_id>/like", views.like, name="like_post"),
-    path("post/<int:post_id>/love", views.like, name="love_post"),
+    path("post/<int:post_id>/love", views.love, name="love_post"),
+    path("post/<int:post_id>/share", views.ShareView.as_view(), name="share_post"),
 
     # User Profile and Relationships
     path('profile/<str:username>/', views.ProfileView.as_view(), name='user_profile'),
     path("profile/<str:username>/relationship", views.UserRelationShipView.as_view(), name="user_relationship"),
+    path('profile/<str:username>/follow', views.follow, name='follow'),
+    path('profile/<str:username>/block', views.block, name='block'),
+    path('profile/<str:username>/unfollow', views.unfollow, name='unfollow'),
+    path('profile/<str:username>/unblock', views.unblock, name='unblock'),
 
     # Settings
     path('settings/', views.SettingView.as_view(), name='settings'),

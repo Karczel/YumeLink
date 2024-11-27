@@ -31,7 +31,10 @@ class NotificationView(ListView):
                 content_type == ContentType.objects.get_for_model(Post):
             sender = content.user
         elif content_type == ContentType.objects.get_for_model(Follow):
-            sender = content.follower
+            try:
+                sender = content.follower
+            except AttributeError:
+                pass
 
         return {
             'obj': notification,

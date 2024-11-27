@@ -12,9 +12,9 @@ class UserRelationShipView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         obj_type = self.request.GET.get('type', '')
+        user = User.objects.get(id=self.request.user.id)
         context['obj_type'] = obj_type
-        context['user'] = User.objects.get(id=self.request.user.id)
-        context['viewed_user'] = self.get_viewed_user()
+        context['user'] = user
         return context
 
     def get_viewed_user(self):

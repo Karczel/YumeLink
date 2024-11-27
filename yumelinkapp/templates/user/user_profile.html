@@ -122,11 +122,26 @@
             Follow details
         </a>
 
+        {% if not can_relationship %}
         <!-- Follow and Block Buttons positioned at top right -->
         <div class="action-buttons">
-            <button id="follow-button" class="action-button follow-button" onclick="toggleFollow()">Follow</button>
-            <button id="block-button" class="action-button block-button" onclick="toggleBlock()">Block</button>
+            <!-- Follow Button -->
+            <button
+                id="follow-button"
+                class="action-button {% if follow %}following-button{% else %}follow-button{% endif %}"
+                onclick="location.href='{% if follow %}{% url 'yumelinkapp:unfollow' user_profile.username %}{% else %}{% url 'yumelinkapp:follow' user_profile.username %}{% endif %}'">
+                {% if follow %}Following{% else %}Follow{% endif %}
+            </button>
+
+            <!-- Block Button -->
+            <button
+                id="block-button"
+                class="action-button {% if block %}blocked-button{% else %}block-button{% endif %}"
+                onclick="location.href='{% if block %}{% url 'yumelinkapp:unblock' user_profile.username %}{% else %}{% url 'yumelinkapp:block' user_profile.username %}{% endif %}'">
+                {% if block %}Blocked{% else %}Block{% endif %}
+            </button>
         </div>
+        {% endif %}
     </div>
 <hr>
     <div>
@@ -141,43 +156,43 @@
 
         <h4>User: <a href="{% url 'yumelinkapp:user_profile' post.post.user.username %}">{{ post.post.user }}</a></h4>
         <a href="{% url 'yumelinkapp:post' post.post.id %}">{{ post.post.content }}</a>
-        </br>
+        <br>
         {% for image in post.post_images %}
             <img src="{{ image.image.url }}" alt="Post Image" style="max-width: 150px;" />
-        </br>
+        <br>
         {% endfor %}
     </div>
     {% endfor %}
     </div>
 
-    <script>
-        // Function to toggle the Follow/Following state
-        function toggleFollow() {
-            var followButton = document.getElementById('follow-button');
-            if (followButton.classList.contains('follow-button')) {
-                followButton.textContent = 'Following';
-                followButton.classList.remove('follow-button');
-                followButton.classList.add('following-button');
-            } else {
-                followButton.textContent = 'Follow';
-                followButton.classList.remove('following-button');
-                followButton.classList.add('follow-button');
-            }
-        }
+<!--    <script>-->
+<!--        // Function to toggle the Follow/Following state-->
+<!--        function toggleFollow() {-->
+<!--            var followButton = document.getElementById('follow-button');-->
+<!--            if (followButton.classList.contains('follow-button')) {-->
+<!--                followButton.textContent = 'Following';-->
+<!--                followButton.classList.remove('follow-button');-->
+<!--                followButton.classList.add('following-button');-->
+<!--            } else {-->
+<!--                followButton.textContent = 'Follow';-->
+<!--                followButton.classList.remove('following-button');-->
+<!--                followButton.classList.add('follow-button');-->
+<!--            }-->
+<!--        }-->
 
-        // Function to toggle the Block/Blocked state
-        function toggleBlock() {
-            var blockButton = document.getElementById('block-button');
-            if (blockButton.classList.contains('block-button')) {
-                blockButton.textContent = 'Blocked';
-                blockButton.classList.remove('block-button');
-                blockButton.classList.add('blocked-button');
-            } else {
-                blockButton.textContent = 'Block';
-                blockButton.classList.remove('blocked-button');
-                blockButton.classList.add('block-button');
-            }
-        }
-    </script>
+<!--        // Function to toggle the Block/Blocked state-->
+<!--        function toggleBlock() {-->
+<!--            var blockButton = document.getElementById('block-button');-->
+<!--            if (blockButton.classList.contains('block-button')) {-->
+<!--                blockButton.textContent = 'Blocked';-->
+<!--                blockButton.classList.remove('block-button');-->
+<!--                blockButton.classList.add('blocked-button');-->
+<!--            } else {-->
+<!--                blockButton.textContent = 'Block';-->
+<!--                blockButton.classList.remove('blocked-button');-->
+<!--                blockButton.classList.add('block-button');-->
+<!--            }-->
+<!--        }-->
+<!--    </script>-->
 
 {% endblock %}

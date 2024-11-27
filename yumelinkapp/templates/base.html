@@ -133,6 +133,7 @@
         {% else %}
             <a href="{% url 'login' %}?next={{ request.path }}">👤 Login</a>
         {% endif %}
+    <a href="{% url 'yumelinkapp:chat_room' %}"><span>💬</span> Chat Room</a>
         <a href="{% url 'yumelinkapp:settings' %}">⚙️ Settings</a>
 <!--        <a href="#">Services</a>-->
         <a href="{% url 'yumelinkapp:contact' %}">Support</a>

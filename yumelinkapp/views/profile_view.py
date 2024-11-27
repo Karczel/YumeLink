@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from yumelinkapp.models import User, Post, Like, Share, PostImage
+from yumelinkapp.models import User, Post, Like, Share, PostImage, Follow, Block
 from yumelinkapp.utils import ShareType, LikeType
 
 
@@ -46,5 +46,15 @@ class ProfileView(LoginRequiredMixin, DetailView):
             for post in posts.order_by('-timestamp')  # Order posts by timestamp
         ]
 
-        context['current_user'] = User.objects.get(id=self.request.user.id)
+        user = User.objects.get(id=self.request.user.id)
+        viewed_user = self.get_object()
+
+        context['current_user'] = user
+        context['viewed_user'] = viewed_user
+        context['can_relationship'] = user == viewed_user
+
+        if user != viewed_user:
+            context['follow'] = Follow.objects.filter(follower=user, user=viewed_user).exists()
+            context['block'] = Block.objects.filter(blocker=user, blocked=viewed_user).exists()
+
         return context
