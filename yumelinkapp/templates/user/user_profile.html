@@ -104,7 +104,7 @@
         {% else %}
             <img src="{{ MEDIA_URL }}default-profile.png" alt="Default Profile" style="max-width: 100px;">
         {% endif %}
-        <p><strong>Name:</strong> {{ user_profile.name }}</p>
+        <a href="{% url 'yumelinkapp:user_profile' user_profile.username %}"><strong>Name:</strong> {{ user_profile.name }}</a>
         <p><strong>Email:</strong> {{ user_profile.email }}</p>
         <p><strong>Username:</strong> {{ user_profile.username }}</p>
         <p><strong>Bio:</strong> {{ user_profile.bio }}</p>
@@ -129,7 +129,7 @@
     {% for post in posts_with_images %}
     <div class="post">
 
-        <h4>User: {{ post.post.user }}</h4>
+        <h4>User: <a href="{% url 'yumelinkapp:user_profile' post.post.user.username %}">{{ post.post.user }}</a></h4>
         <a href="{% url 'yumelinkapp:post' post.post.id %}">{{ post.post.content }}</a>
         </br>
         {% for image in post.post_images %}
