@@ -1,6 +1,8 @@
 # YumeLink
 Business model reference : social media
 [Deployed link](https://yumelink.onrender.com)
+<br>
+**May take a while to finish loading**
 
 DEMO
 | username | pwd |
