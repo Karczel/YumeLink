@@ -5,7 +5,24 @@ Business model reference : social media
 <br>
 **May take a while to finish loading**
 
-DEMO
+### to run locally, run these commands:
+```-r requirement.txt```
+```python manage.py makemigrations```
+```python manage.py migrate```
+```python manage.py runserver```
+### and you may load data for testing
+Mac/Linux
+```commandline
+for file in data/*.json; do
+    python manage.py loaddata $file
+done
+```
+Windows
+```commandline
+for %f in (data\*.json) do python manage.py loaddata "%f"
+```
+
+## DEMO
 | username | pwd |
 |-|-|
 | abc | iamabc1234 |
