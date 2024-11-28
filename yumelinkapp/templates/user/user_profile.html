@@ -44,7 +44,6 @@
 
         /* Follow and Block Buttons - Positioned at the top right */
         .action-buttons {
-            position: absolute;
             top: 20px;
             right: 20px;
             display: flex;
@@ -95,9 +94,19 @@
         .blocked-button:hover {
             background-color: #5a6268;
         }
+.image-container {
+    width: 100%;  /* or specify a fixed width */
+    height: 300px;  /* specify the height of the container */
+    overflow: hidden;  /* ensure no overflow from the image */
+}
+
+.image-container img {
+    width: 100%;  /* Stretch the image to the full width */
+    height: 100%;  /* Stretch the image to the full height */
+    object-fit: cover;  /* Ensure the image covers the container */
+}
 
 {% load static %}
-
 <link rel="stylesheet" href="{% static 'yumelinkapp/posts.css' %}">
 {% endblock %}
 
@@ -107,29 +116,27 @@
 
 {% block content %}
     <!-- Profile Container -->
+        {% if user.header and user.header.url %}
+        <div class="image-container">
+            <img src="{{ user.header.url }}" alt="User Profile">
+        </div>
+        {% endif %}
     <div class="profile-container">
-        <!-- Display the logged-in user's profile -->
-        {% if notification.sender.profile and notification.sender.profile.url %}
-            <img src="{{ notification.sender.profile.url }}" alt="Sender 1" style="max-width: 100px;">
+
+        {% if user.profile and user.profile.url %}
+            <img src="{{ user.profile.url }}" alt="User Profile" style="max-width: 100px;">
         {% else %}
             <img src="{{ MEDIA_URL }}default-profile.png" alt="Default Profile" style="max-width: 100px;">
         {% endif %}
-        <a href="{% url 'yumelinkapp:user_profile' user_profile.username %}"><strong>Name:</strong> {{ user_profile.name }}</a>
-        <p><strong>Email:</strong> {{ user_profile.email }}</p>
-        <p><strong>Username:</strong> {{ user_profile.username }}</p>
-        <p><strong>Bio:</strong> {{ user_profile.bio }}</p>
-        <a href="{% url 'yumelinkapp:user_relationship' user_profile.username %}">
-            Follow details
-        </a>
-
-        {% if not can_relationship %}
-        <!-- Follow and Block Buttons positioned at top right -->
+        <a href="{% url 'yumelinkapp:user_profile' user.username %}"><strong>Name:</strong> {{ user.name }}</a>
+        {% if not same_user %}
+        <br><br>
         <div class="action-buttons">
             <!-- Follow Button -->
             <button
                 id="follow-button"
                 class="action-button {% if follow %}following-button{% else %}follow-button{% endif %}"
-                onclick="location.href='{% if follow %}{% url 'yumelinkapp:unfollow' user_profile.username %}{% else %}{% url 'yumelinkapp:follow' user_profile.username %}{% endif %}'">
+                onclick="location.href='{% if follow %}{% url 'yumelinkapp:unfollow' user.username %}{% else %}{% url 'yumelinkapp:follow' user.username %}{% endif %}'">
                 {% if follow %}Following{% else %}Follow{% endif %}
             </button>
 
@@ -137,11 +144,23 @@
             <button
                 id="block-button"
                 class="action-button {% if is_block %}blocked-button{% else %}block-button{% endif %}"
-                onclick="location.href='{% if is_block %}{% url 'yumelinkapp:unblock' user_profile.username %}{% else %}{% url 'yumelinkapp:block' user_profile.username %}{% endif %}'">
+                onclick="location.href='{% if is_block %}{% url 'yumelinkapp:unblock' user.username %}{% else %}{% url 'yumelinkapp:block' user.username %}{% endif %}'">
                 {% if is_block %}Blocked{% else %}Block{% endif %}
             </button>
         </div>
         {% endif %}
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Username:</strong> {{ user.username }}
+            {% if same_user %}
+        <a href="{% url 'yumelinkapp:edit_user_profile' user.username %}">edit</a>
+        {% endif %}
+        </p>
+        <p><strong>Bio:</strong> {{ user.bio }}</p>
+        <a href="{% url 'yumelinkapp:user_relationship' user.username %}">
+            Follow details
+        </a>
+
+
     </div>
 <hr>
     <div>

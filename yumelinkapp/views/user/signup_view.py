@@ -17,8 +17,6 @@ class SignupView(View):
 
     def post(self, request):
         """Process the submitted signup form."""
-        print(request.POST.get('csrfmiddlewaretoken', 'No CSRF Token Found'))
-
         form = SignupForm(request.POST)
         if form.is_valid():
             form.save()

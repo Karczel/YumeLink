@@ -10,7 +10,6 @@ from yumelinkapp.utils import ShareType, LikeType
 class ProfileView(LoginRequiredMixin, DetailView):
     model = User
     template_name = 'user/user_profile.html'
-    context_object_name = 'user_profile'
 
     def get_object(self):
         """Retrieve the user by username."""
@@ -52,7 +51,7 @@ class ProfileView(LoginRequiredMixin, DetailView):
 
         context['current_user'] = user
         context['viewed_user'] = viewed_user
-        context['can_relationship'] = user == viewed_user
+        context['same_user'] = user == viewed_user
 
         if user != viewed_user:
             context['follow'] = Follow.objects.filter(follower=user, user=viewed_user).exists()

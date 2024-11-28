@@ -28,6 +28,7 @@ urlpatterns = [
 
     # User Profile and Relationships
     path('profile/<str:username>/', views.ProfileView.as_view(), name='user_profile'),
+    path('profile/<str:username>/edit', views.EditProfileView.as_view(), name='edit_user_profile'),
     path("profile/<str:username>/relationship", views.UserRelationShipView.as_view(), name="user_relationship"),
     path('profile/<str:username>/follow', views.follow, name='follow'),
     path('profile/<str:username>/block', views.block, name='block'),
