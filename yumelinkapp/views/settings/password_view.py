@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 
 class ChangePasswordView(View):
-    template_name = 'yumelink/password.html'
+    template_name = 'registration/password.html'
 
     def get(self, request):
         context = {
