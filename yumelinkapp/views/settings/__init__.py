@@ -5,3 +5,4 @@ from .notification_view import NotificationView
 from .community_guidelines import CommunityGuidelinesView
 from .delete_user_view import delete_user
 from .password_view import ChangePasswordView
+from .about_us_view import AboutUsView

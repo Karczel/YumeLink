@@ -44,5 +44,6 @@ urlpatterns = [
     path('settings/contact/', views.ContactView.as_view(), name='contact'),
     path('settings/account_manage/change_password/', views.ChangePasswordView.as_view(), name='change_password'),
     path('settings/community_guidelines', views.CommunityGuidelinesView.as_view(), name='community_guidelines'),
-    ]
+    path('settings/about_us', views.AboutUsView.as_view(), name='about_us'),
+]
 
