@@ -6,7 +6,7 @@ from yumelinkapp.models import User, Block, Follow
 
 
 class UserRelationShipView(LoginRequiredMixin, ListView):
-    template_name = 'yumelink/user_relationship.html'
+    template_name = 'user/user_relationship.html'
     context_object_name = 'relationships'
 
     def get_context_data(self, **kwargs):

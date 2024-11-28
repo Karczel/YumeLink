@@ -156,10 +156,14 @@
         {% endif %}
         </p>
         <p><strong>Bio:</strong> {{ user.bio }}</p>
-        <a href="{% url 'yumelinkapp:user_relationship' user.username %}">
-            Follow details
-        </a>
-
+        <p><strong><a href="{% url 'yumelinkapp:user_relationship' user.username %}?type=following">
+            Following
+        </a>:</strong>{{ following }}
+            <strong><a href="{% url 'yumelinkapp:user_relationship' user.username %}?type=followers">
+            Followers
+        </a>:</strong>{{ followers }}
+            <strong>Likes:</strong>{{ likes }}
+        </p>
 
     </div>
 <hr>

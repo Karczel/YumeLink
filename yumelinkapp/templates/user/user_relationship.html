@@ -16,13 +16,13 @@
   {% for obj in relationships %}
     <li>
       {% if obj_type == 'followers' %}
-        {{ obj.follower }}
+        <a href="{% url 'yumelinkapp:user_profile' obj.follower %}">{{ obj.follower }}</a>
       {% elif obj_type == 'friends' %}
-        {{ obj.follower }}
+        <a href="{% url 'yumelinkapp:user_profile' obj.follower %}">{{ obj.follower }}</a>
       {% elif obj_type == 'blocked' %}
-        {{ obj.blocked }}
+        <a href="{% url 'yumelinkapp:user_profile' obj.blocked %}">{{ obj.blocked }}</a>
       {% else %}
-        {{ obj.user }}
+        <a href="{% url 'yumelinkapp:user_profile' obj.user %}">{{ obj.user }}</a>
       {% endif %}
     </li>
   {% empty %}

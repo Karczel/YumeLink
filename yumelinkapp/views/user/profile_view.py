@@ -21,8 +21,11 @@ class ProfileView(LoginRequiredMixin, DetailView):
         # Pass the currently logged-in user's information to the template
         user = self.get_object()
 
+        context['following'] = Follow.objects.filter(follower=user).count()
+        context['followers'] = Follow.objects.filter(user=user).count()
         context['likes'] = Like.objects.filter(
             post_id__in=Post.objects.filter(user=user).values_list('id', flat=True)).count()
+
 
         obj_type = self.request.GET.get('type')
 
