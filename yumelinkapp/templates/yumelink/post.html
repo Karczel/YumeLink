@@ -9,6 +9,8 @@
 {% if user == post.user %}
 <a href="{% url 'yumelinkapp:edit_post' post.id %}">Edit Post</a>
 <a href="{% url 'yumelinkapp:delete_post' post.id %}">Delete Post</a>
+{% else %}
+<a href="{% url 'yumelinkapp:report' obj_id=post.id content_type='post' %}">Report Post</a>
 {% endif %}
 {% endblock %}
 

@@ -13,8 +13,8 @@ urlpatterns = [
     path('chat_room/', views.ChatRoomView.as_view(), name='chat_room'),  # Chat rooms list
     path('chat_room/<int:pk>/', views.ChatRoomDetailView.as_view(), name='chat_room_detail'),
     # path('chat_room/<int:pk>/delete>', views.delete_chatroom, name='delete_chat_room'),
-    # path('chat_room/<int:pk>/exit>', views.exit_chatroom, name='delete_chat_room'),
-    # path('chat_room/<int:pk>/invite/<str:username>', views.invite_chatroom, name='delete_chat_room'),
+    path('chat_room/<int:pk>/exit', views.exit_chatroom, name='exit_chat_room'),
+    path('chat_room/<int:pk>/invite', views.InviteChatView.as_view(), name='invite_chat_room'),
 
     # Post URLs
     path("post/<int:pk>", views.PostView.as_view(), name="post"),
@@ -29,7 +29,9 @@ urlpatterns = [
     path("post/<int:post_id>/unlike", views.unlike, name="unlike_post"),
     path("post/<int:post_id>/unlove", views.unlove, name="unlove_post"),
     path("post/<int:post_id>/share", views.ShareView.as_view(), name="share_post"),
-    path('reports/', views.ReportView.as_view(), name='reports'),
+
+    # Report
+    path('report/<int:obj_id>/<str:content_type>', views.ReportView.as_view(), name='report'),
 
     # User Profile and Relationships
     path('profile/<str:username>/', views.ProfileView.as_view(), name='user_profile'),

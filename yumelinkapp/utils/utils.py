@@ -54,5 +54,5 @@ def chatroom_profile_path(instance, filename):
 
 def post_image_upload_path(instance, filename):
     if instance.post and instance.post.user:
-        return f'{instance.post.user.id}/post/{instance.post.id}/{filename}'
+        return f'users/{instance.post.user.id}/post/{instance.post.id}/{filename}'
     return f'unknown/post/{filename}'
