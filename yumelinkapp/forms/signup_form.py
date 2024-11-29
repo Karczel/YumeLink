@@ -7,10 +7,9 @@ from yumelinkapp.models import User
 
 class SignupForm(UserCreationForm):
     """
-    A form for registering a new renter, including their phone number and Thai citizenship ID,
-    as well as their account details such as username, email, and password.
+    A form for registering a new user
+    with their account details such as username, email, and password.
     """
-
     class Meta:
         model = User
         fields = [

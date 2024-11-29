@@ -22,5 +22,13 @@
         "chat_name": "Tech Enthusiasts",
         "profile": ""
     }
+},
+{
+    "model": "yumelinkapp.chatroom",
+    "pk": 4,
+    "fields": {
+        "chat_name": "Big room",
+        "profile": ""
+    }
 }
 ]

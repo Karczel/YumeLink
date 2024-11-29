@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}{% endblock %}
+
+{% block title %}
+Invite User to Chat Room
+{% endblock %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Send Invite</button>
+</form>
+{% endblock %}

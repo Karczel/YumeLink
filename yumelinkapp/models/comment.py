@@ -29,3 +29,10 @@ class Comment(models.Model):
             content_type=ContentType.objects.get_for_model(Comment),
             receiver=self.post.user
         )
+
+    def delete(self, *args, **kwargs):
+        Notification.objects.filter(
+            obj_id=self.id,
+            content_type=ContentType.objects.get_for_model(Comment)
+        ).delete()
+        super().delete(*args, **kwargs)

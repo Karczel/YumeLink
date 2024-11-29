@@ -17,7 +17,7 @@ class Like(models.Model):
     )
 
     def __str__(self):
-        return f'{self.user} likes {self.post}'
+        return f'{self.user} {self.type}s {self.post}'
 
     def save(self, *args, **kwargs):
         is_new = self.pk is None
@@ -32,3 +32,11 @@ class Like(models.Model):
             content_type=ContentType.objects.get_for_model(Like),
             receiver=self.post.user
         )
+
+    def delete(self, *args, **kwargs):
+        Notification.objects.filter(
+            obj_id=self.id,
+            content_type=ContentType.objects.get_for_model(Like)
+        ).delete()
+
+        super().delete(*args, **kwargs)

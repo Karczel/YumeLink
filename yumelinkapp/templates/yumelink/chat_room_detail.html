@@ -84,6 +84,8 @@
 
 {% block title %}
     <div class="chat-header">{{ chat_room.chat_name }}</div>
+    <a href="{% url 'yumelinkapp:invite_chat_room' chat_room.id %}">invite</a>
+    <a href="{% url 'yumelinkapp:exit_chat_room' chat_room.id %}">exit</a>
 {% endblock %}
 
 {% block content %}

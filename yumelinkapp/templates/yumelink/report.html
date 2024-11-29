@@ -54,60 +54,18 @@
         }
 {% endblock %}
 
-{% block title %}{% endblock %}
+{% block title %}
+    Report {{ content_type }}: {{ object }}
+{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h1>What type of issue are you reporting?</h1>
-        <h2>Why are we asking this?</h2>
-        <div class="option">
-            <label>
-                <input type="radio" name="issue" value="Hate Speech">
-                Hate Speech: Includes content that promotes hatred or discrimination based on race, gender, or other factors, as well as dehumanizing or degrading speech, logos, or symbols.
-            </label>
-        </div>
-        <div class="option">
-            <label>
-                <input type="radio" name="issue" value="Inappropriate Content">
-                Inappropriate Content and Harassment: Includes explicit or NSFW content, harassment, or activities that incite harm, target individuals, or promote harassment.
-            </label>
-        </div>
-        <div class="option">
-            <label>
-                <input type="radio" name="issue" value="Violent Language">
-                Violent Language: Includes threats of violence, calls for harm, or any content inciting or encouraging aggression or harm.
-            </label>
-        </div>
-        <div class="option">
-            <label>
-                <input type="radio" name="issue" value="Child Exploitation">
-                Child Exploitation: Includes any form of child abuse, such as grooming, sharing exploitative content, or any activities targeting children.
-            </label>
-        </div>
-        <div class="option">
-            <label>
-                <input type="radio" name="issue" value="Scam or Fraud">
-                Scam or Fraud: Includes any form of deceptive practices, phishing, or fraudulent activities aimed at stealing personal or financial information.
-            </label>
-        </div>
-        <div class="option">
-            <label>
-                <input type="radio" name="issue" value="Other Violations">
-                Other Violations: Any other activities that violate our policies or terms of use, including impersonation, fake accounts, or unauthorized content sharing.
-            </label>
-        </div>
-        <div class="button-container">
-            <button onclick="submitReport()">Continue</button>
-        </div>
+    <div class="container" style="background-color: white;">
+        <p>You are reporting the following {{ content_type }}: {{ object }}</p>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Report</button>
+        </form>
     </div>
-    <script>
-        function submitReport() {
-            const selectedIssue = document.querySelector('input[name="issue"]:checked');
-            if (selectedIssue) {
-                alert(`You selected: ${selectedIssue.value}`);
-            } else {
-                alert("Please select an issue type before continuing.");
-            }
-        }
-    </script>
 {% endblock %}

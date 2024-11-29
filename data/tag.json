@@ -47,5 +47,75 @@
     "fields": {
         "content": "another"
     }
+},
+{
+    "model": "yumelinkapp.tag",
+    "pk": 10,
+    "fields": {
+        "content": "oh no"
+    }
+},
+{
+    "model": "yumelinkapp.tag",
+    "pk": 11,
+    "fields": {
+        "content": "bad"
+    }
+},
+{
+    "model": "yumelinkapp.tag",
+    "pk": 12,
+    "fields": {
+        "content": "report"
+    }
+},
+{
+    "model": "yumelinkapp.tag",
+    "pk": 13,
+    "fields": {
+        "content": "example"
+    }
+},
+{
+    "model": "yumelinkapp.tag",
+    "pk": 14,
+    "fields": {
+        "content": "eh"
+    }
+},
+{
+    "model": "yumelinkapp.tag",
+    "pk": 15,
+    "fields": {
+        "content": "bro"
+    }
+},
+{
+    "model": "yumelinkapp.tag",
+    "pk": 16,
+    "fields": {
+        "content": "ICON"
+    }
+},
+{
+    "model": "yumelinkapp.tag",
+    "pk": 17,
+    "fields": {
+        "content": "Hurricane"
+    }
+},
+{
+    "model": "yumelinkapp.tag",
+    "pk": 18,
+    "fields": {
+        "content": "meme"
+    }
+},
+{
+    "model": "yumelinkapp.tag",
+    "pk": 19,
+    "fields": {
+        "content": "hfsebci"
+    }
 }
 ]

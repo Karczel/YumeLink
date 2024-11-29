@@ -65,26 +65,14 @@
       </div>
       <div class="message-content">
         <div class="username">{{ notification.sender }}</div>
-        <div class="message">{{ notification.content }}</div>
+        <div class="message">
+            <a href="{{ notification.url }}" >
+            {{ notification.content }}
+            </a>
+        </div>
       </div>
       <div class="time" id="time1">{{ notification.obj.timestamp }}</div>
     </div>
       {% endfor %}
   </div>
-
-
-  <script>
-    // Function to generate a random time within the last 24 hours
-    function getRandomTime() {
-      const currentTime = new Date();
-      const randomMinutesAgo = Math.floor(Math.random() * 1440); // Random number between 0 and 1439 (minutes in a day)
-      const randomTime = new Date(currentTime - randomMinutesAgo * 60000); // Convert minutes to milliseconds
-      return randomTime.toLocaleTimeString(); // Format as time string (HH:MM:SS)
-    }
-
-    // Assign random times to the elements with the 'time' class
-    document.getElementById('time1').textContent = getRandomTime();
-    document.getElementById('time2').textContent = getRandomTime();
-    document.getElementById('time3').textContent = getRandomTime();
-  </script>
 {% endblock %}

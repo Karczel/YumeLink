@@ -1,14 +1,6 @@
-from django.views.generic import View
-from django.shortcuts import render
+from django.contrib.auth.views import PasswordChangeView
+from django.urls import reverse_lazy
 
-
-class ChangePasswordView(View):
-    template_name = 'yumelink/password.html'
-
-    def get(self, request):
-        context = {
-            'title': 'Change Password',
-        }
-        return render(request, self.template_name, context)
-
-    # def post(self, request):
+class ChangePasswordView(PasswordChangeView):
+    template_name = 'registration/password.html'
+    success_url = reverse_lazy('yumelinkapp:settings')  # Redirect after successful password change

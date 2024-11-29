@@ -2,8 +2,8 @@ from enum import Enum
 
 
 class LanguageType(Enum):
-    TH = "Thai"
     ENG = "English"
+    TH = "Thai"
 
     def __str__(self):
         return self.value

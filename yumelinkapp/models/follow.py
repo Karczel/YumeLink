@@ -27,3 +27,10 @@ class Follow(models.Model):
             content_type=ContentType.objects.get_for_model(Follow),
             receiver=self.user
         )
+
+    def delete(self, *args, **kwargs):
+        Notification.objects.filter(
+            obj_id=self.id,
+            content_type=ContentType.objects.get_for_model(Follow)
+        ).delete()
+        super().delete(*args, **kwargs)
