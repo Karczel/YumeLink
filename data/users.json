@@ -22,7 +22,7 @@
     "pk": 2,
     "fields": {
         "password": "pbkdf2_sha256$870000$j6BUa3FSNDbUPP7jPXXD4z$bmc3VI01+v+QAjFvrrWyC41HvGzGLbDhgVx5Yx87jCI=",
-        "last_login": "2024-11-29T13:24:36.086Z",
+        "last_login": "2024-11-29T13:57:09.786Z",
         "is_superuser": false,
         "username": "karczel",
         "first_name": "",
@@ -75,8 +75,8 @@
     "model": "auth.user",
     "pk": 6,
     "fields": {
-        "password": "pbkdf2_sha256$870000$yMOkOfUj535zzFGCBej6dx$d8H6+LxFFLFYXkNhTJXm6XKzvXraLMYv59MYDfj3fsM=",
-        "last_login": "2024-11-29T13:10:00.405Z",
+        "password": "pbkdf2_sha256$870000$9VhK5FFS9k0cMQX4X9g44j$04tUbjIacq7uikV56DCtg7BGsz27EGep8LtIdCEf4F0=",
+        "last_login": "2024-11-29T15:37:52.437Z",
         "is_superuser": true,
         "username": "admin",
         "first_name": "",
