@@ -1,9 +1,8 @@
 from django.db.models import Q
-from django.http import HttpResponse
-from django.shortcuts import render
-from django.views.generic import TemplateView, ListView
+from django.views.generic import ListView
 
 from yumelinkapp.models import Post, PostImage, User, Block
+from yumelinkapp.utils import FilterType
 
 
 class HomeView(ListView):
@@ -28,14 +27,17 @@ class HomeView(ListView):
                     Q(user__username__icontains=search_query) |  # Filter by username
                     Q(user__name__icontains=search_query)
                 ).exclude(
-                    user__id__in=excluded_users).order_by('-timestamp')
+                    user__id__in=excluded_users)
             else:
-                queryset = Post.objects.all().exclude(user__id__in=excluded_users).order_by('-timestamp')
+                queryset = Post.objects.all().exclude(user__id__in=excluded_users)
+
+            if current_user.filter_content == FilterType.none.name:
+                queryset = queryset.filter(filter_content=FilterType.none.name)
 
         except User.DoesNotExist:
-            queryset = Post.objects.all().order_by('-timestamp')
+            queryset = Post.objects.filter(filter_content=FilterType.none.name)
 
-        return queryset
+        return queryset.order_by('-timestamp')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

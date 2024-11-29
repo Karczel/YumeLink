@@ -41,6 +41,7 @@ urlpatterns = [
     path('settings/', views.SettingView.as_view(), name='settings'),
     path('settings/account_manage/', views.AccountManageView.as_view(), name='account_manage'),
     path('profile/account_manage/delete', views.delete_user, name='delete_user'),
+    path('settings/filter_content', views.FilterContentUpdateView.as_view(), name='filter_content'),
     path('settings/notifications/', views.NotificationView.as_view(), name='notifications'),
     path('reports/', views.ReportView.as_view(), name='reports'),
     path('settings/contact/', views.ContactView.as_view(), name='contact'),
