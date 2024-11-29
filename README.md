@@ -3,7 +3,7 @@ Business model reference : social media
 <br>
 [Deployed link](https://yumelink.onrender.com)
 <br>
-**May take a while to finish loading**
+**May take a while to finish loading, but if it took longer than 1 minutes please contact me, so I may refresh the server.**
 
 Database files to load in data/ and media/ ,to which you can load following the Installation and Running Tutorial.
 
