@@ -12,7 +12,9 @@ urlpatterns = [
     # Chat Room URLs
     path('chat_room/', views.ChatRoomView.as_view(), name='chat_room'),  # Chat rooms list
     path('chat_room/<int:pk>/', views.ChatRoomDetailView.as_view(), name='chat_room_detail'),
-    # path('chat_room/new', views.create_chatroom, name='create_chat_room'),  # Chat rooms list
+    # path('chat_room/<int:pk>/delete>', views.delete_chatroom, name='delete_chat_room'),
+    # path('chat_room/<int:pk>/exit>', views.exit_chatroom, name='delete_chat_room'),
+    # path('chat_room/<int:pk>/invite/<str:username>', views.invite_chatroom, name='delete_chat_room'),
 
     # Post URLs
     path("post/<int:pk>", views.PostView.as_view(), name="post"),

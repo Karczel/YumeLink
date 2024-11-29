@@ -39,6 +39,18 @@
 {% endblock %}
 
 {% block content %}
+    <!--create chatroom-->
+<h2>Create a chatroom with another user</h2>
+<form method="POST" action="{% url 'yumelinkapp:chat_room' %}">
+  {% csrf_token %}
+  <label for="chat_name">Chat Name:</label>
+  <input type="text" id="chat_name" name="chat_name" required>
+    <br>
+  <label for="other_user">Other User (username):</label>
+  <input type="text" id="other_user" name="other_user" required>
+  <button type="submit">Create Chat Room</button>
+</form>
+
     <!-- Tabs -->
     <div class="tabs">
         <div class="tab active" id="all-tab" onclick="showTab('all')">All Chats</div>
