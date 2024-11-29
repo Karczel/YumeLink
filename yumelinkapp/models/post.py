@@ -35,3 +35,10 @@ class Post(models.Model):
                     content_type=ContentType.objects.get_for_model(Post),
                     receiver=follow.follower
                 )
+
+    def delete(self, *args, **kwargs):
+        Notification.objects.filter(
+            obj_id=self.id,
+            content_type=ContentType.objects.get_for_model(Post)
+        ).delete()
+        super().delete(*args, **kwargs)

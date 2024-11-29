@@ -17,11 +17,15 @@ class PostView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         post = self.object
-        context['user'] = User.objects.get(id=self.request.user.id)
+        user = User.objects.get(id=self.request.user.id)
+        context['user'] = user
         context['post_images'] = PostImage.objects.filter(post=post)
         context['post_tags'] = PostTag.objects.filter(post=post)
 
         context['tags'] = Tag.objects.filter(posttag__post=post)
+
+        context['has_liked'] = Like.objects.filter(user=user, post=post, type=LikeType.like.name).exists()
+        context['has_loved'] = Like.objects.filter(user=user, post=post, type=LikeType.love.name).exists()
 
         context['likes'] = Like.objects.filter(post=post, type=LikeType.like.name).count()
         context['loves'] = Like.objects.filter(post=post, type=LikeType.love.name).count()

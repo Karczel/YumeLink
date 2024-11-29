@@ -24,6 +24,8 @@ urlpatterns = [
     path("post/<int:post_id>/comment/<int:pk>/delete", views.delete_comment, name="delete_comment"),
     path("post/<int:post_id>/like", views.like, name="like_post"),
     path("post/<int:post_id>/love", views.love, name="love_post"),
+    path("post/<int:post_id>/unlike", views.unlike, name="unlike_post"),
+    path("post/<int:post_id>/unlove", views.unlove, name="unlove_post"),
     path("post/<int:post_id>/share", views.ShareView.as_view(), name="share_post"),
 
     # User Profile and Relationships

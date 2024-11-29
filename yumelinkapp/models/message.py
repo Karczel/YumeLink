@@ -31,3 +31,10 @@ class Message(models.Model):
                     content_type=ContentType.objects.get_for_model(Message),
                     receiver=receiver.user
                 )
+
+    def delete(self, *args, **kwargs):
+        Notification.objects.filter(
+            obj_id=self.id,
+            content_type=ContentType.objects.get_for_model(Message)
+        ).delete()
+        super().delete(*args, **kwargs)

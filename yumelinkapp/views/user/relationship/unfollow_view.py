@@ -12,7 +12,6 @@ def unfollow(request, username):
     followed_user = User.objects.filter(username=username).first()
     follow_obj = Follow.objects.filter(follower=user, user=followed_user).first()
     if follow_obj:
-        Notification.objects.filter(obj_id=follow_obj.id, content_type=ContentType.objects.get_for_model(Follow)).delete()
         follow_obj.delete()
     else:
         messages.error(request, "You have never followed this user.")

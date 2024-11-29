@@ -30,7 +30,13 @@
 <!--specific buttons for like, love, share, comment-->
 
 <p>
-    <a href="{% url 'yumelinkapp:like_post' post.id %}">Like</a>: {{ likes }}    <a href="{% url 'yumelinkapp:love_post' post.id %}">Love</a>: {{ loves }}   <a href="{% url 'yumelinkapp:share_post' post.id %}">Shares</a>: {{ shares }}
+    <a href="{% if has_liked %}{% url 'yumelinkapp:unlike_post' post.id %}{% else %}{% url 'yumelinkapp:like_post' post.id %}{% endif %}">
+        {% if has_liked %}Unlike{% else %}Like{% endif %}
+    </a>: {{ likes }}
+    <a href="{% if has_loved %}{% url 'yumelinkapp:unlove_post' post.id %}{% else %}{% url 'yumelinkapp:love_post' post.id %}{% endif %}">
+        {% if has_liked %}Unlove{% else %}Love{% endif %}
+    </a>: {{ loves }}
+    <a href="{% url 'yumelinkapp:share_post' post.id %}">Shares</a>: {{ shares }}
 </p>
 
 {% for object in comments %}

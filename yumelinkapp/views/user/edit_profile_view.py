@@ -48,7 +48,7 @@ class EditProfileView(UpdateView):
             messages.error(request, f"Form errors: {form.errors}")
             if not request.FILES:
                 messages.error(request, "No files were uploaded.")
-        messages.info(request,request.POST)
-        messages.info(request,request.FILES)
+        # messages.info(request,request.POST)
+        # messages.info(request,request.FILES)
 
         return self.render_to_response(self.get_context_data(form=form))
