@@ -8,12 +8,18 @@
 
 {% block title %}
     <div class="title">Home</div>
-<!--create post-->
-<!--    <div class="icon">📝</div>-->
+    <div class="icon">
+        <a href="{% url 'yumelinkapp:create_post' %}">
+            Create post📝
+        </a>
+    </div>
 {% endblock %}
 
 {% block content %}
-<a href="{% url 'yumelinkapp:create_post' %}">Create post</a>
+<form method="get" action="{% url 'yumelinkapp:home' %}">
+    <input type="text" name="search" placeholder="Search posts..." value="{{ search_query }}">
+    <button type="submit">Search</button>
+</form>
 <div class="posts">
     {% for post in posts_with_images %}
     <div class="post">
