@@ -5,6 +5,9 @@ Business model reference : social media
 <br>
 **May take a while to finish loading**
 
+Database files to load in data/ and media/ ,to which you can load following the Installation and Running Tutorial.
+
+   
 ## Installation & Run locally
 
 ### 1. Clone the repository
