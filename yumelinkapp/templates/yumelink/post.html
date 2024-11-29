@@ -36,7 +36,7 @@
         {% if has_liked %}Unlike{% else %}Like{% endif %}
     </a>: {{ likes }}
     <a href="{% if has_loved %}{% url 'yumelinkapp:unlove_post' post.id %}{% else %}{% url 'yumelinkapp:love_post' post.id %}{% endif %}">
-        {% if has_liked %}Unlove{% else %}Love{% endif %}
+        {% if has_loved %}Unlove{% else %}Love{% endif %}
     </a>: {{ loves }}
     <a href="{% url 'yumelinkapp:share_post' post.id %}">Shares</a>: {{ shares }}
 </p>

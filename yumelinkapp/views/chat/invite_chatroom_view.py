@@ -29,7 +29,7 @@ class InviteChatView(LoginRequiredMixin, FormView):
             messages.warning(self.request, "No user with this username exists.")
             return redirect("yumelinkapp:chat_room_detail", pk=pk)
 
-        if UserChat.objects.create(user=user, chat=chat).exists():
+        if UserChat.objects.filter(user=user, chat=chat).exists():
             messages.warning(self.request, "This user is already in this chat room.")
             return redirect("yumelinkapp:chat_room_detail", pk=pk)
         # Create a UserChat instance

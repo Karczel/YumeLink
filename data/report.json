@@ -1,2 +1,13 @@
 [
+{
+    "model": "yumelinkapp.report",
+    "pk": 1,
+    "fields": {
+        "obj_id": 29,
+        "content_type": 8,
+        "user": 4,
+        "type": "hate",
+        "content": "bad"
+    }
+}
 ]

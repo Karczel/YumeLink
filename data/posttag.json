@@ -62,5 +62,125 @@
         "tag": 9,
         "post": 26
     }
+},
+{
+    "model": "yumelinkapp.posttag",
+    "pk": 34,
+    "fields": {
+        "tag": 4,
+        "post": 27
+    }
+},
+{
+    "model": "yumelinkapp.posttag",
+    "pk": 35,
+    "fields": {
+        "tag": 10,
+        "post": 27
+    }
+},
+{
+    "model": "yumelinkapp.posttag",
+    "pk": 36,
+    "fields": {
+        "tag": 4,
+        "post": 28
+    }
+},
+{
+    "model": "yumelinkapp.posttag",
+    "pk": 37,
+    "fields": {
+        "tag": 11,
+        "post": 28
+    }
+},
+{
+    "model": "yumelinkapp.posttag",
+    "pk": 38,
+    "fields": {
+        "tag": 12,
+        "post": 29
+    }
+},
+{
+    "model": "yumelinkapp.posttag",
+    "pk": 39,
+    "fields": {
+        "tag": 13,
+        "post": 29
+    }
+},
+{
+    "model": "yumelinkapp.posttag",
+    "pk": 40,
+    "fields": {
+        "tag": 4,
+        "post": 30
+    }
+},
+{
+    "model": "yumelinkapp.posttag",
+    "pk": 41,
+    "fields": {
+        "tag": 4,
+        "post": 31
+    }
+},
+{
+    "model": "yumelinkapp.posttag",
+    "pk": 42,
+    "fields": {
+        "tag": 14,
+        "post": 32
+    }
+},
+{
+    "model": "yumelinkapp.posttag",
+    "pk": 43,
+    "fields": {
+        "tag": 15,
+        "post": 32
+    }
+},
+{
+    "model": "yumelinkapp.posttag",
+    "pk": 44,
+    "fields": {
+        "tag": 16,
+        "post": 33
+    }
+},
+{
+    "model": "yumelinkapp.posttag",
+    "pk": 45,
+    "fields": {
+        "tag": 17,
+        "post": 33
+    }
+},
+{
+    "model": "yumelinkapp.posttag",
+    "pk": 46,
+    "fields": {
+        "tag": 18,
+        "post": 33
+    }
+},
+{
+    "model": "yumelinkapp.posttag",
+    "pk": 49,
+    "fields": {
+        "tag": 18,
+        "post": 34
+    }
+},
+{
+    "model": "yumelinkapp.posttag",
+    "pk": 50,
+    "fields": {
+        "tag": 19,
+        "post": 35
+    }
 }
 ]
