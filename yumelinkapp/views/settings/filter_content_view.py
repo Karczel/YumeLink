@@ -10,7 +10,7 @@ class FilterContentUpdateView(LoginRequiredMixin, UpdateView):
     model = User
     form_class = FilterContentForm
     template_name = 'yumelink/filter_content.html'
-    success_url = reverse_lazy('yumelinkapp:settings')
+    success_url = reverse_lazy('yumelinkapp:home')
 
     def get_object(self, queryset=None):
         return User.objects.get(id=self.request.user.id)

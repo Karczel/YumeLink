@@ -27,6 +27,7 @@ urlpatterns = [
     path("post/<int:post_id>/unlike", views.unlike, name="unlike_post"),
     path("post/<int:post_id>/unlove", views.unlove, name="unlove_post"),
     path("post/<int:post_id>/share", views.ShareView.as_view(), name="share_post"),
+    path('reports/', views.ReportView.as_view(), name='reports'),
 
     # User Profile and Relationships
     path('profile/<str:username>/', views.ProfileView.as_view(), name='user_profile'),
@@ -41,11 +42,10 @@ urlpatterns = [
     path('settings/', views.SettingView.as_view(), name='settings'),
     path('settings/account_manage/', views.AccountManageView.as_view(), name='account_manage'),
     path('profile/account_manage/delete', views.delete_user, name='delete_user'),
-    path('settings/filter_content', views.FilterContentUpdateView.as_view(), name='filter_content'),
-    path('settings/notifications/', views.NotificationView.as_view(), name='notifications'),
-    path('reports/', views.ReportView.as_view(), name='reports'),
-    path('settings/contact/', views.ContactView.as_view(), name='contact'),
     path('settings/account_manage/change_password/', views.ChangePasswordView.as_view(), name='change_password'),
+    path('settings/filter_content', views.FilterContentUpdateView.as_view(), name='filter_content'),
+    path('settings/notifications', views.NotificationView.as_view(), name='notifications'),
+    path('settings/contact', views.ContactView.as_view(), name='contact'),
     path('settings/community_guidelines', views.CommunityGuidelinesView.as_view(), name='community_guidelines'),
     path('settings/about_us', views.AboutUsView.as_view(), name='about_us'),
 ]
