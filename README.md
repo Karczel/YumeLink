@@ -5,7 +5,7 @@ Business model reference : social media
 <br>
 **May take a while to finish loading, but if it took longer than 1 minutes please contact me, so I may refresh the server.**
 
-Issues are for the purpose of self-learning after submission, and I will commit in new-features branch so you can rely on main for determining scores.
+Issues are for the purpose of self-learning after submission, and I will commit in new-features branch so you can rely on main for determining scores. I'll only start a merge request after 23rd of December, which is the last day to submit scores, so it shouldn't be a problem.
 
 Database files to load in data/ and media/ ,to which you can load following the Installation and Running Tutorial.
 
