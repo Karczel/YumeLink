@@ -5,6 +5,8 @@ Business model reference : social media
 <br>
 **May take a while to finish loading, but if it took longer than 1 minutes please contact me, so I may refresh the server.**
 
+Issues are for the purpose of self-learning after submission, and I will commit in new-features branch so you can rely on main for determining scores.
+
 Database files to load in data/ and media/ ,to which you can load following the Installation and Running Tutorial.
 
    
