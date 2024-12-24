@@ -13,13 +13,15 @@ class Report(models.Model):
     obj_id = models.PositiveIntegerField()
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     report_of = GenericForeignKey('content_type', 'obj_id')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reporter')
-    type = models.CharField(
-        max_length=SMALL_TEXT,
-        choices=ReportType.choices(),
-        default=ReportType.other,
-    )
+    reporter = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reporter')
+    type = models.ForeignKey
+    # type = models.CharField(
+    #     max_length=SMALL_TEXT,
+    #     choices=ReportType.choices(),
+    #     default=ReportType.other,
+    # )
     content = models.TextField(max_length=BIG_TEXT, default="")
+    is_justified = models.BooleanField
 
     def __str__(self):
         return self.content

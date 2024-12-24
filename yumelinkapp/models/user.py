@@ -10,6 +10,7 @@ class User(DjangoUser):
     Users on Yumelink social media.
     """
     name = models.CharField(default=UNTITLED,max_length=SMALL_TEXT, blank=True, null=True)
+    birthday = models.DateTimeField(default=)
     bio = models.TextField(max_length=MID_SMALL_TEXT, blank=True, null=True)
     profile = models.ImageField(upload_to=user_profile_path, blank=True, null=True)
     header = models.ImageField(upload_to=user_profile_path, blank=True, null=True)
