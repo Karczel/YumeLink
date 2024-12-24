@@ -1,6 +1,10 @@
 from django.contrib.auth.models import User as DjangoUser
 from django.core.validators import RegexValidator
 from django.db import models
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
+
+
 
 from yumelinkapp.utils import SMALL_TEXT, MID_SMALL_TEXT, FilterType, LanguageType, user_profile_path, UNTITLED
 
@@ -10,7 +14,7 @@ class User(DjangoUser):
     Users on Yumelink social media.
     """
     name = models.CharField(default=UNTITLED,max_length=SMALL_TEXT, blank=True, null=True)
-    birthday = models.DateTimeField(default=)
+    birthday = models.DateTimeField(default=datetime.now() - relativedelta(years=13))
     bio = models.TextField(max_length=MID_SMALL_TEXT, blank=True, null=True)
     profile = models.ImageField(upload_to=user_profile_path, blank=True, null=True)
     header = models.ImageField(upload_to=user_profile_path, blank=True, null=True)

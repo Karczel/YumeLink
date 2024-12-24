@@ -4,6 +4,7 @@
     "pk": 1,
     "fields": {
         "name": "abc",
+        "birthday": "2010-12-25T00:00:00Z",
         "bio": "abc",
         "profile": "",
         "header": "",
@@ -17,6 +18,7 @@
     "pk": 2,
     "fields": {
         "name": "Karczel Aum",
+        "birthday": "2010-12-25T00:00:00Z",
         "bio": "Enthusiast of tech and gaming",
         "profile": "users/2/41a0cb9526233eae02df435fa26380aa.gif",
         "header": "users/2/th.jpeg",
@@ -30,6 +32,7 @@
     "pk": 3,
     "fields": {
         "name": "Tan Fan",
+        "birthday": "2010-12-25T00:00:00Z",
         "bio": "Exploring social media platforms",
         "profile": "",
         "header": "",
@@ -43,6 +46,7 @@
     "pk": 4,
     "fields": {
         "name": "Mammoth X",
+        "birthday": "2010-12-25T00:00:00Z",
         "bio": "Photography lover and blogger",
         "profile": "users/4/pexels-photo-1563356.jpeg",
         "header": "users/4/sea-dawn-nature-1188083.jpg",
