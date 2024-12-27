@@ -6,6 +6,8 @@ from .follow import Follow
 from .post import Post
 from .comment import Comment
 from .like import Like
+from .chatrank import ChatRank
+from .chatrequest import ChatRequest
 from .chatrole import ChatRole
 from .message import Message
 from .posttag import PostTag
@@ -14,4 +16,5 @@ from .block import Block
 from .postimage import PostImage
 from .report_type import ReportType
 from .report import Report
-from .chatrank import ChatRank
+from .user_interest import UserInterest
+from .user_disinterest import UserDisinterest

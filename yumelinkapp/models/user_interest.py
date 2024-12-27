@@ -6,7 +6,7 @@ class UserInterest(models.Model):
     """
     Keep tracks of User's interests in 'UserInterest' category.
     """
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='interest_users')
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE, related_name='interests')
 
     def __str__(self):
