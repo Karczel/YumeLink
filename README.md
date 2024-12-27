@@ -151,14 +151,14 @@ python3 manage.py dumpdata auth.user --indent 4 > data/users.json
   
 Windows
 ```commandline
-for %model in (block, chatrole, chatroom, tag, user, notification, follow, post, comment, like, message, posttag, share, postimage) do (
+for %model in (chatroom, tag, user, notification, follow, post, comment, like, chatrole, message, posttag, share, block, postimage) do (
     python manage.py dumpdata <yourappname>.%model --indent 4 > data\%model%.json
 )
 ```
 
 Mac/Linux
 ```commandline
-for model in block chatrole chatroom tag user notification follow post comment like message posttag share postimage; do
+for model in chatroom tag user notification follow post comment like chatrole message posttag share block postimage; do
     python3 manage.py dumpdata <yourappname>.$model --indent 4 > data/${model}.json
 done
 ```
