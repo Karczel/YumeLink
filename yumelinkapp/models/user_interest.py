@@ -1,13 +1,13 @@
 from django.db import models
-from . import User
+from . import User, Tag
 
 
 class UserInterest(models.Model):
     """
     Keep tracks of User's interests in 'UserInterest' category.
     """
-    blocker = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blockers')
-    blocked = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blocked_users')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users')
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE, related_name='interests')
 
     def __str__(self):
-        return f'{self.blocker} blocks {self.blocked}'
+        return f'{self.user} is interested in {self.tag}'

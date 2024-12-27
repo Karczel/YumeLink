@@ -13,3 +13,4 @@ from .share import Share
 from .block import Block
 from .postimage import PostImage
 from .report import Report
+from .chatrank import ChatRank

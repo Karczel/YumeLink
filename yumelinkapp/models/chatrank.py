@@ -4,10 +4,11 @@ from . import User
 
 class ChatRank(models.Model):
     """
-    Keep tracks of User's relationships in 'Block' category.
+    ChatRanks and allowed actions for Chat Roles common across all Chat Rooms
     """
-    blocker = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blockers')
-    blocked = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blocked_users')
+    name = models.ForeignKey(User, on_delete=models.CASCADE, related_name='chat_rank_label')
+    delete_chatroom = models.BooleanField()
+    change_chatroom_name = models.BooleanField()
 
     def __str__(self):
         return f'{self.blocker} blocks {self.blocked}'
