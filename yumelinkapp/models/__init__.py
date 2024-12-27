@@ -12,5 +12,6 @@ from .posttag import PostTag
 from .share import Share
 from .block import Block
 from .postimage import PostImage
+from .report_type import ReportType
 from .report import Report
 from .chatrank import ChatRank

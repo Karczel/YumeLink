@@ -1,10 +1,10 @@
 from enum import Enum
 
 
-class ChatRequestActions(Enum):
-    invite = "Invite"
-    kick = "Kick"
-    ban = "Ban"
+class ChatRequestStatus(Enum):
+    pending = "Pending"
+    accepted = "Accepted"
+    rejected = "Rejected"
 
     def __str__(self):
         return self.value

@@ -1,14 +1,15 @@
 from django.db import models
-from . import User
+
+from yumelinkapp.utils import SMALL_TEXT
 
 
 class ChatRank(models.Model):
     """
     ChatRanks and allowed actions for Chat Roles common across all Chat Rooms
     """
-    name = models.ForeignKey(User, on_delete=models.CASCADE, related_name='chat_rank_label')
-    delete_chatroom = models.BooleanField()
-    change_chatroom_name = models.BooleanField()
+    name = models.CharField(max_length=SMALL_TEXT)
+    can_delete_chatroom = models.BooleanField(default=False)
+    can_change_chatroom_name = models.BooleanField(default=False)
 
     def __str__(self):
-        return f'{self.blocker} blocks {self.blocked}'
+        return self.name
