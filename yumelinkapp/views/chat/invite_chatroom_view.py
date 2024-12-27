@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 
 from yumelinkapp.forms import InviteChatForm
-from yumelinkapp.models import ChatRoom, User, UserChat
+from yumelinkapp.models import ChatRoom, User, ChatRole
 
 
 class InviteChatView(LoginRequiredMixin, FormView):
@@ -29,11 +29,11 @@ class InviteChatView(LoginRequiredMixin, FormView):
             messages.warning(self.request, "No user with this username exists.")
             return redirect("yumelinkapp:chat_room_detail", pk=pk)
 
-        if UserChat.objects.filter(user=user, chat=chat).exists():
+        if ChatRole.objects.filter(user=user, chat=chat).exists():
             messages.warning(self.request, "This user is already in this chat room.")
             return redirect("yumelinkapp:chat_room_detail", pk=pk)
-        # Create a UserChat instance
-        UserChat.objects.create(user=user, chat=chat)
+        # Create a ChatRole instance
+        ChatRole.objects.create(user=user, chat=chat)
 
         # Redirect to chat room detail page with a success message
         messages.success(self.request, f"{user.username} has been invited to the chat room.")

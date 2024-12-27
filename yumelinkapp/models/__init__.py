@@ -6,10 +6,10 @@ from .follow import Follow
 from .post import Post
 from .comment import Comment
 from .like import Like
-from .userchat import UserChat
+from .chatrole import ChatRole
 from .message import Message
-from .post_tag import PostTag
+from .posttag import PostTag
 from .share import Share
 from .block import Block
-from .post_image import PostImage
+from .postimage import PostImage
 from .report import Report

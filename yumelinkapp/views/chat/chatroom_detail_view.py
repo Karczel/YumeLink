@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.views.generic import DetailView
 
-from yumelinkapp.models import ChatRoom, Message, UserChat, User
+from yumelinkapp.models import ChatRoom, Message, ChatRole, User
 
 
 class ChatRoomDetailView(LoginRequiredMixin,DetailView):
@@ -18,8 +18,8 @@ class ChatRoomDetailView(LoginRequiredMixin,DetailView):
         messages = Message.objects.filter(chat=chat_room).order_by('timestamp')
         context['chat_messages'] = messages
 
-        # Get all users in the chat room from the UserChat model
-        users_in_chat = UserChat.objects.filter(chat=chat_room).select_related('user')
+        # Get all users in the chat room from the ChatRole model
+        users_in_chat = ChatRole.objects.filter(chat=chat_room).select_related('user')
         context['users_in_chat'] = users_in_chat
 
         # Pass the currently logged-in user to the template

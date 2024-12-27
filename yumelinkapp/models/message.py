@@ -1,6 +1,6 @@
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
-from . import User, ChatRoom, UserChat, Notification
+from . import User, ChatRoom, ChatRole, Notification
 from yumelinkapp.utils import BIG_TEXT
 
 
@@ -24,7 +24,7 @@ class Message(models.Model):
 
     def create_notification(self):
         """Create notification to everyone in chat."""
-        for receiver in UserChat.objects.filter(chat=self.chat):
+        for receiver in ChatRole.objects.filter(chat=self.chat):
             if receiver.user != self.user:
                 Notification.objects.create(
                     object_id=self.id,

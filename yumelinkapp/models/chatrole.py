@@ -2,7 +2,7 @@ from django.db import models
 from . import User, ChatRoom
 
 
-class UserChat(models.Model):
+class ChatRole(models.Model):
     """
     Users in Chat(s).
     """
