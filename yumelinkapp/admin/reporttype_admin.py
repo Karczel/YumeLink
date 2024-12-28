@@ -5,4 +5,4 @@ class ReportTypeAdmin(admin.ModelAdmin):
     """
     Admin configuration for managing ReportType objects in the admin panel.
     """
-    list_display = ('id', 'name', 'slug', 'content', 'created')
+    list_display = ('id', 'name', 'slug', 'content')
