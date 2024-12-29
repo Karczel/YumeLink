@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count
 from django.shortcuts import redirect, get_object_or_404
 from django.views.generic import ListView
-from yumelinkapp.models import ChatRoom, UserChat, User, Block
+from yumelinkapp.models import ChatRoom, ChatRole, User, Block
 
 
 class ChatRoomView(LoginRequiredMixin,ListView):
@@ -13,7 +13,7 @@ class ChatRoomView(LoginRequiredMixin,ListView):
 
     def get_queryset(self):
         current_user = User.objects.get(id=self.request.user.id)
-        return ChatRoom.objects.filter(userchat__user=current_user).order_by('chat_name')
+        return ChatRoom.objects.filter(chatrole__user=current_user).order_by('chat_name')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -22,11 +22,11 @@ class ChatRoomView(LoginRequiredMixin,ListView):
 
         # Add filtered chat rooms for Personal and Groups
         personal_chats = ChatRoom.objects.filter(
-            id__in=UserChat.objects.values('chat').annotate(count=Count('id')).filter(count__lte=2).values(
+            id__in=ChatRole.objects.values('chat').annotate(count=Count('id')).filter(count__lte=2).values(
                 'chat')
         )
         group_chats = ChatRoom.objects.filter(
-            id__in=UserChat.objects.values('chat').annotate(count=Count('id')).filter(count__gt=2).values(
+            id__in=ChatRole.objects.values('chat').annotate(count=Count('id')).filter(count__gt=2).values(
                 'chat')
         )
 
@@ -61,9 +61,9 @@ class ChatRoomView(LoginRequiredMixin,ListView):
         # todo: accept profile for chatroom
         chat_room, created = ChatRoom.objects.get_or_create(chat_name=chat_name)
 
-        # Create UserChat entries
-        UserChat.objects.get_or_create(chat=chat_room, user=current_user)
-        UserChat.objects.get_or_create(chat=chat_room, user=other_user)
+        # Create ChatRole entries
+        ChatRole.objects.get_or_create(chat=chat_room, user=current_user)
+        ChatRole.objects.get_or_create(chat=chat_room, user=other_user)
 
         return redirect('yumelinkapp:chat_room')
 

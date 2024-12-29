@@ -1,0 +1,92 @@
+[
+{
+    "model": "yumelinkapp.reporttype",
+    "pk": 1,
+    "fields": {
+        "name": "Other",
+        "slug": "other",
+        "content": "Other"
+    }
+},
+{
+    "model": "yumelinkapp.reporttype",
+    "pk": 2,
+    "fields": {
+        "name": "Scam or Fraud",
+        "slug": "scam-or-fraud",
+        "content": "Scam or Fraud"
+    }
+},
+{
+    "model": "yumelinkapp.reporttype",
+    "pk": 3,
+    "fields": {
+        "name": "Child Exploitation",
+        "slug": "child-exploitation",
+        "content": "Child Exploitation"
+    }
+},
+{
+    "model": "yumelinkapp.reporttype",
+    "pk": 4,
+    "fields": {
+        "name": "Fake news",
+        "slug": "fake-news",
+        "content": "Fake news"
+    }
+},
+{
+    "model": "yumelinkapp.reporttype",
+    "pk": 5,
+    "fields": {
+        "name": "Identity impersonation",
+        "slug": "identity-impersonation",
+        "content": "Identity impersonation"
+    }
+},
+{
+    "model": "yumelinkapp.reporttype",
+    "pk": 6,
+    "fields": {
+        "name": "Cyberbullying",
+        "slug": "cyberbullying",
+        "content": "Cyberbullying"
+    }
+},
+{
+    "model": "yumelinkapp.reporttype",
+    "pk": 7,
+    "fields": {
+        "name": "Violence",
+        "slug": "violence",
+        "content": "Violence"
+    }
+},
+{
+    "model": "yumelinkapp.reporttype",
+    "pk": 8,
+    "fields": {
+        "name": "Inappropriate Content",
+        "slug": "inappropriate-content",
+        "content": "Inappropriate Content"
+    }
+},
+{
+    "model": "yumelinkapp.reporttype",
+    "pk": 9,
+    "fields": {
+        "name": "Hate speech",
+        "slug": "hate-speech",
+        "content": "Hate speech"
+    }
+},
+{
+    "model": "yumelinkapp.reporttype",
+    "pk": 10,
+    "fields": {
+        "name": "Content filter violation",
+        "slug": "content-filter-violation",
+        "content": "Content filter violation"
+    }
+}
+]

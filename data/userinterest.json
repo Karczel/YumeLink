@@ -1,0 +1,10 @@
+[
+{
+    "model": "yumelinkapp.userinterest",
+    "pk": 1,
+    "fields": {
+        "user": 2,
+        "tag": 4
+    }
+}
+]
