@@ -8,26 +8,22 @@ from yumelinkapp.utils import oauth
 from django.contrib.auth import login as django_login
 
 
-
-
-
 def callback(request):
     token = oauth.auth0.authorize_access_token(request)
     if not token:
         messages.error(request, "Authentication failed. Please try again.")
-        return redirect(reverse('signup'))
+        return redirect(reverse('yumelinkapp:home'))
 
     user_info = token['userinfo']
-    messages.info(user_info)
     try:
-        user = User.objects.get(username=user_info['sub'])
+        user = User.objects.get(email=user_info['email'])
         django_login(request, user)
     except User.DoesNotExist:
+        # redirect to auth sign up instead
         request.session['signup_data'] = {
             'email': user_info['email'],
             'first_name': user_info.get('given_name', ''),
             'last_name': user_info.get('family_name', ''),
-            'birthday': user_info.get(f'https://{request.get_host()}/birthday', ''),
         }
         return redirect(reverse('signup'))
     request.session["user"] = token

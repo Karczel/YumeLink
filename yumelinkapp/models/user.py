@@ -1,6 +1,7 @@
 from datetime import date
 
 from django.contrib.auth.models import User as DjangoUser
+from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.db import models
 
@@ -41,6 +42,14 @@ class User(DjangoUser):
         ],
         default=FilterType.none,
     )
+
+    def clean_birthday(self):
+        birthday = self.cleaned_data.get('birthday')
+        if birthday:
+            age = (date.today() - birthday).days // 365
+            if age < 13:
+                raise ValidationError("You must be at least 13 years old.")
+        return birthday
 
     def age(self):
         today = date.today()

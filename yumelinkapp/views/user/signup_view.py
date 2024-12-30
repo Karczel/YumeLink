@@ -1,6 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic import View, FormView
-from django.shortcuts import render, redirect
+from django.views.generic import FormView
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from yumelinkapp.forms import SignupForm
@@ -28,6 +27,7 @@ class SignupView(FormView):
         raw_password = form.cleaned_data.get('password1')
         user = authenticate(username=username, password=raw_password)
         login(self.request, user)
+        self.request.session.pop('signup_data', None)
 
         # Redirect to the success URL
         return super().form_valid(form)
