@@ -17,6 +17,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from yumelinkapp import views
 
@@ -24,10 +25,11 @@ urlpatterns = [
     path("", include("yumelinkapp.urls")),
     path('admin/', admin.site.urls),
     path('accounts/', include("django.contrib.auth.urls")),
+    path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
     path('signup/', views.SignupView.as_view(), name='signup'),
 
     # Auth0-related views
-    path("login/", views.login, name="login"),
+    path("auth0_login/", views.auth_login, name="auth0_login"),
     path("callback/", views.callback, name="callback"),
     path("logout/", views.logout, name="logout"),
 ]

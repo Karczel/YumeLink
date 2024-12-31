@@ -10,7 +10,7 @@ def logout(request):
     logout_url = f"https://{settings.AUTH0_DOMAIN}/v2/logout?" \
                  + urlencode(
         {
-            "returnTo": request.build_absolute_uri(reverse("yumelink:home")),
+            "returnTo": request.build_absolute_uri(reverse("yumelinkapp:home")),
             "client_id": settings.AUTH0_CLIENT_ID,
         }, quote_via=quote_plus,
     )

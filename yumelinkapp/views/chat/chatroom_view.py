@@ -13,7 +13,7 @@ class ChatRoomView(LoginRequiredMixin,ListView):
 
     def get_queryset(self):
         current_user = User.objects.get(id=self.request.user.id)
-        return ChatRoom.objects.filter(chatrole__user=current_user).order_by('chat_name')
+        return ChatRoom.objects.filter(chat_roles__user=current_user).order_by('chat_name')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
