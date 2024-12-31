@@ -7,6 +7,7 @@ from yumelinkapp.models import Post, PostImage, Tag, PostTag, Like, Comment, Sha
 from yumelinkapp.utils import LikeType
 
 
+
 class PostView(LoginRequiredMixin, DetailView):
     """
     View for displaying Post details.
@@ -19,6 +20,7 @@ class PostView(LoginRequiredMixin, DetailView):
         post = self.object
         user = User.objects.get(id=self.request.user.id)
         context['user'] = user
+        context['content'] = (self.object.content)
         context['post_images'] = PostImage.objects.filter(post=post)
         context['post_tags'] = PostTag.objects.filter(post=post)
 

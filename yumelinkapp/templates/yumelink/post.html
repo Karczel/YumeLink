@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
-{% block extra_css %}{% endblock %}
+{% block extra_css %}
+{% load video_embed %}
+{% endblock %}
 
 {% block title %}
 <div class="title">Post</div>
@@ -16,7 +18,7 @@
 
 {% block content %}
         <h4>{{ post.user }}</h4>
-<p>{{ post.content }}</p>
+<p>{{ post.content|embed_video|safe }}</p>
 <!--have 3 dots and dropdown for edit, delete-->
 
 {% for image in post_images %}
