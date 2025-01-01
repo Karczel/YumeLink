@@ -1,5 +1,4 @@
 from .filter_type import FilterType
-from .language_type import LanguageType
 from .like_type import LikeType
 from .share_type import ShareType
 from .chatrequest_actions import ChatRequestActions

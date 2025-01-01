@@ -6,7 +6,8 @@ from django.core.validators import RegexValidator
 from django.db import models
 
 
-from yumelinkapp.utils import SMALL_TEXT, MID_SMALL_TEXT, FilterType, LanguageType, user_profile_path, UNTITLED
+from yumelinkapp.utils import SMALL_TEXT, MID_SMALL_TEXT, FilterType, user_profile_path, UNTITLED, \
+    fetch_languages
 
 
 class User(DjangoUser):
@@ -31,8 +32,8 @@ class User(DjangoUser):
     )
     language = models.CharField(
         max_length=SMALL_TEXT,
-        choices=LanguageType.choices(),
-        default=LanguageType.ENG,
+        choices=fetch_languages(),
+        default="en",
     )
     filter_content = models.CharField(
         max_length=SMALL_TEXT,
