@@ -65,8 +65,10 @@ class ProfileView(LoginRequiredMixin, DetailView):
 
     def get(self, request, *args, **kwargs):
         user = self.get_object()
-        current_user = User.objects.get(id=request.user.id)
-
+        try:
+            current_user = User.objects.get(id=request.user.id)
+        except User.DoesNotExist:
+            return redirect('yumelinkapp:home')
         # Check if the current user is blocked by the post owner
         is_blocked = Block.objects.filter(blocker=user, blocked=current_user).exists()
 

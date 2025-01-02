@@ -24,7 +24,12 @@
     {% for post in posts_with_images %}
     <div class="post">
 
-        <h4>User: <a href="{% url 'yumelinkapp:user_profile' post.post.user.username %}">{{ post.post.user }}</a></h4>
+        <h4>User: <a href="
+        {% if user.is_authenticated %}
+        {% url 'yumelinkapp:user_profile' post.post.user.username %}
+        {% else %}
+        {% url 'login' %}?next={% url 'yumelinkapp:user_profile' post.post.user.username %}
+        {% endif %}">{{ post.post.user }}</a></h4>
         <p>{{ post.post.content|embed_video|safe }}</p>
         {% for image in post.post_images %}
             <img src="{{ image.image.url }}" alt="Post Image" style="max-width: 150px;" />
@@ -32,7 +37,12 @@
         {% if post.post_images %}
             </br>
         {% endif %}
-        <a href="{% url 'yumelinkapp:post' post.post.id %}">See more...</a>
+        <a href="
+        {% if user.is_authenticated %}
+        {% url 'yumelinkapp:post' post.post.id %}
+        {% else %}
+        {% url 'login' %}?next={% url 'yumelinkapp:post' post.post.id %}
+        {% endif %}">See more...</a>
         </br></br>
 
     </div>
