@@ -19,8 +19,14 @@
 {% block content %}
         <h4>{{ post.user }}</h4>
 <p>{{ content|embed_video|safe }}</p>
-<p>Translate to {{ language }}</p>
-<p>{{ translated_content|embed_video|safe }}</p>
+<div>
+    <p>Translate to {{ language }}</p>
+    <button onclick="toggleTranslation()">Toggle Translation</button>
+
+    <p id="translated-content" style="display: none;">
+        {{ translated_content|embed_video|safe }}
+    </p>
+</div>
 <!--have 3 dots and dropdown for edit, delete-->
 
 {% for image in post_images %}
@@ -65,4 +71,15 @@
     <button type="submit">Submit Comment</button>
 </form>
 
+<script>
+    function toggleTranslation() {
+        var content = document.getElementById('translated-content');
+        // Toggle the visibility of the translated content
+        if (content.style.display === "none") {
+            content.style.display = "block"; // Show the translated content
+        } else {
+            content.style.display = "none"; // Hide the translated content
+        }
+    }
+</script>
 {% endblock %}
