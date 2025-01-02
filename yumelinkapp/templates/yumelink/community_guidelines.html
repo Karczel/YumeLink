@@ -10,10 +10,8 @@
     <p>We strive to foster a positive and respectful community. Please review the following guidelines to ensure a safe and enjoyable environment for everyone:</p>
 
     <ul>
-        <li><strong>Content Restrictions</strong>: <br> Pornography is strictly prohibited. Nudity may be allowed in appropriate contexts, such as artistic or educational content, as long as it respects the dignity and consent of all individuals involved.</li>
-        <li><strong>Substance Abuse</strong>: <br> Content that promotes, glamorizes, or encourages the use of illegal substances, alcohol abuse, or addiction is not allowed.</li>
-        <li><strong>Violence</strong>: <br> Content that promotes violence, threats, or encourages harm against individuals or groups is strictly prohibited. This includes, but is not limited to, calls for physical violence, terrorism, or self-harm.</li>
-        <li><strong>Cyberbullying</strong>: <br> Cyberbullying, hate speech, or harassment based on race, gender, sexual orientation, or other protected categories is not tolerated.</li>
-        <li><strong>Respect for Others</strong>: <br> All community members are expected to treat others with respect. We encourage constructive dialogue and prohibit any behavior that degrades, harasses, or disrespects others.</li>
+        {% for rule in guidelines %}
+        <li><strong>{{ rule.name }}</strong>: <br> {{ rule.content }} </li><br>
+        {% endfor %}
     </ul>
 {% endblock %}
