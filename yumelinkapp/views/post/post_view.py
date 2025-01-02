@@ -23,7 +23,7 @@ class PostView(LoginRequiredMixin, DetailView):
 
             context['language'] = user.get_language_display()
         except User.DoesNotExist:
-            pass
+            user = None
         context['content'] = self.object.content
         context['translated_content'] = translate_text(self.object.content, user.language)
 
@@ -41,7 +41,7 @@ class PostView(LoginRequiredMixin, DetailView):
         context['comments'] = [
             {
                 'comment': comment,
-                'owns': User.objects.get(id=self.request.user.id) == comment.user
+                'owns': user == comment.user
             }
             for comment in Comment.objects.filter(post=post).order_by('-timestamp')
         ]

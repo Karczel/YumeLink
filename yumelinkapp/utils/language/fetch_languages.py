@@ -12,4 +12,5 @@ def fetch_languages():
         if response.status_code == 200:
             languages = response.json()
             languages = [(lang['code'], lang['name'].title()) for lang in languages]
+            languages = sorted(languages, key=lambda x: x[1])
     return languages

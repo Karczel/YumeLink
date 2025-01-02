@@ -128,9 +128,9 @@
         {% else %}
             <img src="{{ MEDIA_URL }}default-profile.png" alt="Default Profile" style="max-width: 100px;">
         {% endif %}
-        <a href="{% url 'yumelinkapp:user_profile' user.username %}"><strong>Name:</strong> {{ user.name }}</a>
+        <h1>{{ user.name }}</h1>
+        <h2>@{{ user.username }}</h2>
         {% if not same_user %}
-        <br><br>
         <div class="action-buttons">
             <!-- Follow Button -->
             <button
@@ -149,13 +149,10 @@
             </button>
         </div>
         {% endif %}
-        <p><strong>Email:</strong> {{ user.email }}</p>
-        <p><strong>Username:</strong> {{ user.username }}
-            {% if same_user %}
+        {% if same_user %}
         <a href="{% url 'yumelinkapp:edit_user_profile' user.username %}">edit</a>
         {% endif %}
-        </p>
-        <p><strong>Bio:</strong> {{ user.bio }}</p>
+        <p> {{ user.bio }}</p>
         <p><strong><a href="{% url 'yumelinkapp:user_relationship' user.username %}?type=following">
             Following
         </a>:</strong>{{ following }}
