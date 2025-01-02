@@ -18,7 +18,9 @@
 
 {% block content %}
         <h4>{{ post.user }}</h4>
-<p>{{ post.content|embed_video|safe }}</p>
+<p>{{ content|embed_video|safe }}</p>
+<p>Translate to {{ language }}</p>
+<p>{{ translated_content|embed_video|safe }}</p>
 <!--have 3 dots and dropdown for edit, delete-->
 
 {% for image in post_images %}

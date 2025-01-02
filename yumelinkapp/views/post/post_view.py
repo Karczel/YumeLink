@@ -4,8 +4,7 @@ from django.shortcuts import redirect
 from django.views.generic import DetailView
 
 from yumelinkapp.models import Post, PostImage, Tag, PostTag, Like, Comment, Share, User, Block
-from yumelinkapp.utils import LikeType
-
+from yumelinkapp.utils import LikeType, translate_text
 
 
 class PostView(LoginRequiredMixin, DetailView):
@@ -18,9 +17,16 @@ class PostView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         post = self.object
-        user = User.objects.get(id=self.request.user.id)
-        context['user'] = user
-        context['content'] = (self.object.content)
+        try:
+            user = User.objects.get(id=self.request.user.id)
+            context['user'] = user
+
+            context['language'] = user.get_language_display()
+        except User.DoesNotExist:
+            pass
+        context['content'] = self.object.content
+        context['translated_content'] = translate_text(self.object.content, user.language)
+
         context['post_images'] = PostImage.objects.filter(post=post)
         context['post_tags'] = PostTag.objects.filter(post=post)
 
