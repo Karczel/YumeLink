@@ -2,11 +2,8 @@ from enum import Enum
 
 
 class ShareType(Enum):
-    link = 'Link'
     reblog = 'Reblog'
-    # line = 'Line'
-    # facebook = 'Facebook'
-    # tumblr = 'tumblr'
+    other = 'Other'
 
     def __str__(self):
         return self.value

@@ -2,11 +2,12 @@ from .home_view import HomeView
 from .post_view import PostView
 from .create_edit_post_view import CreateEditPostView
 from .delete_post_view import delete_post
-from .share_view import ShareView
 from .love_view import love
 from .like_view import like
+from .reblog_view import reblog
 from .unlike_view import unlike
 from .unlove_view import unlove
+from .unreblog_view import unreblog
 from .comment_view import CommentView
 from .create_comment_view import create_comment
 from .delete_comment_view import delete_comment

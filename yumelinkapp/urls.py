@@ -28,7 +28,8 @@ urlpatterns = [
     path("post/<int:post_id>/love", views.love, name="love_post"),
     path("post/<int:post_id>/unlike", views.unlike, name="unlike_post"),
     path("post/<int:post_id>/unlove", views.unlove, name="unlove_post"),
-    path("post/<int:post_id>/share", views.ShareView.as_view(), name="share_post"),
+    path("post/<int:post_id>/reblog", views.reblog, name="reblog_post"),
+    path("post/<int:post_id>/unreblog", views.unreblog, name="unreblog_post"),
 
     # Report
     path('report/<int:obj_id>/<str:content_type>', views.ReportView.as_view(), name='report'),

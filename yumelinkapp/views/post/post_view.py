@@ -1,10 +1,13 @@
+import json
+
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.views.generic import DetailView
 
 from yumelinkapp.models import Post, PostImage, Tag, PostTag, Like, Comment, Share, User, Block
-from yumelinkapp.utils import LikeType, translate_text
+from yumelinkapp.utils import LikeType, translate_text, ShareType
 
 
 class PostView(LoginRequiredMixin, DetailView):
@@ -34,10 +37,12 @@ class PostView(LoginRequiredMixin, DetailView):
 
         context['has_liked'] = Like.objects.filter(user=user, post=post, type=LikeType.like.name).exists()
         context['has_loved'] = Like.objects.filter(user=user, post=post, type=LikeType.love.name).exists()
+        context['has_reblogged'] = Share.objects.filter(user=user, post=post, share_type=ShareType.reblog.name).exists()
 
         context['likes'] = Like.objects.filter(post=post, type=LikeType.like.name).count()
         context['loves'] = Like.objects.filter(post=post, type=LikeType.love.name).count()
-        context['shares'] = Share.objects.filter(post=post).count()
+        context['reblogs'] = Share.objects.filter(post=post, share_type=ShareType.reblog.name).count()
+        context['shares'] = Share.objects.filter(post=post).exclude(share_type=ShareType.reblog.name).count()
         context['comments'] = [
             {
                 'comment': comment,

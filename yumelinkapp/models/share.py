@@ -12,7 +12,7 @@ class Share(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     share_type = models.CharField(max_length=SMALL_TEXT,
                                   choices=ShareType.choices(),
-                                  default=ShareType.link)
+                                  default=ShareType.reblog)
 
     def __str__(self):
         return f'{self.user} shared {self.post} with {self.share_type}'

@@ -48,7 +48,11 @@
     <a href="{% if has_loved %}{% url 'yumelinkapp:unlove_post' post.id %}{% else %}{% url 'yumelinkapp:love_post' post.id %}{% endif %}">
         {% if has_loved %}Unlove{% else %}Love{% endif %}
     </a>: {{ loves }}
-    <a href="{% url 'yumelinkapp:share_post' post.id %}">Shares</a>: {{ shares }}
+    <a href="{% if has_reblogged %}{% url 'yumelinkapp:unreblog_post' post.id %}{% else %}{% url 'yumelinkapp:reblog_post' post.id %}{% endif %}">
+        {% if has_reblogged %}Unreblog{% else %}Reblog{% endif %}
+    </a>: {{ reblogs }}
+    Shares: {{ shares }}
+
 </p>
 <div class="sharethis-inline-share-buttons"></div>
 
@@ -83,4 +87,5 @@
         }
     }
 </script>
+
 {% endblock %}
