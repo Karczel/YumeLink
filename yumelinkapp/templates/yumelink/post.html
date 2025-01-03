@@ -50,6 +50,7 @@
     </a>: {{ loves }}
     <a href="{% url 'yumelinkapp:share_post' post.id %}">Shares</a>: {{ shares }}
 </p>
+<div class="sharethis-inline-share-buttons"></div>
 
 {% for object in comments %}
 <h4>{{ object.comment.user }}</h4>
