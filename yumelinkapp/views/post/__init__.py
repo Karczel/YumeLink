@@ -12,3 +12,4 @@ from .comment_view import CommentView
 from .create_comment_view import create_comment
 from .delete_comment_view import delete_comment
 from .report_view import ReportView
+from .track_share_view import track_share

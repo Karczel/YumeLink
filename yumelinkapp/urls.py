@@ -30,6 +30,7 @@ urlpatterns = [
     path("post/<int:post_id>/unlove", views.unlove, name="unlove_post"),
     path("post/<int:post_id>/reblog", views.reblog, name="reblog_post"),
     path("post/<int:post_id>/unreblog", views.unreblog, name="unreblog_post"),
+    path('track-share/', views.track_share, name='track_share'),
 
     # Report
     path('report/<int:obj_id>/<str:content_type>', views.ReportView.as_view(), name='report'),

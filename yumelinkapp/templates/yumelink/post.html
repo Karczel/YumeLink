@@ -86,6 +86,31 @@
             content.style.display = "none"; // Hide the translated content
         }
     }
+
+    var csrfToken = '{{ csrf_token }}';
+
+    document.querySelector('.sharethis-inline-share-buttons').addEventListener('click', function() {
+        var postId = {{ post.id }};
+
+        // Send the share tracking request to the backend
+        fetch('/track-share/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken
+            },
+            body: JSON.stringify({
+                postId: postId,
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Share tracked:', data);
+        })
+        .catch(error => {
+            console.error('Error tracking share:', error);
+        });
+    });
 </script>
 
 {% endblock %}

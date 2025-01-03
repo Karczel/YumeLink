@@ -1,29 +1,10 @@
-[
-{
-    "model": "yumelinkapp.share",
-    "pk": 1,
-    "fields": {
-        "user": 2,
-        "post": 3,
-        "share_type": "link"
-    }
-},
-{
+[{
     "model": "yumelinkapp.share",
     "pk": 2,
     "fields": {
         "user": 3,
         "post": 1,
         "share_type": "reblog"
-    }
-},
-{
-    "model": "yumelinkapp.share",
-    "pk": 3,
-    "fields": {
-        "user": 4,
-        "post": 2,
-        "share_type": "link"
     }
 },
 {
@@ -42,15 +23,6 @@
         "user": 2,
         "post": 33,
         "share_type": "reblog"
-    }
-},
-{
-    "model": "yumelinkapp.share",
-    "pk": 6,
-    "fields": {
-        "user": 4,
-        "post": 32,
-        "share_type": "link"
     }
 }
 ]
