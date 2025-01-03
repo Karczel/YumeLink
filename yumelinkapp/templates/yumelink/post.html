@@ -2,6 +2,7 @@
 
 {% block extra_css %}
 {% load video_embed %}
+{% load mention_to_link %}
 {% endblock %}
 
 {% block title %}
@@ -18,13 +19,13 @@
 
 {% block content %}
 <h4><a href="{% url 'yumelinkapp:user_profile' post.user.username %}">{{ post.user }}</a></h4>
-<p>{{ content|embed_video|safe }}</p>
+<p>{{ content|embed_video|mention_to_link|safe }}</p>
 <div>
     <p>Translate to {{ language }}</p>
     <button onclick="toggleTranslation()">Toggle Translation</button>
 
     <p id="translated-content" style="display: none;">
-        {{ translated_content|embed_video|safe }}
+        {{ translated_content|embed_video|mention_to_link|safe }}
     </p>
 </div>
 <!--have 3 dots and dropdown for edit, delete-->
