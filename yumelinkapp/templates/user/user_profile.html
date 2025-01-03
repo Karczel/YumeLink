@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block extra_css %}
-
+{% load video_embed %}
         /* Profile Container */
         .profile-container {
             max-width: 800px;
@@ -128,9 +128,9 @@
         {% else %}
             <img src="{{ MEDIA_URL }}default-profile.png" alt="Default Profile" style="max-width: 100px;">
         {% endif %}
-        <a href="{% url 'yumelinkapp:user_profile' user.username %}"><strong>Name:</strong> {{ user.name }}</a>
+        <h1>{{ user.name }}</h1>
+        <h2>@{{ user.username }}</h2>
         {% if not same_user %}
-        <br><br>
         <div class="action-buttons">
             <!-- Follow Button -->
             <button
@@ -149,13 +149,10 @@
             </button>
         </div>
         {% endif %}
-        <p><strong>Email:</strong> {{ user.email }}</p>
-        <p><strong>Username:</strong> {{ user.username }}
-            {% if same_user %}
+        {% if same_user %}
         <a href="{% url 'yumelinkapp:edit_user_profile' user.username %}">edit</a>
         {% endif %}
-        </p>
-        <p><strong>Bio:</strong> {{ user.bio }}</p>
+        <p> {{ user.bio }}</p>
         <p><strong><a href="{% url 'yumelinkapp:user_relationship' user.username %}?type=following">
             Following
         </a>:</strong>{{ following }}
@@ -178,7 +175,7 @@
     <div class="post">
 
         <h4>User: <a href="{% url 'yumelinkapp:user_profile' post.post.user.username %}">{{ post.post.user }}</a></h4>
-        <a href="{% url 'yumelinkapp:post' post.post.id %}">{{ post.post.content }}</a>
+        <a href="{% url 'yumelinkapp:post' post.post.id %}">{{ post.post.content|embed_video|safe }}</a>
         <br>
         {% for image in post.post_images %}
             <img src="{{ image.image.url }}" alt="Post Image" style="max-width: 150px;" />

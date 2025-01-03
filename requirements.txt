@@ -5,3 +5,6 @@ psycopg2-binary
 django-storages
 boto3
 pillow
+authlib ~= 1.0
+requests ~= 2.27
+deep-translator

@@ -88,5 +88,14 @@
         "post": 2,
         "type": "love"
     }
+},
+{
+    "model": "yumelinkapp.like",
+    "pk": 11,
+    "fields": {
+        "user": 2,
+        "post": 36,
+        "type": "like"
+    }
 }
 ]

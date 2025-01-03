@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block extra_css %}
-<!-- Add custom CSS for the share post page if needed -->
+{% load video_embed %}
 {% endblock %}
 
 {% block title %}
@@ -11,7 +11,7 @@
 {% block content %}
     <div class="post-content">
         <h4>{{ post.user }}</h4>
-        <p>{{ post.content }}</p> <!-- Display the post content -->
+        <p>{{ post.content|embed_video|safe }}</p> <!-- Display the post content -->
 
         <!-- Display post images if they exist -->
         {% if post_images %}

@@ -1,0 +1,74 @@
+[
+{
+    "model": "yumelinkapp.chatrole",
+    "pk": 1,
+    "fields": {
+        "user": 2,
+        "chat": 1,
+        "rank": 2
+    }
+},
+{
+    "model": "yumelinkapp.chatrole",
+    "pk": 2,
+    "fields": {
+        "user": 3,
+        "chat": 1,
+        "rank": 1
+    }
+},
+{
+    "model": "yumelinkapp.chatrole",
+    "pk": 3,
+    "fields": {
+        "user": 2,
+        "chat": 2,
+        "rank": 1
+    }
+},
+{
+    "model": "yumelinkapp.chatrole",
+    "pk": 4,
+    "fields": {
+        "user": 4,
+        "chat": 3,
+        "rank": 2
+    }
+},
+{
+    "model": "yumelinkapp.chatrole",
+    "pk": 5,
+    "fields": {
+        "user": 2,
+        "chat": 3,
+        "rank": 2
+    }
+},
+{
+    "model": "yumelinkapp.chatrole",
+    "pk": 6,
+    "fields": {
+        "user": 4,
+        "chat": 4,
+        "rank": 2
+    }
+},
+{
+    "model": "yumelinkapp.chatrole",
+    "pk": 7,
+    "fields": {
+        "user": 2,
+        "chat": 4,
+        "rank": 2
+    }
+},
+{
+    "model": "yumelinkapp.chatrole",
+    "pk": 8,
+    "fields": {
+        "user": 3,
+        "chat": 4,
+        "rank": 2
+    }
+}
+]

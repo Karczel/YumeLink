@@ -1,0 +1,110 @@
+[
+{
+    "model": "yumelinkapp.reporttype",
+    "pk": 1,
+    "fields": {
+        "name": "Other",
+        "slug": "other",
+        "content": "OtherAny other behavior or content that disrupts the integrity, safety, or well-being of the community, even if not explicitly covered in these guidelines, is also prohibited. This includes, but is not limited to, excessive spamming, excessive self-promotion, or any actions that cause harm, distress, or discomfort to others. Violations will be reviewed on a case-by-case basis, and appropriate action, including warnings, content removal, suspension, or permanent ban, may be taken. We strive to maintain a positive, respectful, and safe space for all users, and expect everyone to contribute to that environment."
+    }
+},
+{
+    "model": "yumelinkapp.reporttype",
+    "pk": 2,
+    "fields": {
+        "name": "Scam or Fraud",
+        "slug": "scam-or-fraud",
+        "content": "Scamming or fraudulent activities, including deceptive practices to steal personal information, money, or resources, are strictly prohibited. This includes phishing attempts, fraudulent sales, investment schemes, or any form of misleading representation intended to deceive or exploit others. Such activities undermine the trust of the community and will result in immediate action, including account suspension, content removal, and permanent ban. We are committed to maintaining a secure and trustworthy environment, where users can engage without fear of fraud or exploitation."
+    }
+},
+{
+    "model": "yumelinkapp.reporttype",
+    "pk": 3,
+    "fields": {
+        "name": "Child Exploitation",
+        "slug": "child-exploitation",
+        "content": "Child exploitation, including any content that promotes or involves the abuse, sexualization, or harm of minors, is absolutely forbidden. This includes any material, discussion, or behavior that exploits or endangers children in any way. Such content is illegal and goes against the core values of our community. Any instance of child exploitation will result in immediate reporting to authorities, permanent account ban, and legal action. Our community is committed to protecting the safety and well-being of all individuals, and we hold a zero-tolerance policy toward any form of exploitation."
+    }
+},
+{
+    "model": "yumelinkapp.reporttype",
+    "pk": 4,
+    "fields": {
+        "name": "Fake news",
+        "slug": "fake-news",
+        "content": "Spreading false or misleading information, including rumors, hoaxes, or fabricated news, is strictly prohibited. This includes sharing unverified or intentionally deceptive content that may harm individuals, communities, or cause confusion. The dissemination of fake news undermines trust and can have serious consequences, both within the community and beyond. Users found spreading fake news will face immediate removal of content, warnings, and may be subject to suspension or a permanent ban. We encourage the sharing of accurate, reliable, and verified information to maintain a trustworthy and informed community."
+    }
+},
+{
+    "model": "yumelinkapp.reporttype",
+    "pk": 5,
+    "fields": {
+        "name": "Identity impersonation",
+        "slug": "identity-impersonation",
+        "content": "Impersonating another individual, whether a fellow user, public figure, or any other person, is strictly prohibited. This includes pretending to be someone else to deceive, mislead, or manipulate others, as well as using someone else’s name, likeness, or credentials without permission. Identity impersonation undermines trust and safety within the community and will result in immediate action, including account suspension or a permanent ban. We expect all users to engage authentically and with integrity, ensuring a respectful and honest environment for everyone."
+    }
+},
+{
+    "model": "yumelinkapp.reporttype",
+    "pk": 6,
+    "fields": {
+        "name": "Cyberbullying",
+        "slug": "cyberbullying",
+        "content": "Cyberbullying, including targeted harassment, threats, or the spreading of false information with the intent to harm, is strictly prohibited. This includes bullying based on personal traits, such as appearance, identity, or beliefs, and any attempt to intimidate, isolate, or degrade others online. Such behavior harms the integrity of our community and will lead to immediate action, including warnings, suspension, or permanent ban. We are committed to fostering a supportive and respectful environment, where all users can interact free from abuse or intimidation."
+    }
+},
+{
+    "model": "yumelinkapp.reporttype",
+    "pk": 7,
+    "fields": {
+        "name": "Violence",
+        "slug": "violence",
+        "content": "Content that promotes or glorifies violence, harm, or abuse toward individuals or groups is strictly prohibited. This includes graphic depictions of violence, threats, or any encouragement of violent behavior. Such content undermines the safety and well-being of the community and may lead to immediate removal, warnings, suspension, or a permanent ban. We are committed to maintaining a safe and respectful environment, and we expect all users to avoid engaging in or promoting violent content."
+    }
+},
+{
+    "model": "yumelinkapp.reporttype",
+    "pk": 8,
+    "fields": {
+        "name": "Inappropriate Content",
+        "slug": "inappropriate-content",
+        "content": "Inappropriate content, including but not limited to explicit, obscene, or offensive material, is not allowed. This encompasses sexually explicit content, graphic violence, hate speech, or any other material that violates community standards of respect and decency. Such content disrupts the positive atmosphere of the community and will be removed. Repeated violations may result in warnings, suspension, or permanent ban. We aim to create a space where users feel safe, respected, and valued, and expect all participants to contribute accordingly."
+    }
+},
+{
+    "model": "yumelinkapp.reporttype",
+    "pk": 9,
+    "fields": {
+        "name": "Hate speech",
+        "slug": "hate-speech",
+        "content": "Hate speech, including any content that promotes discrimination, harassment, or violence based on race, ethnicity, gender, sexual orientation, religion, disability, or any other protected characteristic, is strictly prohibited. This type of content undermines the safety and respect of our community and will result in immediate action, including warnings, suspension, or permanent ban depending on the severity of the offense. Respect and inclusion are core values of our community, and we expect all users to engage in a way that upholds these standards."
+    }
+},
+{
+    "model": "yumelinkapp.reporttype",
+    "pk": 10,
+    "fields": {
+        "name": "Content filter violation",
+        "slug": "content-filter-violation",
+        "content": "Failing to use the Mature or other relevant Content Filter when posting explicit, graphic, or adult-themed content is a violation of community standards. This includes not labeling content as mature, posting content with hidden mature themes, or failing to apply the filter when content clearly violates guidelines. Such violations may lead to warnings, suspension, or permanent ban. By following these rules, you help ensure a safe and respectful environment for all users."
+    }
+},
+{
+    "model": "yumelinkapp.reporttype",
+    "pk": 11,
+    "fields": {
+        "name": "Substance Abuse",
+        "slug": "substance-abuse",
+        "content": "Content that promotes, glamorizes, or encourages the use of illegal substances, alcohol abuse, or addiction is not allowed."
+    }
+},
+{
+    "model": "yumelinkapp.reporttype",
+    "pk": 12,
+    "fields": {
+        "name": "Spamming",
+        "slug": "spamming",
+        "content": "Spamming, including the excessive posting of irrelevant, repetitive, or unsolicited content, is strictly prohibited. This includes mass messaging, flooding chat or comment sections, or repeatedly posting the same links, advertisements, or promotions. Spamming disrupts the flow of conversations and can create a frustrating experience for others. Violations will result in content removal, warnings, and may lead to suspension or permanent ban depending on the severity. We expect all users to engage in meaningful and respectful interactions, free from disruptive behavior."
+    }
+}
+]

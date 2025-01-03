@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block extra_css %}
+{% load video_embed %}
         /* Messages container */
         .messages {
             display: flex;
@@ -93,7 +94,7 @@
         {% for message in chat_messages %}
             <div class="message {% if message.user == current_user %}right{% else %}left{% endif %}">
                 <div class="message-sender">{{ message.user.username }}</div>
-                <div class="message-content">{{ message.content }}</div>
+                <div class="message-content">{{ message.content|embed_video|safe }}</div>
                 <div class="timestamp">{{ message.timestamp|date:"D M d, Y H:i" }}</div>
             </div>
         {% endfor %}

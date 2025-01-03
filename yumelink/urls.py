@@ -26,6 +26,10 @@ urlpatterns = [
     path('accounts/', include("django.contrib.auth.urls")),
     path('signup/', views.SignupView.as_view(), name='signup'),
 
+    # Auth0-related views
+    path("auth0_login/", views.auth_login, name="auth0_login"),
+    path("callback/", views.callback, name="callback"),
+    path("logout/", views.logout, name="logout"),
 ]
 
 if settings.DEBUG:

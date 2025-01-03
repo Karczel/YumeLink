@@ -18,4 +18,24 @@
     </table>
 </form>
   <a href="{% url 'login' %}?next={{request.path}}" class="custom-button-link">Log in</a> <br>
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        const birthdayField = document.querySelector('input[name="birthday"]');
+
+        if (birthdayField) {
+            // Calculate the minimum date (13 years ago from today)
+            const today = new Date();
+            const minDate = new Date(today.setFullYear(today.getFullYear() - 13));
+
+            // Format the date in YYYY-MM-DD
+            const formattedDate = minDate.toISOString().split('T')[0];
+
+            // Set the max attribute in the input field to prevent users under 13 from selecting dates
+            birthdayField.setAttribute('max', formattedDate);
+        }
+    });
+</script>
+
 {% endblock %}
+

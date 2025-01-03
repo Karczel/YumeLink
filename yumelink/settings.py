@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'yumelinkapp.apps.YumelinkappConfig',
+    'yumelinkapp',
 
 ]
 
@@ -52,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'yumelink.urls'
@@ -205,3 +206,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = ["https://yumelink.onrender.com"]
+
+AUTH0_DOMAIN = config("AUTH0_DOMAIN")
+AUTH0_CLIENT_ID = config("AUTH0_CLIENT_ID")
+AUTH0_CLIENT_SECRET = config("AUTH0_CLIENT_SECRET")

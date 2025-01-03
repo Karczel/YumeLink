@@ -1,31 +1,39 @@
-from django.views.generic import View
-from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+from django.views.generic import FormView
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from yumelinkapp.forms import SignupForm
 
 
-class SignupView(View):
+class SignupView(FormView):
     """
     Register a new user.
     """
+    template_name = 'registration/signup.html'
+    form_class = SignupForm
+    success_url = reverse_lazy('yumelinkapp:home')
 
-    def get(self, request):
-        """Display the signup form."""
-        form = SignupForm()
-        return render(request, 'registration/signup.html', {'form': form})
+    def get_initial(self):
+        """Prefill the form with data from the session."""
+        return self.request.session.pop('signup_data', {})
 
-    def post(self, request):
-        """Process the submitted signup form."""
-        form = SignupForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_passwd = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_passwd)
+    def form_valid(self, form):
+        """Handle valid form submissions."""
+        # Save the user
+        form.save()
 
-            login(request, user)
-            return redirect('yumelinkapp:home')
-        else:
-            messages.error(request, "This form is invalid")
-            return redirect(request, 'registration/signup.html', {'form': form})
+        # Authenticate and log the user in
+        username = form.cleaned_data.get('username')
+        raw_password = form.cleaned_data.get('password1')
+        user = authenticate(username=username, password=raw_password)
+        login(self.request, user)
+        self.request.session.pop('signup_data', None)
+
+        # Redirect to the success URL
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        """Handle invalid form submissions."""
+        # Optionally add error messages
+        messages.error(self.request, "Please correct the errors below.")
+        return self.render_to_response(self.get_context_data(form=form))

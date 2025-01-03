@@ -1,9 +1,10 @@
 from enum import Enum
 
 
-class LanguageType(Enum):
-    ENG = "English"
-    TH = "Thai"
+class ChatRequestStatus(Enum):
+    pending = "Pending"
+    accepted = "Accepted"
+    rejected = "Rejected"
 
     def __str__(self):
         return self.value
@@ -12,3 +13,4 @@ class LanguageType(Enum):
     def choices(cls):
         """Returns the choices as a list of tuples."""
         return [(status.name, status.value) for status in cls]
+

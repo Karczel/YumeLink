@@ -1,0 +1,29 @@
+[
+{
+    "model": "yumelinkapp.chatrank",
+    "pk": 1,
+    "fields": {
+        "name": "admin",
+        "can_delete_chatroom": true,
+        "can_change_chatroom_name": true
+    }
+},
+{
+    "model": "yumelinkapp.chatrank",
+    "pk": 2,
+    "fields": {
+        "name": "member",
+        "can_delete_chatroom": false,
+        "can_change_chatroom_name": false
+    }
+},
+{
+    "model": "yumelinkapp.chatrank",
+    "pk": 3,
+    "fields": {
+        "name": "moderator",
+        "can_delete_chatroom": false,
+        "can_change_chatroom_name": true
+    }
+}
+]
