@@ -52,6 +52,16 @@ class User(DjangoUser):
                 raise ValidationError("You must be at least 13 years old.")
         return birthday
 
+    def clean(self):
+        """
+        Custom validation to prevent users under 18 from selecting mature content filter.
+        This restricts 'mature' filter if the user is under 18 years old.
+        """
+        if self.age() < 18 and self.filter_content == FilterType.mature.name:
+            raise ValidationError("Users under 18 cannot select mature content filters.")
+
+        return super().clean()
+
     def age(self):
         today = date.today()
         age = today.year - self.birthday.year
