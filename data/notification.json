@@ -130,5 +130,16 @@
         "is_read": false,
         "timestamp": "2024-11-29T13:31:20.063Z"
     }
+},
+{
+    "model": "yumelinkapp.notification",
+    "pk": 13,
+    "fields": {
+        "object_id": 11,
+        "content_type": 19,
+        "receiver": 7,
+        "is_read": false,
+        "timestamp": "2024-12-31T17:13:02.061Z"
+    }
 }
 ]

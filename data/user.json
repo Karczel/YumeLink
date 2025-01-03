@@ -9,7 +9,7 @@
         "profile": "",
         "header": "",
         "color": "#000000",
-        "language": "ENG",
+        "language": "en",
         "filter_content": "none"
     }
 },
@@ -23,7 +23,7 @@
         "profile": "users/2/41a0cb9526233eae02df435fa26380aa.gif",
         "header": "users/2/th.jpeg",
         "color": "#000000",
-        "language": "ENG",
+        "language": "en",
         "filter_content": "none"
     }
 },
@@ -37,7 +37,7 @@
         "profile": "",
         "header": "",
         "color": "#000000",
-        "language": "ENG",
+        "language": "en",
         "filter_content": "none"
     }
 },
@@ -51,8 +51,22 @@
         "profile": "users/4/pexels-photo-1563356.jpeg",
         "header": "users/4/sea-dawn-nature-1188083.jpg",
         "color": "#000000",
-        "language": "ENG",
+        "language": "en",
         "filter_content": "mature"
+    }
+},
+{
+    "model": "yumelinkapp.user",
+    "pk": 7,
+    "fields": {
+        "name": "Untitled",
+        "birthday": "2003-10-30",
+        "bio": "",
+        "profile": "",
+        "header": "",
+        "color": "#000000",
+        "language": "th",
+        "filter_content": "none"
     }
 }
 ]
