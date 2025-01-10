@@ -201,11 +201,13 @@ AWS_S3_VERIFY = True
 
 MEDIA_URL = f'{AWS_S3_URL_PROTOCOL}//{AWS_S3_CUSTOM_DOMAIN}/'
 
+WEBSITE = config("CORS_ALLOWED_ORIGINS", default="https://yumelink.onrender.com")
+
 CORS_ALLOWED_ORIGINS = [
-    "https://yumelink.onrender.com",
+    config("CORS_ALLOWED_ORIGINS")
 ]
 
-CSRF_TRUSTED_ORIGINS = ["https://yumelink.onrender.com"]
+CSRF_TRUSTED_ORIGINS = config("CSRF_TRUSTED_ORIGINS", cast=Csv(), default='*')
 
 AUTH0_DOMAIN = config("AUTH0_DOMAIN")
 AUTH0_CLIENT_ID = config("AUTH0_CLIENT_ID")
