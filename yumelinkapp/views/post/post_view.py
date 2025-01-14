@@ -28,7 +28,17 @@ class PostView(LoginRequiredMixin, DetailView):
         context['translated_content'] = translate_text(self.object.content, user.language)
 
         context['post_images'] = PostImage.objects.filter(post=post)
-        context['image_captions'] = [(i+1, query(image.image.url)) for i, image in enumerate(context['post_images'])]
+        image_captions = []
+        for i, image in enumerate(context['post_images']):
+            try:
+                caption = query(image.image.url)  # Call the query function to get the caption
+                image_captions.append((i + 1, caption))  # Add the result if successful
+            except Exception as e:
+                # Handle the exception (e.g., log it, append a default caption, or continue)
+                image_captions.append((i + 1, [{"generated_text": "Failed to caption image(s)"}]))
+                print(f"Error processing image {image.image.url}: {e}")  # Optional: Log the error
+
+        context['image_captions'] = image_captions
 
         context['post_tags'] = PostTag.objects.filter(post=post)
 
