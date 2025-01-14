@@ -34,6 +34,13 @@
     <img src="{{ image.image.url }}" alt="Post Image" />
 </div>
 {% endfor %}
+
+<div>
+    {% for i, caption in image_captions %}
+        <p>(image {{i}}), {{ caption.0.generated_text }}</p>
+    {% endfor %}
+</div>
+
 <h3>Tags</h3>
 <p>{% for tag in tags %}
 {{ tag.content }},

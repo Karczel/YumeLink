@@ -4,7 +4,7 @@ from django.shortcuts import redirect
 from django.views.generic import DetailView
 
 from yumelinkapp.models import Post, PostImage, Tag, PostTag, Like, Comment, Share, User, Block
-from yumelinkapp.utils import LikeType, translate_text
+from yumelinkapp.utils import LikeType, translate_text, query
 
 
 class PostView(LoginRequiredMixin, DetailView):
@@ -28,6 +28,8 @@ class PostView(LoginRequiredMixin, DetailView):
         context['translated_content'] = translate_text(self.object.content, user.language)
 
         context['post_images'] = PostImage.objects.filter(post=post)
+        context['image_captions'] = [(i+1, query(image.image.url)) for i, image in enumerate(context['post_images'])]
+
         context['post_tags'] = PostTag.objects.filter(post=post)
 
         context['tags'] = Tag.objects.filter(posttag__post=post)
