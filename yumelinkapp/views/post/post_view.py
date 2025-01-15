@@ -36,7 +36,7 @@ class PostView(LoginRequiredMixin, DetailView):
             except Exception as e:
                 # Handle the exception (e.g., log it, append a default caption, or continue)
                 image_captions.append((i + 1, [{"generated_text": "Failed to caption image(s)"}]))
-                print(f"Error processing image {image.image.url}: {e}")  # Optional: Log the error
+                messages.error(self.request, f"Error processing image {image.image.url}: {e}")
 
         context['image_captions'] = image_captions
 
